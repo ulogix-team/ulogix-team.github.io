@@ -3,15 +3,15 @@
     "title": "Estado pre-automatización",
     "subtitle": "Diagnóstico del sistema productivo",
     "content": "<strong>No se puede optimizar lo que no se entiende.</strong> Analizamos líneas, métricas y procesos.",
-    "cta": "Iniciar diagnóstico",
+    "cta": "Módulo 1: Introducción ",
     "image": "diagnostico",
     "image_alt": ""
   },
   {
-    "title": "Propuesta de automatización",
-    "subtitle": "Diseño de la solución técnica",
-    "content": "<strong>Transformamos datos en soluciones.</strong> Definimos arquitectura, selección de equipos y estrategia de control.",
-    "cta": "Ver propuesta",
+    "title": "Análisis de desempeño",
+    "subtitle": "Gestión de la producción",
+    "content": "Entendamos el estado productivo de las líneas observadas. Los KPis y las métricas principales que muestren el desempeño general de la planta. Con esto podremos encontrar posibles oportunidades de mejora, y teenr un benchmarking sólido que justifique la automatización.",
+    "cta": "Módulo 2: Gestión de la producción ",
     "image": "diagnostico",
     "image_alt": ""
   },
@@ -19,7 +19,7 @@
     "title": "Costos y finanzas",
     "subtitle": "Evaluación económica del proyecto",
     "content": "<strong>La automatización debe ser rentable.</strong> Analizamos inversión, retorno (ROI) y escalabilidad del sistema.",
-    "cta": "Analizar costos",
+    "cta": "Módulo 3: Evaluación económica ",
     "image": "diagnostico",
     "image_alt": ""
   }

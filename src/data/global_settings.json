@@ -15,11 +15,11 @@
       "link": "/info"
     },
     {
-      "title": "Finanzas y Costos",
-      "link": "/#services"
+      "title": "FAQ",
+      "link": "/#faq"
     },
     {
-      "title": "Estado inicial",
+      "title": "Productos",
       "link": "/#case-studies"
     },
     
@@ -31,25 +31,11 @@
   ],
 
   "social_links": [
-    {
-      "title": "Twitter / X",
-      "link": "https://x.com/blackspikeltd/"
-    },
-    {
-      "title": "Mastodon",
-      "link": "https://mastodon.cloud/@blackspike"
-    },
+
     {
       "title": "GitHub",
       "link": "https://github.com/blackspike/"
-    },
-    {
-      "title": "LinkedIn",
-      "link": "https://www.linkedin.com/company/blackspike"
-    },
-    {
-      "title": "Bluesky",
-      "link": "https://bsky.app/profile/blackspike.com/"
     }
+   
   ]
 }

@@ -1,0 +1,162 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+import QuoteSection from "../components/QuoteSection.astro"
+import ClientsSection from "../components/ClientsSection.astro"
+import NewsletterSection from "../components/NewsletterSection.astro"
+
+import clients from "../data/clients.json"
+import newsletter from "../data/newsletter.json"
+---
+
+<Layout 
+  title="About | Industrial Automation"
+  description="Advanced MES, SCADA and automation systems."
+  variant="minimal"
+>
+
+  <!-- HEADER -->
+  <section class="container py-16">
+    <div class="max-w-4xl">
+      <h1 class="text-4xl font-semibold">Industrial Intelligence</h1>
+      <p class="mt-4 text-lg opacity-80">
+        We design end-to-end automation systems integrating control, data and optimization.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="container py-20">
+    <h2>Engineering Process</h2>
+
+    <div class="grid md:grid-cols-4 gap-8 mt-10">
+
+      <div>
+        <h3>01. Design</h3>
+        <p>System architecture, control strategy, hardware selection.</p>
+      </div>
+
+      <div>
+        <h3>02. Integration</h3>
+        <p>PLC, SCADA and MES integration with industrial protocols.</p>
+      </div>
+
+      <div>
+        <h3>03. Deployment</h3>
+        <p>Commissioning, validation and production rollout.</p>
+      </div>
+
+      <div>
+        <h3>04. Optimization</h3>
+        <p>OEE improvement, predictive maintenance and analytics.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SYSTEM DIAGRAM -->
+  <section class="container py-20">
+    <h2>System Architecture</h2>
+
+    <div class="mt-10 border rounded-2xl p-8 bg-black/40 backdrop-blur">
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+
+        <div>
+          <h3>Field Layer</h3>
+          <p>Sensors, actuators, drives</p>
+        </div>
+
+        <div>
+          <h3>Control Layer</h3>
+          <p>PLCs, industrial networks</p>
+        </div>
+
+        <div>
+          <h3>Supervisory Layer</h3>
+          <p>SCADA, MES, cloud analytics</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section class="container py-20">
+    <h2>Performance Metrics</h2>
+
+    <div class="overflow-x-auto mt-8">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b">
+            <th class="py-3">Metric</th>
+            <th>Before</th>
+            <th>After</th>
+            <th>Improvement</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="border-b">
+            <td class="py-3">OEE</td>
+            <td>62%</td>
+            <td>85%</td>
+            <td>+23%</td>
+          </tr>
+
+          <tr class="border-b">
+            <td class="py-3">Downtime</td>
+            <td>18%</td>
+            <td>7%</td>
+            <td>-11%</td>
+          </tr>
+
+          <tr>
+            <td class="py-3">Energy Use</td>
+            <td>100%</td>
+            <td>78%</td>
+            <td>-22%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- GRAPH -->
+  <section class="container py-20">
+    <h2>Production Output</h2>
+
+    <div class="mt-10 p-8 border rounded-2xl bg-black/40">
+      <div class="flex items-end gap-4 h-40">
+
+        <div class="bg-white/70 w-8 h-[40%]"></div>
+        <div class="bg-white/70 w-8 h-[55%]"></div>
+        <div class="bg-white/70 w-8 h-[70%]"></div>
+        <div class="bg-white/70 w-8 h-[85%]"></div>
+        <div class="bg-white w-8 h-[100%]"></div>
+
+      </div>
+
+      <p class="mt-4 text-sm opacity-70">
+        Output increase after MES integration
+      </p>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <QuoteSection
+    cite="Engineering Principle"
+    content="A factory is not a set of machines — it is a system of information, energy and control."
+    role="Systems Thinking"
+    image="/images/quote.jpg"
+  />
+
+  <!-- CLIENTS -->
+  <ClientsSection
+    clients={clients}
+    title="Trusted by Industry"
+  />
+
+  <!-- CTA -->
+  <NewsletterSection newsletter={newsletter} />
+
+</Layout>
