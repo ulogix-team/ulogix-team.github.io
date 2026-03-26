@@ -12,7 +12,7 @@ import PricingSection from "../components/PricingSection.astro"
 import QuoteSection from "../components/QuoteSection.astro"
 import TestimonialsSection from "../components/TestimonialsSection.astro"
 import TeamPresentation from "../components/TeamPresentation.astro"
-
+import ULogixPresentation from "../components/ULogixPresentation.astro"
 
 
 import caseStudies from "../data/case_studies.json"
@@ -53,6 +53,7 @@ import people from "../data/people.json"
     role={ home.quote_role }
   />
 
+  
   <TeamPresentation 
     title = " Nuestro equipo" 
     people = { people }
@@ -73,10 +74,18 @@ import people from "../data/people.json"
     title={ home.pricing_title }
   /> -->
 
+
+
+  <ULogixPresentation 
+    title = "¿Por qué U-Logix?" 
+    content = "En U-Logix, no solo ofrecemos soluciones de automatización, sino que también nos comprometemos a transformar la forma en que las plantas industriales operan. Nuestra propuesta de valor se basa en tres pilares fundamentales: innovación, personalización y resultados tangibles. Con un enfoque centrado en el cliente, trabajamos estrechamente con cada planta para entender sus desafíos únicos y diseñar soluciones a medida que optimicen sus procesos, reduzcan costos y aumenten la eficiencia. Nuestro equipo de expertos combina tecnología de vanguardia con un profundo conocimiento de la industria para garantizar que cada proyecto no solo cumpla, sino supere las expectativas. En U-Logix, estamos dedicados a impulsar la transformación digital en la industria, ayudando a las plantas a alcanzar su máximo potencial y mantenerse competitivas en un mercado en constante evolución."
   <FaqSection
     faq={ faq }
     title={ home.faq_title }
   />
+
+
+
 
   <NewsletterSection newsletter={newsletter} />
 
