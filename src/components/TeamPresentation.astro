@@ -49,31 +49,58 @@ const enhancedPeople = people.map((p) => ({
 }));
 ---
 
-<section class="w-full bg-[#F8F8F8] pt-32 pb-20 px-6 relative overflow-hidden mt-40" id ="team">
-
-  <div class="container">
-  <h1>El equipo</h1>
+<section class="w-full relative overflow-hidden pt-32 pb-20 px-6 mt-40" id="team" style="background: linear-gradient(135deg, #fef9e7 0%, #fff5e6 50%, #fef2e0 100%);">
+  {/* Efecto de grilla que se desvanece a los lados */}
+  <div class="absolute inset-0 pointer-events-none">
+    {/* Grilla base */}
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5d5b0_1px,transparent_1px),linear-gradient(to_bottom,#e5d5b0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20"></div>
+    
+    {/* Degradados laterales para desvanecer la grilla */}
+    <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#fef9e7] to-transparent"></div>
+    <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#fef9e7] to-transparent"></div>
+    <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#fef9e7] to-transparent"></div>
+    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#fef9e7] to-transparent"></div>
+    
+    {/* Puntos decorativos sutiles */}
+    <div class="absolute top-20 left-10 w-1 h-1 bg-amber-300/30 rounded-full"></div>
+    <div class="absolute bottom-40 right-20 w-1.5 h-1.5 bg-amber-400/20 rounded-full"></div>
+    <div class="absolute top-1/2 left-1/4 w-1 h-1 bg-orange-300/20 rounded-full"></div>
+    <div class="absolute bottom-1/3 right-1/3 w-1 h-1 bg-yellow-300/20 rounded-full"></div>
   </div>
-  <!-- ⭐ SECCIÓN BLUR SOBRE LA IMAGEN (MENU DINÁMICO) -->
-  <div class="absolute bottom-0 left-0 w-full 
-              backdrop-blur-xl bg-white/10 
-              border-t border-white/20
-              shadow-[0_-10px_30px_rgba(0,0,0,0.1)] 
+
+  <div class="container mx-auto relative z-10">
+    <h1 class="text-5xl md:text-6xl font-light text-gray-800 mb-4 tracking-tight">
+      El <span class="font-semibold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">equipo</span>
+    </h1>
+    <p class="text-gray-500 text-lg max-w-2xl mb-16">
+      Conoce a las mentes creativas detrás de nuestros proyectos
+    </p>
+  </div>
+
+  {/* ⭐ SECCIÓN BLUR SOBRE LA IMAGEN (MENÚ DINÁMICO) */}
+<div class="absolute bottom-0 left-0 w-full 
+              backdrop-blur-xl bg-white/40 
+              border-t border-white/60
+              shadow-[0_-10px_30px_rgba(0,0,0,0.05)] 
               py-6 z-20">
     <div class="max-w-6xl mx-auto flex justify-center gap-6 flex-wrap">
       {
         enhancedPeople.map((p, i) => (
           <div 
-            class="avatar flex flex-col items-center cursor-pointer hover:scale-105 transition"
+            class="avatar flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300"
             data-index={i}
             onclick={`swiper.slideTo(${i})`}
           >
-            <img 
-              src={p.avatar.src}
-              class="w-16 h-16 rounded-full object-cover shadow"
-              alt={p.name}
-            />
-            <p class="text-xs text-gray-700 mt-1 font-medium">
+            <div class="relative">
+              <img 
+                src={p.avatar.src}
+                class="w-16 h-16 rounded-full object-cover shadow-md transition-all duration-300"
+                alt={p.name}
+              />
+              {/* Borde difuminado que aparece cuando está seleccionado */}
+              <div class="absolute inset-0 rounded-full ring-2 ring-amber-400/60 ring-offset-2 ring-offset-white/30 opacity-0 transition-all duration-300 pointer-events-none selected-glow"></div>
+            </div>
+            <p class="text-xs text-gray-600 mt-1 font-medium">
               {p.name.split(' ')[0]}
             </p>
           </div>
@@ -83,96 +110,88 @@ const enhancedPeople = people.map((p) => ({
   </div>
 
   <!-- Swiper Container para el contenido principal -->
-  <div class="js-team-swiper swiper">
-    <div class="swiper-wrapper mt-20">
+  <div class="js-team-swiper swiper mt-10">
+    <div class="swiper-wrapper mt-15">
       {
         enhancedPeople.map((p, index) => (
-          <div class="swiper-slide" >
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-2 mb-50">
-              
+          <div class="swiper-slide" key={index}>
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-2 mb-32">
               
               <div class="space-y-8 mt-6">
                 
-              
-                <div class="flex items-center gap-3 text-gray-400">
+                <div class="flex items-center gap-3 text-amber-600">
                   <svg xmlns="http://www.w3.org/2000/svg" 
                        class="w-5 h-5 opacity-80"
                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" 
                       d="M12 6l2.5 5.1L20 12l-5.5 0.9L12 18l-2.5-5.1L4 12l5.5-0.9L12 6z" />
                   </svg>
-                  <p class="uppercase tracking-widest text-[13px] font-medium">
+                  <p class="uppercase tracking-widest text-[13px] font-medium text-amber-700">
                     {p.main_skill}
                   </p>
                 </div>
 
-                
-                <h2 class="text-6xl font-light tracking-tight text-gray-900 leading-snug">
-                  {p.name.split(' ')[0]} <span class="font-semibold">{p.name.split(' ')[1]}</span>
+                <h2 class="text-6xl font-light tracking-tight text-gray-800 leading-snug">
+                  {p.name.split(' ')[0]} <span class="font-semibold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">{p.name.split(' ')[1]}</span>
                 </h2>
 
-                <h3 class="text-xl font-medium text-gray-700">
+                <h3 class="text-xl font-medium text-gray-600">
                   {p.role}
                 </h3>
 
-                <!-- Descripción -->
                 <p class="text-gray-500 font-light leading-relaxed max-w-lg text-[15px]">
                   {p.bio}
                 </p>
 
-                <!-- Badges de Skills -->
                 <div class="flex flex-wrap gap-2 pt-2">
                   {p.skills.map((skill, idx) => (
-                    <span key={idx} class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
+                    <span key={idx} class="px-3 py-1 bg-amber-100/80 text-amber-800 text-xs rounded-full font-medium backdrop-blur-sm">
                       {skill}
                     </span>
                   ))}
                 </div>
 
-                <!-- Redes sociales / contacto -->
                 <div class="flex items-center gap-5 pt-2 text-gray-500">
-                  <!-- Email -->
                   <a 
                     href={`mailto:${p.media.email}`} 
-                    class="hover:text-gray-900 transition"
+                    class="hover:text-amber-600 transition-colors"
                   >
                     <img 
                       src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg" 
-                      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+                      class="w-6 h-6 opacity-70 hover:opacity-100 transition"
                       alt="mail icon"
                     />
                   </a>
 
-                  <!-- GitHub -->
                   <a 
                     href={p.media.github} 
                     target="_blank"
-                    class="hover:text-gray-900 transition"
+                    class="hover:text-amber-600 transition-colors"
                   >
                     <img 
                       src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/github.svg" 
-                      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+                      class="w-6 h-6 opacity-70 hover:opacity-100 transition"
                       alt="github icon"
                     />
                   </a>
 
-                  <!-- LinkedIn -->
                   <a 
                     href={p.media.linkedin} 
                     target="_blank"
-                    class="hover:text-gray-900 transition"
+                    class="hover:text-amber-600 transition-colors"
                   >
                     <img 
                       src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/linkedin.svg" 
-                      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+                      class="w-6 h-6 opacity-70 hover:opacity-100 transition"
                       alt="linkedin icon"
                     />
                   </a>
                 </div>
               </div>
 
-              <!-- RIGHT: Imagen principal -->
+              {/* RIGHT: Imagen principal */}
               <div class="flex justify-center md:justify-end md:items-start relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-200/20 to-orange-200/20 rounded-full blur-3xl"></div>
                 <img 
                   src={p.photo.src}
                   class="w-[480px] scale-[1.85] translate-y-10 max-w-full object-contain drop-shadow-2xl z-10"
@@ -186,11 +205,11 @@ const enhancedPeople = people.map((p) => ({
     </div>
   </div>
 
-  <!-- Botones de navegación -->
+  {/* Botones de navegación */}
   <button 
     class="js-team-prev absolute left-3 top-1/2 -translate-y-1/2 
-           text-gray-500 hover:text-gray-800 
-           transition z-30">
+           text-amber-500 hover:text-amber-700 
+           transition z-30 bg-white/20 backdrop-blur-sm rounded-full p-2 shadow-lg">
     <svg xmlns="http://www.w3.org/2000/svg" 
          class="w-8 h-8" 
          fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -201,8 +220,8 @@ const enhancedPeople = people.map((p) => ({
 
   <button 
     class="js-team-next absolute right-3 top-1/2 -translate-y-1/2 
-           text-gray-500 hover:text-gray-800 
-           transition z-30">
+           text-amber-500 hover:text-amber-700 
+           transition z-30 bg-white/20 backdrop-blur-sm rounded-full p-2 shadow-lg">
     <svg xmlns="http://www.w3.org/2000/svg" 
          class="w-8 h-8" 
          fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -239,30 +258,76 @@ const enhancedPeople = people.map((p) => ({
     window.swiper = swiper
     
     // Actualizar clase activa en avatares cuando cambia el slide
-    swiper.on('slideChange', () => {
-      const activeIndex = swiper.activeIndex
-      document.querySelectorAll('.avatar').forEach((avatar, i) => {
-        if (i === activeIndex) {
-          avatar.classList.add('scale-110', 'ring-2', 'ring-blue-500', 'ring-offset-2')
-        } else {
-          avatar.classList.remove('scale-110', 'ring-2', 'ring-blue-500', 'ring-offset-2')
-        }
-      })
-    })
-    
-    // Activar el primer avatar
-    setTimeout(() => {
-      swiper.slideTo(0)
-    }, 100)
+ swiper.on('slideChange', () => {
+  const activeIndex = swiper.activeIndex
+  document.querySelectorAll('.avatar').forEach((avatar, i) => {
+    const glowElement = avatar.querySelector('.selected-glow')
+    if (i === activeIndex) {
+      avatar.classList.add('scale-110')
+      if (glowElement) {
+        glowElement.classList.add('opacity-100')
+        glowElement.classList.remove('opacity-0')
+      }
+    } else {
+      avatar.classList.remove('scale-110')
+      if (glowElement) {
+        glowElement.classList.add('opacity-0')
+        glowElement.classList.remove('opacity-100')
+      }
+    }
+  })
+})
+
+// Activar el primer avatar
+setTimeout(() => {
+  swiper.slideTo(0)
+}, 100)
   })
 </script>
 
-<style>
+<style is:global>
   .avatar {
     transition: all 0.2s ease;
   }
   
   .swiper-slide {
     transition: all 0.3s ease;
+  }
+  
+  /* Scrollbar personalizado para la sección si es necesario */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 10px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(245, 158, 11, 0.3);
+    border-radius: 10px;
+  }
+  
+</style>
+<style is:global>
+  .avatar {
+    transition: all 0.2s ease;
+  }
+  
+  .swiper-slide {
+    transition: all 0.3s ease;
+  }
+  
+  /* Efecto de borde difuminado */
+  .selected-glow {
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.4), 0 0 0 6px rgba(245, 158, 11, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Alternativa con blur si prefieres un efecto más difuso */
+  .selected-glow-blur {
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.5);
   }
 </style>

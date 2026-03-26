@@ -3,7 +3,7 @@
 import Layout from "../layouts/Layout.astro"
 
 import FaqSection from "../components/FaqSection.astro"
-
+import HeroNew from "../components/HeroNew.astro"
 import caseStudies from "../data/case_studies.json"
 import clients from "../data/clients.json"
 import faq from "../data/faq.json"
@@ -18,7 +18,11 @@ import people from "../data/people.json"
 ---
 
 <Layout title={ global_settings.title } variant ="home">
-<!-- 
+  <HeroNew
+  title = "Desempeño"
+  subtitle = "Encontremos métricas que cuantifiquen el desempeño del a planta. Con indicadores clave, podemos identificar donde es mejor intervenir para impactar"
+></HeroNew>
+  <!-- 
   <HeroSection
     content={ home.hero_content }
     settings={ global_settings }
