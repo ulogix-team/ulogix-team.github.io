@@ -4,6 +4,10 @@ import CardCaseStudy from './CardCaseStudy.astro'
 
 const { title, caseStudies } = Astro.props
 
+import garrafon from '../assets/theme-images/garrafon.png'; 
+
+
+
 ---
 
 <section class="bs-container bs-mt-lg" id="case-studies">
@@ -11,7 +15,7 @@ const { title, caseStudies } = Astro.props
   <!-- Header -->
   { title && <h2 class="bs-h2 text-center md:text-left">{ title }</h2> }
 
-  <div class="bs-h8 mt-5 mb-4">
+  <div class="bs-h8 mt-5 mb-20">
   En la nuestra propuesta de automatización, nos centraremos en tres tipos de productos
   </div>
   <!-- Case Study 1 -->
@@ -22,10 +26,10 @@ const { title, caseStudies } = Astro.props
   </div> -->
 
   <!-- Case studies -->
-  <div class="mt-3 grid lg:grid-cols-3 gap-8">
+  <div class="mt-3 grid lg:grid-cols-3 gap-8 pb-0">
     <CardCaseStudy caseStudy={ caseStudies[0] } />
     <CardCaseStudy caseStudy={ caseStudies[1] } />
-    <CardCaseStudy caseStudy={ caseStudies[2] } />
+    <CardCaseStudy caseStudy={ caseStudies[2] } img = { garrafon} />
 
   </div>
 
