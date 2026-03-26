@@ -10,10 +10,7 @@
   },
   "theme_color": "#18181b",
   "nav": [
-    {
-      "title": "Propuesta",
-      "link": "/info"
-    },
+
     {
       "title": "FAQ",
       "link": "/#faq"
