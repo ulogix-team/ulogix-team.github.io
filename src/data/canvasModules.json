@@ -1,0 +1,92 @@
+[
+  {
+    "id": "value-proposition",
+    "title": "Propuesta de Valor",
+    "description": "Retrofit para tres líneas con foco en resultados operativos.",
+    "details": "• +11% throughput objetivo\n• OEE 83% → ≥86%\n• +5% mejora de cash flow\n• Trazabilidad MES/Cloud\n• Menos paros, menor scrap y mayor visibilidad de planta.",
+    "icon": "💎",
+    "iconBg": "#EFF6FF",
+    "iconColor": "#2563EB",
+    "gradient": "from-blue-50 to-indigo-50"
+  },
+  {
+    "id": "customer-relationships",
+    "title": "Relaciones con Clientes",
+    "description": "B2B consultiva, acompañamiento de implementación y soporte post-arranque.",
+    "details": "• Entrenamiento de operadores\n• Soporte basado en KPIs\n• Seguimiento post-arranque y mejora continua basada en datos",
+    "icon": "🤝",
+    "iconBg": "#DCFCE7",
+    "iconColor": "#16A34A",
+    "gradient": "from-green-50 to-emerald-50"
+  },
+  {
+    "id": "key-resources",
+    "title": "Recursos Clave",
+    "description": "Equipo y herramientas para ingeniería de automatización y retrofits.",
+    "details": "• Equipo mecatrónico/automatización\n• Know-how ISA-95\n• Software industrial y librerías PLC/HMI\n• BOM de sensores y visión\n• Metodología VSM/OEE\n• Relación con OEM",
+    "icon": "🏗️",
+    "iconBg": "#FFEDD5",
+    "iconColor": "#EA580C",
+    "gradient": "from-orange-50 to-rose-50"
+  },
+  {
+    "id": "customer-segments",
+    "title": "Segmentos de Mercado",
+    "description": "Clientes y usuarios clave de la planta.",
+    "details": "• Cliente ancla: Coca-Cola FEMSA Fontibón\n• Usuarios internos: operaciones, mantenimiento, calidad, planeación, supply chain y TI industrial\n• Escalable a otras plantas de bebidas y alimentos",
+    "icon": "👥",
+    "iconBg": "#FEF3C7",
+    "iconColor": "#D97706",
+    "gradient": "from-amber-50 to-orange-50"
+  },
+  {
+    "id": "cost-structure",
+    "title": "Estructura de Costes",
+    "description": "Principales desembolsos para sostener el modelo de negocio.",
+    "details": "• CAPEX de retrofit, sensores, visión, PLC/HMI, cloud y licencias\n• Ingeniería, commissioning y formación\n• Mantenimiento de software, ciberseguridad y contingencia",
+    "icon": "📊",
+    "iconBg": "#FCE7F3",
+    "iconColor": "#C026D3",
+    "gradient": "from-fuchsia-50 to-pink-50"
+  },
+  {
+    "id": "revenue-streams",
+    "title": "Fuentes de Ingresos",
+    "description": "Cómo monetizamos nuestro servicio de retrofit y digitalización.",
+    "details": "• Integración / retrofit inicial\n• Servicios de ingeniería y digital twin\n• Suscripción de soporte analítico / MES / cloud\n• Upselling de mejora continua y mantenimiento predictivo",
+    "icon": "💰",
+    "iconBg": "#FEF9C3",
+    "iconColor": "#CA8A04",
+    "gradient": "from-yellow-50 to-amber-50"
+  },
+  {
+    "id": "channels",
+    "title": "Canales",
+    "description": "Puntos de contacto y entrega de valor.",
+    "details": "• Venta directa B2B, presentación técnica\n• Piloto / proof-of-concept, demo digital twin\n• Dashboards ejecutivos, entregables de ahorro\n• Soporte remoto y on-site",
+    "icon": "📢",
+    "iconBg": "#E0E7FF",
+    "iconColor": "#4F46E5",
+    "gradient": "from-indigo-50 to-violet-50"
+  },
+  {
+    "id": "key-activities",
+    "title": "Actividades Clave",
+    "description": "Acciones críticas para hacer funcionar el modelo.",
+    "details": "• Ingeniería de detalle\n• Simulación (RobotStudio/NX/Plant Sim)\n• Diseño PLC/SCADA/MES\n• Integración cloud, FAT/SAT, puesta en marcha\n• Capacitación y analítica OEE",
+    "icon": "⚙️",
+    "iconBg": "#F1F5F9",
+    "iconColor": "#475569",
+    "gradient": "from-slate-50 to-gray-50"
+  },
+  {
+    "id": "key-partnerships",
+    "title": "Asociaciones Clave",
+    "description": "Red de aliados que potencian nuestro alcance y capacidades.",
+    "details": "KRONES, HEUFT, Rockwell, ABB, Siemens, Microsoft Azure, integradores locales, mantenimiento OEM y contratistas de montaje.\nMotivación: reducir riesgo tecnológico, acelerar retrofit y asegurar soporte post-arranque.",
+    "icon": "🤝",
+    "iconBg": "#E6F7FF",
+    "iconColor": "#0891B2",
+    "gradient": "from-cyan-50 to-sky-50"
+  }
+]

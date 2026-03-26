@@ -1,0 +1,142 @@
+---
+import canvasModules from '../data/canvasModules.json';
+
+interface Module {
+  id: string;
+  title: string;
+  description: string;
+  details: string;
+  icon: string;
+  iconBg?: string;
+  iconColor?: string;
+}
+
+const modules: Module[] = canvasModules;
+---
+
+<section class="relative py-16 md:py-24 overflow-hidden" id="business-canvas">
+  <!-- Fondo -->
+  <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-black-900 to-slate-900"></div>
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml,...')] opacity-50"></div>
+
+  <div class="container mx-auto px-5 max-w-7xl relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-14 md:mb-20">
+      
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-5">
+        Modelo de Negocio <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Canvas</span>
+      </h2>
+      <p class="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
+        Una visión integral de cómo creamos, entregamos y capturamos valor.<br />
+        Haz clic en cualquier bloque para explorar sus detalles.
+      </p>
+    </div>
+
+    <!-- Grid de módulos -->
+    <div id="modulesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {modules.map((module) => (
+        <div
+          class="module-card group relative bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer overflow-hidden"
+          data-id={module.id}
+          data-title={module.title}
+          data-details={module.details}
+          data-icon={module.icon}
+          data-iconbg={module.iconBg || '#3b82f6'}
+          data-iconcolor={module.iconColor || '#8b5cf6'}
+        >
+          <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+          <div class="p-6 flex flex-col h-full relative z-10">
+          <div
+  class="w-14 h-14 rounded-xl flex items-center justify-center text-2xl shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3"
+  style={`background: linear-gradient(135deg, ${module.iconBg || '#3b82f6'}, ${module.iconColor || '#8b5cf6'}); color: white`}
+  innerHTML={module.icon}
+></div>
+
+            <h3 class="text-xl font-bold text-white mt-5 leading-tight">{module.title}</h3>
+            <p class="text-white/70 text-sm mt-3 leading-relaxed line-clamp-3">{module.description}</p>
+
+            <div class="mt-6 flex items-center text-sm font-medium text-emerald-300 gap-1 group-hover:gap-2 transition-all">
+              <span>Explorar detalles</span>
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="moduleModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div id="modalBackdrop" class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+  <div id="modalContent" class="relative bg-gradient-to-br from-gray-900 to-black-900 rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-hidden shadow-2xl border border-white/20 transition-transform duration-300 scale-95 opacity-60 p-10">
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div id="modalIcon" class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-lg"></div>
+          <h3 id="modalTitle" class="text-2xl font-bold text-white"></h3>
+        </div>
+        <button id="modalClose" class="text-white/60 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10">✕</button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
+        <p id="modalDetails" class="text-white/80 text-base leading-relaxed whitespace-pre-line"></p>
+      </div>
+      <div class="px-6 py-4 border-t border-white/10 flex justify-end">
+        <button id="modalCloseFooter" class="px-5 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-medium rounded-xl transition-all shadow-lg">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  const modal = document.getElementById('moduleModal');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalContent = document.getElementById('modalContent');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDetails = document.getElementById('modalDetails');
+  const modalIcon = document.getElementById('modalIcon');
+  const closeBtns = [document.getElementById('modalClose'), document.getElementById('modalCloseFooter')];
+
+  // Función para abrir modal   
+  function openModal(moduleCard) {
+    modalTitle.textContent = moduleCard.dataset.title;
+    modalDetails.textContent = moduleCard.dataset.details;
+    modalIcon.innerHTML = moduleCard.dataset.icon;
+    modalIcon.style.background = `linear-gradient(135deg, ${moduleCard.dataset.iconbg}, ${moduleCard.dataset.iconcolor})`;
+    modal.style.display = 'flex';
+    requestAnimationFrame(() => {
+      modalContent.classList.remove('scale-95', 'opacity-0');
+      modalContent.classList.add('scale-100', 'opacity-100');
+    });
+  }
+
+  // Función para cerrar modal
+  function closeModal() {
+    modalContent.classList.add('scale-95', 'opacity-0');
+    modalContent.classList.remove('scale-100', 'opacity-100');
+    setTimeout(() => modal.style.display = 'none', 200);
+  }
+
+  // Eventos
+  document.querySelectorAll('.module-card').forEach(card => {
+    card.addEventListener('click', () => openModal(card));
+  });
+  modalBackdrop.addEventListener('click', closeModal);
+  closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+</script>
+
+<style is:global>
+  [x-cloak] { display: none !important; }
+  .scale-95 { transform: scale(0.95); }
+  .scale-100 { transform: scale(1); }
+  .opacity-0 { opacity: 0; }
+  .opacity-100 { opacity: 1; }
+
+  .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
+</style>

@@ -3,7 +3,8 @@
 import Layout from "../layouts/Layout.astro"
 
 import FaqSection from "../components/FaqSection.astro"
-
+import CanvasModel from "../components/CanvasModel.astro"
+import HeroNew from "../components/HeroNew.astro"
 import caseStudies from "../data/case_studies.json"
 import clients from "../data/clients.json"
 import faq from "../data/faq.json"
@@ -62,11 +63,19 @@ import people from "../data/people.json"
     title={ home.pricing_title }
   /> -->
 
+<HeroNew 
+title = "Análisis financiero" 
+subtitle = "Explora el análisis financiero detallado de nuestro proyecto, incluyendo costos, beneficios y retorno de inversión, para comprender el impacto económico y la viabilidad de nuestra propuesta."
+/> 
+
+   <CanvasModel /> 
+
   <FaqSection
     faq={ faq }
     title={ home.faq_title }
   />
 
+ 
   <!-- <NewsletterSection newsletter={newsletter} /> -->
 
 </Layout>

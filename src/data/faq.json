@@ -1,15 +1,15 @@
 [
   {
     "question": "¿Cómo se calculó el OEE?",
-    "answer": "We use industry-standard encryption and secure storage practices to protect your creative assets. All files are encrypted with AES-256, and our servers are regularly monitored and updated to prevent vulnerabilities."
+    "answer": "El OEE se estimó para las tres líneas de embotellamiento analizadas usando la expresión OEE=A×PE×Q, donde se evaluaron la disponibilidad, la eficiencia de desempeño y la calidad. La disponibilidad se calculó comparando el tiempo real de operación con el tiempo planeado de producción, mientras que la calidad se basó en un porcentaje de rechazo de 0,068 % y el desempeño en la relación entre producción real y producción ideal según el takt time. Con estos datos, se obtuvo un OEE aproximado del 83 % en las líneas evaluadas, lo que indica que el sistema aprovecha cerca de ese porcentaje de su capacidad teórica total. Aun así, este valor debe entenderse como una estimación académica construida con la información disponible y la visita técnica a la planta FEMSA, útil principalmente como referencia para analizar el desempeño e identificar oportunidades de mejora."
   },
   {
     "question": "¿Hasta que punto punto del ISA-95 busca alcanzar el proyecto?",
-    "answer": "Yes, we offer a 14-day free trial for our design platform with access to core features for logo design, 3D modelling, or website prototyping—no credit card required."
+    "answer": "El proyecto busca llegar, como mínimo, al nivel de supervisión y control de ISA-95, mediante la implementación de PLC, HMI y SCADA para monitorear en tiempo real variables, estados y alarmas del proceso. Además, la propuesta deja abierta una proyección hacia niveles superiores, con posible integración de sistemas MES y ERP para gestionar producción, indicadores y la conexión con la gestión empresarial. Como valor agregado, también plantea una integración horizontal con la nube mediante MQTT desde campo y control, facilitando el monitoreo remoto, el intercambio de datos en tiempo real y la compatibilidad con enfoques de Industria 4.0."
   },
   {
     "question": "¿Cómo proponen el gemelo digital?",
-    "answer": "Absolutely. Our design tools integrate with popular platforms like Figma, Adobe Creative Cloud, Sketch, Blender, and CMS systems like WordPress and Webflow."
+    "answer": "El gemelo digital del proyecto se plantea principalmente como una simulación virtual en Plant Simulation.  A través de este modelo se busca representar cómo funcionan las tres líneas de producción en su operación diaria, para analizar aspectos como la producción por hora, los tiempos de ciclo, los transportes y las paradas. Esto permitiría entender mejor el comportamiento del proceso, encontrar posibles cuellos de botella y revisar oportunidades de mejora sin tener que hacer cambios directos en la planta desde el inicio.Como un complemento adicional, y no como parte obligatoria del alcance base, también se propone trabajar en NX, pero únicamente enfocado en el punto de mejora específico que se quiere intervenir."
   },
   {
     "question": "¿Qué factor diferencial tiene su propuesta?",
