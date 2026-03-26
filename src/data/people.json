@@ -1,86 +1,136 @@
 [
   {
     "name": "Samuel Sánchez",
-    "role": "Dirección financiera",
+    "role": "Dirección Financiera",
     "main_skill": "Liderazgo Ejecutivo",
-    "bio": "Profesional con sólida experiencia en análisis financiero, planeación estratégica y optimización de recursos. Especialista en estructuración presupuestal, evaluación de riesgos y diseño de políticas que fortalecen la sostenibilidad económica y el crecimiento organizacional.",
-    "skills": ["Análisis Financiero", "Planeación Estratégica", "Gestión Presupuestal", "Evaluación de Proyectos", "Risk Management"],
-    "media": [
-      "mailto:samuel@unal.edu.co",
-      "github.com/samuel",
-      "linkedin.com/samuel"
-    ]
+    "bio": "Directivo con experiencia en análisis financiero, planeación estratégica y gestión del riesgo. Especialista en estructuración presupuestal y evaluación de proyectos que fortalecen la sostenibilidad económica institucional.",
+    "skills": [
+      "Análisis Financiero",
+      "Planeación Estratégica",
+      "Gestión Presupuestal",
+      "Evaluación de Proyectos",
+      "Gestión de Riesgos"
+    ],
+    "avatarKey": "samuelAvatar",
+    "photoKey": "samuelPhoto",
+    "media": {
+      "email": "samuel@unal.edu.co",
+      "github": "https://github.com/samuel",
+      "linkedin": "https://linkedin.com/samuel"
+    }
   },
   {
     "name": "Andrés Morales",
     "role": "Dirección General",
     "main_skill": "Gestión Organizacional",
-    "bio": "Líder orientado al diseño de estrategias integrales, gestión de equipos multidisciplinares y desarrollo de proyectos de alto impacto. Enfocado en la toma de decisiones informadas y la construcción de modelos sostenibles.",
-    "skills": ["Gestión de Proyectos", "Liderazgo Técnico", "Análisis Estratégico"],
-    "media": [
-      "mailto:andres@unal.edu.co",
-      "github.com/andres",
-      "linkedin.com/andres"
-    ]
+    "bio": "Líder con trayectoria en dirección estratégica, gestión de equipos multidisciplinares y proyectos de alto impacto. Enfocado en decisiones informadas y modelos de gestión sostenibles.",
+    "skills": [
+      "Gestión de Proyectos",
+      "Liderazgo Técnico",
+      "Análisis Estratégico",
+      "Planeación Organizacional"
+    ],
+    "avatarKey": "andresAvatar",
+    "photoKey": "andresPhoto",
+    "media": {
+      "email": "andres@unal.edu.co",
+      "github": "https://github.com/andres",
+      "linkedin": "https://linkedin.com/andres"
+    }
   },
   {
     "name": "Nicolás Garzón",
     "role": "Dirección de Innovación",
     "main_skill": "Estrategia Tecnológica",
-    "bio": "Especialista en innovación y desarrollo tecnológico. Enfocado en integrar soluciones modernas con procesos institucionales para mejorar rendimiento, eficiencia y escalabilidad.",
-    "skills": ["Innovación", "Transformación Digital", "Desarrollo Tecnológico"],
-    "media": [
-      "mailto:nicolas@unal.edu.co",
-      "github.com/nicolas",
-      "linkedin.com/nicolas"
-    ]
+    "bio": "Profesional en innovación y desarrollo tecnológico. Enfocado en integrar soluciones digitales y mejorar procesos institucionales para incrementar eficiencia y escalabilidad.",
+    "skills": [
+      "Innovación",
+      "Transformación Digital",
+      "Desarrollo Tecnológico",
+      "Diseño de Soluciones"
+    ],
+    "avatarKey": "nicolasAvatar",
+    "photoKey": "nicolasPhoto",
+    "media": {
+      "email": "nicolas@unal.edu.co",
+      "github": "https://github.com/nicolas",
+      "linkedin": "https://linkedin.com/nicolas"
+    }
   },
   {
     "name": "Felipe Triana",
     "role": "Coordinación de Desarrollo",
     "main_skill": "Arquitectura de Software",
-    "bio": "Profesional en ingeniería de software con experiencia en diseño de arquitecturas eficientes, creación de APIs, automatización y optimización de aplicaciones orientadas al usuario.",
-    "skills": ["Arquitectura de Software", "APIs", "Automatización"],
-    "media": [
-      "mailto:felipe@unal.edu.co",
-      "github.com/felipe",
-      "linkedin.com/felipe"
-    ]
+    "bio": "Ingeniero de software con experiencia en arquitectura, APIs y automatización. Enfocado en sistemas escalables y procesos de desarrollo eficientes.",
+    "skills": [
+      "Arquitectura de Software",
+      "APIs",
+      "Automatización",
+      "Integración de Sistemas"
+    ],
+    "avatarKey": "felipeAvatar",
+    "photoKey": "felipePhoto",
+    "media": {
+      "email": "felipe@unal.edu.co",
+      "github": "https://github.com/felipe",
+      "linkedin": "https://linkedin.com/felipe"
+    }
   },
   {
     "name": "Juan Manuel",
     "role": "Desarrollo Web",
     "main_skill": "Frontend Moderno",
-    "bio": "Desarrollador enfocado en interfaces limpias, accesibles y modernas. Con experiencia en frameworks web, animaciones y optimización de experiencias digitales.",
-    "skills": ["Frontend", "UI/UX", "Optimización Web"],
-    "media": [
-      "mailto:juanmanuel@unal.edu.co",
-      "github.com/juanmanuel",
-      "linkedin.com/juanmanuel"
-    ]
+    "bio": "Desarrollador especializado en interfaces modernas, accesibles y eficientes, con enfoque en UX, animaciones y rendimiento web.",
+    "skills": [
+      "Frontend",
+      "UI/UX",
+      "Optimización Web",
+      "Animaciones Web"
+    ],
+    "avatarKey": "juanmanuelAvatar",
+    "photoKey": "juanmanuelPhoto",
+    "media": {
+      "email": "juanmanuel@unal.edu.co",
+      "github": "https://github.com/juanmanuel",
+      "linkedin": "https://linkedin.com/juanmanuel"
+    }
   },
   {
     "name": "Juan José",
     "role": "Investigación y Datos",
     "main_skill": "Análisis Cuantitativo",
-    "bio": "Especialista en modelado matemático, estadística aplicada y análisis de datos para la toma de decisiones. Enfocado en transformar información en conocimiento accionable.",
-    "skills": ["Análisis de Datos", "Modelado Matemático", "Estadística Aplicada"],
-    "media": [
-      "mailto:juanjose@unal.edu.co",
-      "github.com/juanjose",
-      "linkedin.com/juanjose"
-    ]
+    "bio": "Analista en modelado matemático, estadística aplicada y análisis de datos. Convierte información compleja en conocimiento accionable.",
+    "skills": [
+      "Análisis de Datos",
+      "Modelado Matemático",
+      "Estadística Aplicada",
+      "Data-Driven Decisions"
+    ],
+    "avatarKey": "juanjoseAvatar",
+    "photoKey": "juanjosePhoto",
+    "media": {
+      "email": "juanjose@unal.edu.co",
+      "github": "https://github.com/juanjose",
+      "linkedin": "https://linkedin.com/juanjose"
+    }
   },
   {
     "name": "Andrés Quenan",
     "role": "Gestión Operativa",
     "main_skill": "Optimización de Procesos",
-    "bio": "Profesional orientado a la eficiencia operativa y la estandarización de procesos. Trabaja en la mejora continua y la implementación de metodologías modernas de gestión.",
-    "skills": ["Mejora Continua", "Eficiencia Operativa", "Gestión de Procesos"],
-    "media": [
-      "mailto:andresq@unal.edu.co",
-      "github.com/andresq",
-      "linkedin.com/andresq"
-    ]
+    "bio": "Profesional orientado a la eficiencia operativa, mejora continua y estandarización de procesos mediante metodologías modernas de gestión.",
+    "skills": [
+      "Mejora Continua",
+      "Eficiencia Operativa",
+      "Gestión de Procesos",
+      "Metodologías de Optimización"
+    ],
+    "avatarKey": "andresqAvatar",
+    "photoKey": "andresqPhoto",
+    "media": {
+      "email": "andresq@unal.edu.co",
+      "github": "https://github.com/andresq",
+      "linkedin": "https://linkedin.com/andresq"
+    }
   }
 ]

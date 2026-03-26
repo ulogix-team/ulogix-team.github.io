@@ -10,8 +10,16 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/alpinejs": "^0.5.0",
+    "@astrojs/react": "^5.0.1",
     "@tailwindcss/vite": "^4.2.2",
+    "@types/alpinejs": "^3.13.11",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "alpinejs": "^3.15.8",
     "astro": "^6.0.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "swiper": "^12.1.2",
     "tailwindcss": "^4.2.2"
   }
