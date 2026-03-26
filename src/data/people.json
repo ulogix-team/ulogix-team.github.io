@@ -1,15 +1,35 @@
 [
+    {
+    "name": "Andrés Morales",
+    "role": "Líder de proyecto / Arquitectura de red",
+    "main_skill": "Arquitectura Integral de Sistemas",
+    "bio": "Responsable de la visión global, la coordinación técnica y la toma de decisiones estratégicas. Integra áreas de mecatrónica, automatización y TI para garantizar soluciones coherentes, escalables y orientadas a resultados.",
+    "skills": [
+      "Arquitectura de Sistemas",
+      "Integración Mecatrónica",
+      "Modelos de Gestión",
+      "Automatización Industrial",
+      "IIoT y Comunicaciones Industriales"
+    ],
+    "avatarKey": "andresAvatar",
+    "photoKey": "andresPhoto",
+    "media": {
+      "email": "andres@unal.edu.co",
+      "github": "https://github.com/mora200217",
+      "linkedin": "https://www.linkedin.com/in/andresmoralesmartinez/"
+    }
+  },
   {
     "name": "Samuel Sánchez",
     "role": "Dirección Financiera",
-    "main_skill": "Liderazgo Ejecutivo",
-    "bio": "Directivo con experiencia en análisis financiero, planeación estratégica y gestión del riesgo. Especialista en estructuración presupuestal y evaluación de proyectos que fortalecen la sostenibilidad económica institucional.",
+    "main_skill": "Gestión Financiera Estratégica",
+    "bio": "Especialista en planeación financiera, análisis de costos y sostenibilidad presupuestal. Lidera la estructuración económica de proyectos y garantiza el uso eficiente y transparente de los recursos.",
     "skills": [
-      "Análisis Financiero",
-      "Planeación Estratégica",
-      "Gestión Presupuestal",
-      "Evaluación de Proyectos",
-      "Gestión de Riesgos"
+      "Gestión Financiera",
+      "Costos y Presupuestos",
+      "Evaluación Económica",
+      "Control Financiero",
+      "Análisis de Riesgo"
     ],
     "avatarKey": "samuelAvatar",
     "photoKey": "samuelPhoto",
@@ -19,35 +39,18 @@
       "linkedin": "https://linkedin.com/samuel"
     }
   },
-  {
-    "name": "Andrés Morales",
-    "role": "Dirección General",
-    "main_skill": "Gestión Organizacional",
-    "bio": "Líder con trayectoria en dirección estratégica, gestión de equipos multidisciplinares y proyectos de alto impacto. Enfocado en decisiones informadas y modelos de gestión sostenibles.",
-    "skills": [
-      "Gestión de Proyectos",
-      "Liderazgo Técnico",
-      "Análisis Estratégico",
-      "Planeación Organizacional"
-    ],
-    "avatarKey": "andresAvatar",
-    "photoKey": "andresPhoto",
-    "media": {
-      "email": "andres@unal.edu.co",
-      "github": "https://github.com/andres",
-      "linkedin": "https://linkedin.com/andres"
-    }
-  },
+  
   {
     "name": "Nicolás Garzón",
-    "role": "Dirección de Innovación",
-    "main_skill": "Estrategia Tecnológica",
-    "bio": "Profesional en innovación y desarrollo tecnológico. Enfocado en integrar soluciones digitales y mejorar procesos institucionales para incrementar eficiencia y escalabilidad.",
+    "role": "Planeacion de proceso y manufactura",
+    "main_skill": "Ingeniería de Procesos",
+    "bio": "Diseña, estructura y optimiza procesos de manufactura, asegurando repetibilidad, eficiencia y escalabilidad. Especialista en metodologías industriales y flujos de producción.",
     "skills": [
-      "Innovación",
-      "Transformación Digital",
-      "Desarrollo Tecnológico",
-      "Diseño de Soluciones"
+      "Planificación de Procesos",
+      "Manufactura",
+      "Optimización de Flujos",
+      "Ingeniería de Métodos",
+      "Mejora de Eficiencia Productiva"
     ],
     "avatarKey": "nicolasAvatar",
     "photoKey": "nicolasPhoto",
@@ -59,14 +62,15 @@
   },
   {
     "name": "Felipe Triana",
-    "role": "Coordinación de Desarrollo",
-    "main_skill": "Arquitectura de Software",
-    "bio": "Ingeniero de software con experiencia en arquitectura, APIs y automatización. Enfocado en sistemas escalables y procesos de desarrollo eficientes.",
+    "role": "SCADA y HMI",
+    "main_skill": "Arquitectura de Sistemas SCADA",
+    "bio": "Ingeniero enfocado en supervisión, automatización y diseño de arquitecturas SCADA/HMI modernas. Asegura interfaces robustas, seguras y eficientes para operación industrial en tiempo real.",
     "skills": [
-      "Arquitectura de Software",
-      "APIs",
-      "Automatización",
-      "Integración de Sistemas"
+      "SCADA",
+      "HMI",
+      "Integración de Sistemas",
+      "Protocolos Industriales",
+      "Automatización y Monitoreo"
     ],
     "avatarKey": "felipeAvatar",
     "photoKey": "felipePhoto",
@@ -78,14 +82,15 @@
   },
   {
     "name": "Juan Manuel",
-    "role": "Desarrollo Web",
-    "main_skill": "Frontend Moderno",
-    "bio": "Desarrollador especializado en interfaces modernas, accesibles y eficientes, con enfoque en UX, animaciones y rendimiento web.",
+    "role": "Simulación y Siemens NX ",
+    "main_skill": "Simulación y Modelado Digital",
+    "bio": "Especialista en modelado 3D, simulación estructural y diseño paramétrico. Crea entornos virtuales precisos que permiten validar y optimizar diseños antes de su fabricación.",
     "skills": [
-      "Frontend",
-      "UI/UX",
-      "Optimización Web",
-      "Animaciones Web"
+      "Siemens NX",
+      "CAD/CAE",
+      "Simulación Digital",
+      "Modelado 3D",
+      "Análisis de Diseño"
     ],
     "avatarKey": "juanmanuelAvatar",
     "photoKey": "juanmanuelPhoto",
@@ -97,14 +102,15 @@
   },
   {
     "name": "Juan José",
-    "role": "Investigación y Datos",
-    "main_skill": "Análisis Cuantitativo",
-    "bio": "Analista en modelado matemático, estadística aplicada y análisis de datos. Convierte información compleja en conocimiento accionable.",
+    "role": "Control secuencial y PLC",
+    "main_skill": "Automatización y Control Lógico",
+    "bio": "Ingeniero orientado al diseño de secuencias de control, programación de PLC y validación de lógica industrial. Enfocado en procesos seguros, robustos y estandarizados.",
     "skills": [
-      "Análisis de Datos",
-      "Modelado Matemático",
-      "Estadística Aplicada",
-      "Data-Driven Decisions"
+      "Programación PLC",
+      "Control Secuencial",
+      "Lógica de Control",
+      "Diseño de Estados",
+      "Automatización Industrial"
     ],
     "avatarKey": "juanjoseAvatar",
     "photoKey": "juanjosePhoto",
@@ -116,14 +122,15 @@
   },
   {
     "name": "Andrés Quenan",
-    "role": "Gestión Operativa",
-    "main_skill": "Optimización de Procesos",
-    "bio": "Profesional orientado a la eficiencia operativa, mejora continua y estandarización de procesos mediante metodologías modernas de gestión.",
+    "role": "Celdas Robotizadas ",
+    "main_skill": "Integración de Robótica Industrial",
+    "bio": "Profesional especializado en diseño, integración y puesta en marcha de celdas robotizadas. Optimiza movimientos, aumenta productividad y garantiza la seguridad operativa.",
     "skills": [
-      "Mejora Continua",
-      "Eficiencia Operativa",
-      "Gestión de Procesos",
-      "Metodologías de Optimización"
+      "Robótica Industrial",
+      "Integración de Celdas",
+      "Programación de Robots",
+      "Optimización de Ciclos",
+      "Seguridad en Automatización"
     ],
     "avatarKey": "andresqAvatar",
     "photoKey": "andresqPhoto",

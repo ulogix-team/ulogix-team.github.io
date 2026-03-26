@@ -1,216 +1,265 @@
 ---
+import samuelAvatar from "../assets/people/samuel.png";
+import samuelPhoto from "../assets/people/samuel.png";
 
-import samuel from "../assets/people/samuel.png";
+import andresAvatar from "../assets/people/samuel.png";
+import andresPhoto from "../assets/people/samuel.png";
 
+import nicolasAvatar from "../assets/people/samuel.png";
+import nicolasPhoto from "../assets/people/samuel.png";
+
+import felipeAvatar from "../assets/people/samuel.png";
+import felipePhoto from "../assets/people/samuel.png";
+
+import juanmanuelAvatar from "../assets/people/samuel.png";
+import juanmanuelPhoto from "../assets/people/samuel.png";
+
+import juanjoseAvatar from "../assets/people/samuel.png";
+import juanjosePhoto from "../assets/people/samuel.png";
+
+import andresqAvatar from "../assets/people/samuel.png";
+import andresqPhoto from "../assets/people/samuel.png";
+
+// Recibe props
+const { people } = Astro.props;
+
+// Mapa dinámico de imágenes
 const imageMap = {
-  samuel
+  samuelAvatar,
+  samuelPhoto,
+  andresAvatar,
+  andresPhoto,
+  nicolasAvatar,
+  nicolasPhoto,
+  felipeAvatar,
+  felipePhoto,
+  juanmanuelAvatar,
+  juanmanuelPhoto,
+  juanjoseAvatar,
+  juanjosePhoto,
+  andresqAvatar,
+  andresqPhoto,
 };
 
-const { title } = Astro.props
-
+// Inserta avatar/photo en el objeto people
+const enhancedPeople = people.map((p) => ({
+  ...p,
+  avatar: imageMap[p.avatarKey],
+  photo: imageMap[p.photoKey],
+}));
 ---
 
-<section class="w-full bg-[#F8F8F8] pt-32 pb-20 px-6 bs-mt-lg relative overflow-hidden">
+<section class="w-full bg-[#F8F8F8] pt-32 pb-20 px-6 relative overflow-hidden">
 
-  <!-- ⭐ SECCIÓN BLUR SOBRE LA IMAGEN -->
+  <!-- ⭐ SECCIÓN BLUR SOBRE LA IMAGEN (MENU DINÁMICO) -->
   <div class="absolute bottom-0 left-0 w-full 
-            backdrop-blur-xl bg-white/10 
-            border-t border-white/20
-            shadow-[0_-10px_30px_rgba(0,0,0,0.1)] 
-            py-6 z-20">
+              backdrop-blur-xl bg-white/10 
+              border-t border-white/20
+              shadow-[0_-10px_30px_rgba(0,0,0,0.1)] 
+              py-6 z-20">
     <div class="max-w-6xl mx-auto flex justify-center gap-6 flex-wrap">
-
-      <!-- Miembro 1 -->
-      <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-        <img 
-          src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=300&h=300&fit=crop" 
-          class="w-16 h-16 rounded-full object-cover shadow"
-        />
-        <p class="text-xs text-gray-700 mt-1 font-medium">Andrés Morales</p>
-      </div>
-
-      <!-- Miembro 2 -->
-      <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-        <img 
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&h=300&fit=crop" 
-          class="w-16 h-16 rounded-full object-cover shadow"
-        />
-        <p class="text-xs text-gray-700 mt-1 font-medium">Nicolás Garzón</p>
-      </div>
-
-      <!-- Miembro 3 -->
-      <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-        <img 
-          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=300&h=300&fit=crop" 
-          class="w-16 h-16 rounded-full object-cover shadow"
-        />
-        <p class="text-xs text-gray-700 mt-1 font-medium">Felipe</p>
-      </div>
-
-      <!-- Miembro 4 -->
-      <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-        <img 
-          src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&h=300&fit=crop" 
-          class="w-16 h-16 rounded-full object-cover shadow"
-        />
-        <p class="text-xs text-gray-700 mt-1 font-medium">Juan Manuel</p>
-      </div>
-
-      <!-- Miembro 4 -->
-      <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-        <img 
-          src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&h=300&fit=crop" 
-          class="w-16 h-16 rounded-full object-cover shadow"
-        />
-        <p class="text-xs text-gray-700 mt-1 font-medium">Juan José</p>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
-        <img 
-          src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&h=300&fit=crop" 
-          class="w-16 h-16 rounded-full object-cover shadow"
-        />
-        <p class="text-xs text-gray-700 mt-1 font-medium">Andres Quenan</p>
-      </div>
-
+      {
+        enhancedPeople.map((p, i) => (
+          <div 
+            class="avatar flex flex-col items-center cursor-pointer hover:scale-105 transition"
+            data-index={i}
+            onclick={`swiper.slideTo(${i})`}
+          >
+            <img 
+              src={p.avatar.src}
+              class="w-16 h-16 rounded-full object-cover shadow"
+              alt={p.name}
+            />
+            <p class="text-xs text-gray-700 mt-1 font-medium">
+              {p.name.split(' ')[0]}
+            </p>
+          </div>
+        ))
+      }
     </div>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-2 mb-50">
+  <!-- Swiper Container para el contenido principal -->
+  <div class="js-team-swiper swiper">
+    <div class="swiper-wrapper mt-20">
+      {
+        enhancedPeople.map((p, index) => (
+          <div class="swiper-slide" >
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-2 mb-50">
+              
+              
+              <div class="space-y-8 mt-6">
+                
+              
+                <div class="flex items-center gap-3 text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                       class="w-5 h-5 opacity-80"
+                       fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" 
+                      d="M12 6l2.5 5.1L20 12l-5.5 0.9L12 18l-2.5-5.1L4 12l5.5-0.9L12 6z" />
+                  </svg>
+                  <p class="uppercase tracking-widest text-[13px] font-medium">
+                    {p.main_skill}
+                  </p>
+                </div>
 
-    <!-- LEFT: Texto profesional (MÁS ARRIBA) -->
-  <div class="space-y-8 mt-6">
+                
+                <h2 class="text-6xl font-light tracking-tight text-gray-900 leading-snug">
+                  {p.name.split(' ')[0]} <span class="font-semibold">{p.name.split(' ')[1]}</span>
+                </h2>
 
-  <!-- Icono + Línea preliminar elegante -->
-  <div class="flex items-center gap-3 text-gray-400">
+                <h3 class="text-xl font-medium text-gray-700">
+                  {p.role}
+                </h3>
+
+                <!-- Descripción -->
+                <p class="text-gray-500 font-light leading-relaxed max-w-lg text-[15px]">
+                  {p.bio}
+                </p>
+
+                <!-- Badges de Skills -->
+                <div class="flex flex-wrap gap-2 pt-2">
+                  {p.skills.map((skill, idx) => (
+                    <span key={idx} class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Redes sociales / contacto -->
+                <div class="flex items-center gap-5 pt-2 text-gray-500">
+                  <!-- Email -->
+                  <a 
+                    href={`mailto:${p.media.email}`} 
+                    class="hover:text-gray-900 transition"
+                  >
+                    <img 
+                      src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg" 
+                      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+                      alt="mail icon"
+                    />
+                  </a>
+
+                  <!-- GitHub -->
+                  <a 
+                    href={p.media.github} 
+                    target="_blank"
+                    class="hover:text-gray-900 transition"
+                  >
+                    <img 
+                      src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/github.svg" 
+                      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+                      alt="github icon"
+                    />
+                  </a>
+
+                  <!-- LinkedIn -->
+                  <a 
+                    href={p.media.linkedin} 
+                    target="_blank"
+                    class="hover:text-gray-900 transition"
+                  >
+                    <img 
+                      src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/linkedin.svg" 
+                      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+                      alt="linkedin icon"
+                    />
+                  </a>
+                </div>
+              </div>
+
+              <!-- RIGHT: Imagen principal -->
+              <div class="flex justify-center md:justify-end md:items-start relative">
+                <img 
+                  src={p.photo.src}
+                  class="w-[480px] scale-[1.85] translate-y-10 max-w-full object-contain drop-shadow-2xl z-10"
+                  alt={p.name}
+                />
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Botones de navegación -->
+  <button 
+    class="js-team-prev absolute left-3 top-1/2 -translate-y-1/2 
+           text-gray-500 hover:text-gray-800 
+           transition z-30">
     <svg xmlns="http://www.w3.org/2000/svg" 
-         class="w-5 h-5 opacity-80"
+         class="w-8 h-8" 
          fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" 
-        d="M12 6l2.5 5.1L20 12l-5.5 0.9L12 18l-2.5-5.1L4 12l5.5-0.9L12 6z" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+            d="M15 19l-7-7 7-7" />
     </svg>
+  </button>
 
-    <p class="uppercase tracking-widest text-[13px] font-medium">
-      Liderazgo Ejecutivo
-    </p>
-  </div>
-
-  <!-- Nombre + cargo -->
-  <h2 class="text-6xl font-light tracking-tight text-gray-900 leading-snug">
-    Samuel <span class="font-semibold">Sánchez</span>
-  </h2>
-
-  <h3 class="text-xl font-medium text-gray-700">
-    Dirección financiera
-  </h3>
-
-  <!-- Descripción -->
-  <p class="text-gray-500 font-light leading-relaxed max-w-lg text-[15px]">
-    Profesional con sólida experiencia en análisis financiero, planeación 
-    estratégica y optimización de recursos. Especialista en estructuración 
-    presupuestal, evaluación de riesgos y diseño de políticas que fortalecen 
-    la sostenibilidad económica y el crecimiento organizacional.
-    
-  </p>
-
-  <!-- Badges de Skills -->
-  <div class="flex flex-wrap gap-2 pt-2">
-    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
-      Análisis Financiero
-    </span>
-    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
-      Planeación Estratégica
-    </span>
-    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
-      Gestión Presupuestal
-    </span>
-    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
-      Evaluación de Proyectos
-    </span>
-    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
-      Risk Management
-    </span>
-  </div>
-
-  <!-- Redes sociales / contacto -->
-  <div class="flex items-center gap-5 pt-2 text-gray-500">
-
-  <!-- Email -->
-  <a 
-    href="mailto:example@mail.com" 
-    class="hover:text-gray-900 transition"
-  >
-    <img 
-      src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg" 
-      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
-      alt="mail icon"
-    />
-  </a>
-
-  <!-- GitHub -->
-  <a 
-    href="https://github.com" 
-    target="_blank"
-    class="hover:text-gray-900 transition"
-  >
-    <img 
-      src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/github.svg" 
-      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
-      alt="github icon"
-    />
-  </a>
-
-  <!-- LinkedIn -->
-  <a 
-    href="https://linkedin.com" 
-    target="_blank"
-    class="hover:text-gray-900 transition"
-  >
-    <img 
-      src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/linkedin.svg" 
-      class="w-6 h-6 opacity-80 hover:opacity-100 transition"
-      alt="linkedin icon"
-    />
-  </a>
-
-</div>
-
-</div>
-
-    <!-- RIGHT: Imagen principal (DEBAJO DEL BLUR) -->
-    <div class="flex justify-center md:justify-end md:items-start relative">
-      <img 
-        src={imageMap["samuel"]["src"]}
-        class="w-[480px] scale-[1.85] translate-y-10 max-w-full object-contain drop-shadow-2xl z-10"
-        alt=""
-      />
-    </div>
-
-  </div>
-
-<button 
-  class="absolute left-3 top-1/2 -translate-y-1/2 
-         text-gray-500 hover:text-gray-800 
-         transition z-30">
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       class="w-8 h-8" 
-       fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-          d="M15 19l-7-7 7-7" />
-  </svg>
-</button>
-
-<button 
-  class="absolute right-3 top-1/2 -translate-y-1/2 
-         text-gray-500 hover:text-gray-800 
-         transition z-30">
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       class="w-8 h-8" 
-       fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-          d="M9 5l7 7-7 7" />
-  </svg>
-</button>
+  <button 
+    class="js-team-next absolute right-3 top-1/2 -translate-y-1/2 
+           text-gray-500 hover:text-gray-800 
+           transition z-30">
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-8 h-8" 
+         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
 
 </section>
+
+<script>
+  import Swiper from 'swiper'
+  import 'swiper/css'
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const swiper = new Swiper('.js-team-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      speed: 500,
+      loop: false,
+      effect: 'slide',
+      allowTouchMove: true,
+      grabCursor: true,
+    })
+
+    // Botones de navegación
+    const prevBtn = document.querySelector('.js-team-prev')
+    const nextBtn = document.querySelector('.js-team-next')
+    
+    if (prevBtn) prevBtn.addEventListener('click', () => swiper.slidePrev())
+    if (nextBtn) nextBtn.addEventListener('click', () => swiper.slideNext())
+    
+    // Hacer swiper global para que onclick del menú funcione
+    window.swiper = swiper
+    
+    // Actualizar clase activa en avatares cuando cambia el slide
+    swiper.on('slideChange', () => {
+      const activeIndex = swiper.activeIndex
+      document.querySelectorAll('.avatar').forEach((avatar, i) => {
+        if (i === activeIndex) {
+          avatar.classList.add('scale-110', 'ring-2', 'ring-blue-500', 'ring-offset-2')
+        } else {
+          avatar.classList.remove('scale-110', 'ring-2', 'ring-blue-500', 'ring-offset-2')
+        }
+      })
+    })
+    
+    // Activar el primer avatar
+    setTimeout(() => {
+      swiper.slideTo(0)
+    }, 100)
+  })
+</script>
+
+<style>
+  .avatar {
+    transition: all 0.2s ease;
+  }
+  
+  .swiper-slide {
+    transition: all 0.3s ease;
+  }
+</style>
