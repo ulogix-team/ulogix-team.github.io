@@ -1,0 +1,125 @@
+---
+
+import samuelAvatar from "../assets/people/samuel.png";
+import samuelPhoto from "../assets/people/samuel.png";
+// importa las demás imágenes…
+
+const { title, people } = Astro.props;
+
+const imageMap = {
+  samuelAvatar,
+  samuelPhoto,
+  // ...
+};
+
+---
+
+<section class="w-full bg-[#F8F8F8] pt-32 pb-20 px-6 bs-mt-lg relative overflow-hidden">
+
+  <!-- ⭐ MENU DINÁMICO -->
+  <div class="absolute bottom-0 left-0 w-full 
+              backdrop-blur-xl bg-white/10 
+              border-t border-white/20
+              shadow-[0_-10px_30px_rgba(0,0,0,0.1)] 
+              py-6 z-20">
+
+    <div class="max-w-6xl mx-auto flex justify-center gap-6 flex-wrap">
+
+      {
+        people.map((p, i) => (
+          <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition">
+            <img 
+              src={imageMap["samuelAvatar"]["src"]}
+              class="w-16 h-16 rounded-full object-cover shadow"
+            />
+            <p class="text-xs text-gray-700 mt-1 font-medium">
+              {p.name}
+            </p>
+          </div>
+        ))
+      }
+
+    </div>
+  </div>
+
+  <!-- ⭐ SECCIÓN PRINCIPAL -->
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-2 mb-50">
+
+    <!-- LEFT: Texto dinámico -->
+    <div class="space-y-8 mt-6">
+
+      <div class="flex items-center gap-3 text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             class="w-5 h-5 opacity-80"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" 
+            d="M12 6l2.5 5.1L20 12l-5.5 0.9L12 18l-2.5-5.1L4 12l5.5-0.9L12 6z" />
+        </svg>
+
+        <p class="uppercase tracking-widest text-[13px] font-medium">
+          {people[0].main_skill}
+        </p>
+      </div>
+
+      <h2 class="text-6xl font-light tracking-tight text-gray-900 leading-snug">
+        {people[0].name.split(" ")[0]}
+        <span class="font-semibold"> {people[0].name.split(" ").slice(1).join(" ")} </span>
+      </h2>
+
+      <h3 class="text-xl font-medium text-gray-700">
+        {people[0].role}
+      </h3>
+
+      <p class="text-gray-500 font-light leading-relaxed max-w-lg text-[15px]">
+        {people[0].bio}
+      </p>
+
+      <div class="flex flex-wrap gap-2 pt-2">
+        {
+          people[0].skills.map(skill => (
+            <span class="px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full font-medium">
+              {skill}
+            </span>
+          ))
+        }
+      </div>
+
+      <div class="flex items-center gap-5 pt-2 text-gray-500">
+
+        <a href={people[0].media[0]} class="hover:text-gray-900 transition">
+          <img 
+            src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg" 
+            class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+          />
+        </a>
+
+        <a href={people[0].media[1]} target="_blank" class="hover:text-gray-900 transition">
+          <img 
+            src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/github.svg" 
+            class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+          />
+        </a>
+
+        <a href={people[0].media[2]} target="_blank" class="hover:text-gray-900 transition">
+          <img 
+            src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/linkedin.svg" 
+            class="w-6 h-6 opacity-80 hover:opacity-100 transition"
+          />
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Foto principal dinámico -->
+    <div class="flex justify-center md:justify-end md:items-start relative">
+      <img 
+        src={imageMap["samuelPhoto"]["src"]}
+        class="w-[480px] scale-[1.85] translate-y-10 max-w-full object-contain drop-shadow-2xl z-10"
+        alt={people[0].name}
+      />
+    </div>
+
+  </div>
+
+</section>
