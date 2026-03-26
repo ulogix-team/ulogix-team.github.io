@@ -24,8 +24,12 @@
     },
     
     {
-      "title": "Acerca de nosotros",
+      "title": "¿Quiénes somos?",
       "link": "/#case-studies"
+    },
+     {
+      "title": "El Equipo",
+      "link": "/#team"
     }
  
   ],
