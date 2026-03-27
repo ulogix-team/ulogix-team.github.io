@@ -1,0 +1,367 @@
+---
+// RobotScrollViewer.astro
+// Component with scroll-triggered animations: rotation, zoom, translation, and text reveals
+---
+
+<section class="robot-scroll-section w-100">
+  <div class="container w-100">
+    <div class="model-container w-100" id="model-container"></div>
+    <div class="text-overlay">
+      <div class="text-content">
+        <div class="text-block text-block-1" id="text-block-1">
+          <h2>Automatización</h2>
+          <p>Mejoraremos las métricas de producción agregando un sistema de paletizado inteligente para aumentar eficacia </p>
+        </div>
+        <div class="text-block text-block-2" id="text-block-2">
+          <h2>RobotStudio</h2>
+          <p>Programado en RAPID y accionado secuencialemnte con los PACs, se sincroniza con el sistema de control.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  async function initThree() {
+    const THREE = await import('three');
+    const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
+    
+    // --- Configuration ---
+    const MODEL_URL = 'robot.glb';
+    const SCROLL_RANGE_FULL_TURN = 2000; // Más rango para efectos combinados
+    
+    // --- Setup Scene, Camera, Renderer ---
+    const container = document.getElementById('model-container');
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    scene.background = null; // Transparente para mostrar el fondo de la sección
+    scene.background = new THREE.Color(0x000000);
+    scene.backgroundIntensity = 0; // Hacerlo completamente transparente
+    
+    // Configuración de cámara para efectos de scroll
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    // Posiciones iniciales
+    const initialCameraPosition = { x: 3, y: 2, z: 5 };
+    const targetCameraPosition = { x: 1.5, y: 1.2, z: 3.5 }; // Zoom y traslación final
+    
+    camera.position.set(initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // alpha: true para transparencia
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x000000, 0); // Fondo transparente
+    container.appendChild(renderer.domElement);
+    
+    // --- Lighting (más suave para efecto transparente)---
+    const ambientLight = new THREE.AmbientLight(0x404060, 0.6);
+    scene.add(ambientLight);
+    
+    const mainLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    mainLight.position.set(2, 5, 3);
+    scene.add(mainLight);
+    
+    const fillLight = new THREE.PointLight(0x88aaff, 0.5);
+    fillLight.position.set(0, -1, 0);
+    scene.add(fillLight);
+    
+    const rimLight = new THREE.PointLight(0xffaa88, 0.7);
+    rimLight.position.set(-1, 1, -2);
+    scene.add(rimLight);
+    
+    const backLight = new THREE.PointLight(0x88aaff, 0.4);
+    backLight.position.set(0, 2, -3);
+    scene.add(backLight);
+    
+    // --- Grid Helper con efecto degradado (más sutil)---
+    const gridHelper = new THREE.GridHelper(12, 20, 0x88aaff, 0x446688);
+    gridHelper.position.y = -1;
+    gridHelper.material.transparent = true;
+    gridHelper.material.opacity = 0.3;
+    scene.add(gridHelper);
+    
+    // Círculo base sutil
+    const circleGeometry = new THREE.RingGeometry(0.8, 1.5, 32);
+    const circleMaterial = new THREE.MeshStandardMaterial({ 
+      color: 0x88aaff, 
+      emissive: 0x224466,
+      transparent: true, 
+      opacity: 0.2,
+      side: THREE.DoubleSide
+    });
+    const baseCircle = new THREE.Mesh(circleGeometry, circleMaterial);
+    baseCircle.rotation.x = -Math.PI / 2;
+    baseCircle.position.y = -0.85;
+    scene.add(baseCircle);
+    
+    // Partículas sutiles alrededor (opcional)
+    const particleCount = 200;
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlePositions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      particlePositions[i * 3] = (Math.random() - 0.5) * 8;
+      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 3 - 0.5;
+      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 6 - 2;
+    }
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+    const particlesMaterial = new THREE.PointsMaterial({ color: 0x88aaff, size: 0.05, transparent: true, opacity: 0.4 });
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
+    
+    // --- Model Loading ---
+    let model = null;
+    const loader = new GLTFLoader();
+    
+    function updateAnimationsFromScroll() {
+      if (!model) return;
+      
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(1, scrollY / (maxScroll * 0.7)); // Progreso hasta 70% del scroll
+      
+      // 1. Rotación en Y (360 grados completa)
+      const rotationAngle = (scrollY / SCROLL_RANGE_FULL_TURN) * Math.PI * 2;
+      model.rotation.y = rotationAngle;
+      
+      // 2. Pequeña rotación en X para efecto dinámico
+      const tiltX = Math.sin(rotationAngle * 0.5) * 0.1;
+      model.rotation.x = tiltX;
+      
+      // 3. Zoom y traslación de cámara
+      const cameraProgress = Math.min(1, scrollY / 1500);
+      camera.position.x = initialCameraPosition.x - (initialCameraPosition.x - targetCameraPosition.x) * cameraProgress;
+      camera.position.y = initialCameraPosition.y - (initialCameraPosition.y - targetCameraPosition.y) * cameraProgress;
+      camera.position.z = initialCameraPosition.z - (initialCameraPosition.z - targetCameraPosition.z) * cameraProgress;
+      camera.lookAt(0, model.position.y + 0.2, 0);
+      
+      // 4. Movimiento sutil del modelo hacia arriba
+      const floatY = Math.sin(scrollY * 0.003) * 0.05;
+      model.position.y = -0.5 + floatY + (cameraProgress * 0.1);
+      
+      // 5. Rotación de partículas
+      particles.rotation.y = scrollY * 0.002;
+      particles.rotation.x = Math.sin(scrollY * 0.001) * 0.2;
+      
+      // 6. Efecto de brillo en el círculo base
+      if (baseCircle.material) {
+        baseCircle.material.emissiveIntensity = 0.2 + Math.sin(scrollY * 0.005) * 0.1;
+      }
+    }
+    
+    console.log('Attempting to load model from:', MODEL_URL);
+    
+    loader.load(MODEL_URL, 
+      (gltf) => {
+        model = gltf.scene;
+        model.scale.set(1, 1, 1);
+        model.position.set(0, -0.5, 0);
+        scene.add(model);
+        updateAnimationsFromScroll();
+        console.log('Model loaded successfully');
+      },
+      (xhr) => {
+        console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`);
+      },
+      (error) => {
+        console.error('Error loading GLB model:', error);
+        // Fallback cube con efecto
+        const geometry = new THREE.IcosahedronGeometry(0.8, 0);
+        const material = new THREE.MeshStandardMaterial({ color: 0x88aaff, emissive: 0x224466, metalness: 0.7, roughness: 0.3 });
+        const fallbackShape = new THREE.Mesh(geometry, material);
+        fallbackShape.position.set(0, 0, 0);
+        scene.add(fallbackShape);
+        model = fallbackShape;
+        updateAnimationsFromScroll();
+      }
+    );
+    
+    // --- Animation Loop ---
+    function animate() {
+      requestAnimationFrame(animate);
+      updateAnimationsFromScroll();
+      renderer.render(scene, camera);
+    }
+    
+    animate();
+    
+    // --- Handle Window Resize ---
+    function handleResize() {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', updateAnimationsFromScroll);
+    
+    console.log('Robot scroll viewer initialized');
+  }
+  
+  // --- Text Reveal on Scroll ---
+  function initTextReveal() {
+    const textBlocks = document.querySelectorAll('.text-block');
+    
+    function checkTextVisibility() {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollProgress = scrollY / (documentHeight - windowHeight);
+      
+      // Revelar textos basado en el progreso del scroll
+      textBlocks.forEach((block, index) => {
+        const revealStart = index * 0.25; // 0, 0.25, 0.5
+        const revealEnd = revealStart + 0.2;
+        
+        if (scrollProgress >= revealStart) {
+          block.classList.add('visible');
+          
+          // Añadir clase de salida cuando pasa el siguiente bloque
+          if (index < textBlocks.length - 1 && scrollProgress >= revealEnd) {
+            block.classList.add('exiting');
+          } else if (scrollProgress < revealEnd) {
+            block.classList.remove('exiting');
+          }
+        } else {
+          block.classList.remove('visible', 'exiting');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', checkTextVisibility);
+    checkTextVisibility(); // Initial check
+  }
+  
+  // Initialize when the page loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initThree();
+      initTextReveal();
+    });
+  } else {
+    initThree();
+    initTextReveal();
+  }
+</script>
+
+<style>
+  .robot-scroll-section {
+    width: 100vw;
+    min-height: 250vh;
+    /* background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 50%, #0a0a2a 100%); */
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .model-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background: transparent;
+    z-index: 1;
+  }
+
+  .text-overlay {
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .text-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .text-block {
+    background: rgba(10, 10, 30, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    border: 1px solid rgba(136, 170, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .text-block.exiting {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  .text-block h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #aaccff, #ffaa88);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .text-block p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0e0ff;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Media queries */
+  @media (max-width: 768px) {
+    .text-block {
+      padding: 1.5rem;
+      margin: 0 1rem 1rem 1rem;
+    }
+    
+    .text-block h2 {
+      font-size: 1.5rem;
+    }
+    
+    .text-block p {
+      font-size: 0.95rem;
+    }
+    
+    .text-content {
+      padding: 1rem;
+    }
+  }
+
+  /* Animación sutil de entrada */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

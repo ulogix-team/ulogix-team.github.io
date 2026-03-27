@@ -14,6 +14,7 @@ import global_settings from "../data/global_settings.json"
 import newsletter from "../data/newsletter.json"
 import testimonials from "../data/testimonials.json"
 import people from "../data/people.json"
+import Robot from "../components/robot.astro"
 
 ---
 
@@ -68,11 +69,9 @@ subtitle = "Describiremos el estado de la planta a priori de la propuesta de aut
     title={ home.pricing_title }
   /> -->
 
-  <FaqSection
-    faq={ faq }
-    title={ home.faq_title }
-  />
-
+  
+  <Robot />
+  
   <!-- <NewsletterSection newsletter={newsletter} /> -->
 
 </Layout>
