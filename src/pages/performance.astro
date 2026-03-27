@@ -14,7 +14,7 @@ import global_settings from "../data/global_settings.json"
 import newsletter from "../data/newsletter.json"
 import testimonials from "../data/testimonials.json"
 import people from "../data/people.json"
-
+import Metrics from "../components/Metrics.astro"
 ---
 
 <Layout title={ global_settings.title } variant ="home">
@@ -65,6 +65,29 @@ import people from "../data/people.json"
     pricing={ pricing }
     title={ home.pricing_title }
   /> -->
+
+<Metrics 
+   oee={{
+    disponibilidad: 89,
+    eficiencia: 90,
+    calidad: 99.1,
+    oeeTotal: 83
+  }}
+  taktTime={{
+    tiempoDisponible: 7,
+    demandaCliente: 520,
+    taktCalculado: 0.072
+  }}
+  mlt={{
+    tiempoTotal: 8.6,
+    unidad: 'horas aprox'
+  }}
+  rp={{
+    tiempoOperativo: 7,
+    paradasNoProgramadas: 1,
+    rpCalculado: 55
+  }}
+  /> 
 
   <FaqSection
     faq={ faq }

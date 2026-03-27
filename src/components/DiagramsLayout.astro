@@ -83,7 +83,7 @@ const { diagrams } = Astro.props;
             {/* Columna DERECHA: diagrama SVG */}
             <div class="node-diagram">
               <div class="svg-wrapper">
-                <div class="svg-container" set:html={sec.diagrama} id={`svg-${sec.id}`} />
+                <img    src={} alt={`Diagrama de ${sec.titulo}`} class="svg-container" />
               </div>
               <span class="diagram-label"><i class="fa-regular fa-chart-bar"></i> Representación técnica</span>
             </div>
