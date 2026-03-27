@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "titulo": "DIAGRAMA SIPOC",
+    "subtitulo": "Mapeo de proveedores, entradas, procesos, salidas y clientes",
+    "parrafos": [
+      "El diagrama SIPOC (Suppliers, Inputs, Process, Outputs, Customers) es una herramienta fundamental en la gestión de calidad y mejora continua. Permite visualizar de manera integral los límites del proceso, identificando quiénes son los proveedores clave, qué entradas recibe el proceso, las actividades principales que lo componen, los resultados generados y los clientes que reciben dichos resultados.",
+      "Su aplicación en entornos industriales y de servicios facilita la estandarización, la identificación de oportunidades de mejora y la alineación de los objetivos del proceso con las expectativas del cliente. Es el punto de partida ideal para proyectos Six Sigma y mapeos de valor."
+    ],
+    "icono": "fa-solid fa-chart-line",
+    "diagrama": "",
+    "diagram": "/assets/proceso.pdf"
+  },
+  {
+    "id": 2,
+    "titulo": "TRANSFORMACIÓN DE MATERIA",
+    "subtitulo": "Flujo de conversión de insumos en productos",
+    "parrafos": [
+      "El diagrama de transformación de materia representa el flujo físico de materiales a través del proceso productivo. Visualiza cómo las materias primas ingresan, son transformadas mediante operaciones unitarias, y finalmente se convierten en productos terminados, identificando puntos de valor agregado y pérdidas.",
+      "Esta herramienta es esencial para el análisis de eficiencia, permitiendo optimizar rutas, reducir desperdicios y mejorar la trazabilidad. Facilita la identificación de cuellos de botella y oportunidades para implementar principios de manufactura esbelta."
+    ],
+    "icono": "fa-solid fa-industry",
+    "diagrama": "",
+    "diagram": "/assets/transformacion_materia.pdf"
+  },
+  {
+    "id": 3,
+    "titulo": "ANÁLISIS DE PROCESO",
+    "subtitulo": "Descomposición y optimización de actividades",
+    "parrafos": [
+      "El diagrama de análisis de proceso descompone cada actividad en pasos elementales, clasificándolos como operaciones, transportes, inspecciones, esperas o almacenamientos. Esta metodología, derivada del análisis de procesos industriales, permite identificar ineficiencias y rediseñar flujos de trabajo.",
+      "Su aplicación sistemática reduce tiempos de ciclo, elimina actividades redundantes y mejora la productividad. Es una herramienta fundamental en proyectos de reingeniería de procesos y mejora continua."
+    ],
+    "icono": "fa-solid fa-diagram-project",
+    "diagrama": "",
+    "diagram": "/assets/analisis_proceso.pdf"
+  },
+  {
+    "id": 4,
+    "titulo": "ANÁLISIS DE OPERACIONES",
+    "subtitulo": "Estudio detallado de tiempos y métodos",
+    "parrafos": [
+      "El análisis de operaciones profundiza en cada actividad productiva para optimizar métodos, estandarizar tiempos y mejorar la ergonomía. Combina técnicas de estudio de tiempos, movimientos y balanceo de línea para maximizar la eficiencia operativa.",
+      "Mediante la identificación de operaciones con valor agregado y la eliminación de movimientos innecesarios, se logran reducciones significativas en costos operativos y aumentos en la capacidad productiva sin inversiones adicionales."
+    ],
+    "icono": "fa-solid fa-chart-simple",
+    "diagrama": "",
+    "diagram": "/assets/analisis_operaciones.pdf"
+  },
+  {
+    "id": 5,
+    "titulo": "DIAGRAMA P&ID",
+    "subtitulo": "Tuberías e instrumentación de procesos",
+    "parrafos": [
+      "El diagrama P&ID (Piping and Instrumentation Diagram) representa de manera detallada la interconexión de tuberías, equipos, instrumentos y sistemas de control en una planta industrial. Es el documento fundamental para operación, mantenimiento y automatización.",
+      "Incluye simbología estandarizada que permite identificar válvulas, bombas, sensores, lazos de control y recorridos de fluidos. Su precisión es crítica para la seguridad operacional y la ingeniería de detalle."
+    ],
+    "icono": "fa-solid fa-pipe-valve",
+    "diagrama": "",
+    "diagram": "/assets/diagrama_pid.pdf"
+  },
+  {
+    "id": 6,
+    "titulo": "DIAGRAMA VSM",
+    "subtitulo": "Value Stream Mapping · Mapeo de flujo de valor",
+    "parrafos": [
+      "El VSM (Value Stream Mapping) es una herramienta lean que visualiza el flujo de materiales e información desde el proveedor hasta el cliente. Identifica actividades con valor agregado y desperdicios, permitiendo diseñar un estado futuro optimizado.",
+      "Incluye indicadores como tiempo de ciclo, tiempo de espera, inventarios en proceso y lead time total. Es fundamental para implementar transformación lean y reducir tiempos de entrega hasta en un 50%."
+    ],
+    "icono": "fa-solid fa-road",
+    "diagrama": "",
+    "diagram": "/assets/diagrama_vsm.pdf"
+  },
+  {
+    "id": 7,
+    "titulo": "DIAGRAMA LAYOUT",
+    "subtitulo": "Distribución física de planta y flujo de materiales",
+    "parrafos": [
+      "El diagrama Layout representa la distribución espacial de equipos, estaciones de trabajo, almacenes y flujos de materiales dentro de una planta industrial. Una buena distribución minimiza distancias recorridas, reduce tiempos de manipulación y mejora la eficiencia operativa.",
+      "Los análisis de Layout consideran principios de proximidad, secuencia de proceso, seguridad y ergonomía. Su optimización puede incrementar la productividad entre un 15% y 30% sin inversión en nuevos equipos."
+    ],
+    "icono": "fa-solid fa-building",
+    "diagrama": "",
+    "diagram": "/assets/diagrama_layout.pdf"
+  }
+]

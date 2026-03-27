@@ -1,0 +1,777 @@
+---
+// SeccionScrollNarrativa.astro
+// Componente con scroll narrativo moderno: fondo oscuro con partículas laterales,
+// línea punteada que conecta las secciones, sin aspecto de cards,
+// numeral + dos párrafos a izquierda, diagrama SVG a derecha
+
+// Datos de cada nivel/sección
+const { diagrams } = Astro.props;
+---
+
+<section class="astro-narrative" id="astroNarrativeModule">
+  <!-- Fondo principal (solo dentro de la sección) -->
+  <div class="section-bg"></div>
+  <div class="section-noise"></div>
+  
+  <!-- Partículas flotantes laterales -->
+  <div class="particles-left">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+  </div>
+  <div class="particles-right">
+    <div class="particle particle-7"></div>
+    <div class="particle particle-8"></div>
+    <div class="particle particle-9"></div>
+    <div class="particle particle-10"></div>
+    <div class="particle particle-11"></div>
+    <div class="particle particle-12"></div>
+  </div>
+  
+  <div class="narrative-container">
+    
+    <header class="narrative-header">
+      <h1 class="cosmic-title">
+        <i class="fa-solid fa-chart-network"></i> 
+        Diagramas del Proceso
+      </h1>
+      <p class="cosmic-sub">Explora cada herramienta — desplázate para seguir la línea narrativa</p>
+    </header>
+
+    <div class="narrative-timeline" id="narrativeTimeline">
+      {diagrams.map((sec, idx) => (
+        <div class="narrative-node" data-node-id={sec.id} id={`node-${sec.id}`}>
+          
+          {/* línea conectora punteada */}
+          {idx < diagrams.length - 1 && <div class="dotted-connector" aria-hidden="true"></div>}
+          
+          <div class="node-content-wrapper">
+            {/* Columna IZQUIERDA: numeral + jerarquía + párrafos */}
+            <div class="node-text">
+              <div class="numeral-block">
+                <span class="numeral-large">{String(sec.id).padStart(2, '0')}</span>
+                <i class={sec.icono + " numeral-icon-large"}></i>
+              </div>
+              <h2 class="node-title">{sec.titulo}</h2>
+              <h3 class="node-subtitle">{sec.subtitulo}</h3>
+              <div class="node-paragraphs">
+                {sec.parrafos.map((p, pIdx) => (
+                  <p key={pIdx} class="node-p">{p}</p>
+                ))}
+              </div>
+              <div class="node-meta">
+                <span><i class="fa-regular fa-compass"></i> Herramienta Lean</span>
+                <span><i class="fa-solid fa-chart-line"></i> Análisis técnico</span>
+              </div>
+              {/* Botón de descarga PDF específico de la sección */}
+              {sec.diagram && (
+                <div class="node-pdf-download">
+                  <button 
+                    class="section-pdf-btn" 
+                    data-pdf-url={sec.diagram}
+                    data-pdf-title={sec.titulo}
+                  >
+                    <i class="fa-solid fa-file-pdf"></i> Descargar PDF de esta sección
+                  </button>
+                </div>
+              )}
+            </div>
+            
+            {/* Columna DERECHA: diagrama SVG */}
+            <div class="node-diagram">
+              <div class="svg-wrapper">
+                <div class="svg-container" set:html={sec.diagrama} id={`svg-${sec.id}`} />
+              </div>
+              <span class="diagram-label"><i class="fa-regular fa-chart-bar"></i> Representación técnica</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* CTA Descarga PDF General - Todos los PDFs */}
+    {diagrams.some(sec => sec.diagram) && (
+      <div class="cta-footer">
+        <div class="pdf-buttons-container">
+          <h3 class="pdf-section-title">Descargar análisis por sección:</h3>
+          <div class="pdf-buttons-grid">
+            {diagrams.map((sec) => (
+              sec.diagram && (
+                <button 
+                  key={sec.id}
+                  class="download-cta secondary"
+                  data-pdf-url={sec.diagram}
+                  data-pdf-title={sec.titulo}
+                >
+                  <i class="fa-solid fa-file-pdf"></i> 
+                  {sec.titulo} (PDF)
+                </button>
+              )
+            ))}
+          </div>
+        </div>
+        <p class="cta-footnote">Haz clic en cualquier PDF para descargar el análisis completo de esa sección</p>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+/* ========== ESTILOS PRINCIPALES ========== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+.astro-narrative {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  position: relative;
+  background: #020308;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  color: #ece6df;
+}
+
+/* Fondo con textura moderna y gradiente - SOLO DENTRO DE LA SECCIÓN */
+.section-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse at 30% 40%, rgba(45, 35, 70, 0.5) 0%, rgba(2, 3, 8, 0.98) 90%),
+    repeating-linear-gradient(45deg, rgba(80, 60, 120, 0.03) 0px, rgba(80, 60, 120, 0.03) 2px, transparent 2px, transparent 8px),
+    repeating-linear-gradient(135deg, rgba(120, 80, 140, 0.02) 0px, rgba(120, 80, 140, 0.02) 3px, transparent 3px, transparent 12px);
+  pointer-events: none;
+}
+
+/* Overlay de ruido sutil - SOLO DENTRO DE LA SECCIÓN */
+.section-noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+/* ========== PARTÍCULAS FLOTANTES LATERALES ========== */
+.particles-left, .particles-right {
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particles-left {
+  left: 0;
+}
+
+.particles-right {
+  right: 0;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(200, 170, 122, 0.4) 0%, rgba(200, 170, 122, 0) 70%);
+  border-radius: 50%;
+  animation: floatParticle 20s infinite ease-in-out;
+}
+
+/* Partículas izquierda */
+.particle-1 { width: 80px; height: 80px; left: -30px; top: 15%; animation-duration: 25s; opacity: 0.3; }
+.particle-2 { width: 40px; height: 40px; left: 20px; top: 35%; animation-duration: 18s; animation-delay: -2s; opacity: 0.4; }
+.particle-3 { width: 120px; height: 120px; left: -50px; top: 55%; animation-duration: 30s; animation-delay: -5s; opacity: 0.25; }
+.particle-4 { width: 25px; height: 25px; left: 40px; top: 75%; animation-duration: 15s; animation-delay: -1s; opacity: 0.5; }
+.particle-5 { width: 60px; height: 60px; left: 0px; top: 88%; animation-duration: 22s; animation-delay: -4s; opacity: 0.35; }
+.particle-6 { width: 45px; height: 45px; left: 15px; top: 5%; animation-duration: 28s; animation-delay: -3s; opacity: 0.4; }
+
+/* Partículas derecha */
+.particle-7 { width: 100px; height: 100px; right: -40px; top: 8%; animation-duration: 27s; opacity: 0.3; }
+.particle-8 { width: 35px; height: 35px; right: 25px; top: 28%; animation-duration: 19s; animation-delay: -3s; opacity: 0.45; }
+.particle-9 { width: 90px; height: 90px; right: -30px; top: 48%; animation-duration: 32s; animation-delay: -6s; opacity: 0.28; }
+.particle-10 { width: 50px; height: 50px; right: 10px; top: 68%; animation-duration: 21s; animation-delay: -2s; opacity: 0.4; }
+.particle-11 { width: 70px; height: 70px; right: -20px; top: 85%; animation-duration: 24s; animation-delay: -4s; opacity: 0.32; }
+.particle-12 { width: 30px; height: 30px; right: 35px; top: 95%; animation-duration: 16s; animation-delay: -1s; opacity: 0.5; }
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  33% {
+    transform: translateY(-40px) translateX(15px) scale(1.05);
+  }
+  66% {
+    transform: translateY(30px) translateX(-10px) scale(0.98);
+  }
+}
+
+/* Contenedor principal */
+.narrative-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 3rem 5rem 3rem;
+}
+
+/* Header */
+.narrative-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  padding-top: 2rem;
+  position: relative;
+}
+
+.cosmic-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f0e6da, #d4bc9a, #c2a072);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cosmic-title i {
+  background: linear-gradient(135deg, #e0b07f, #c28a5c);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 3rem;
+}
+
+.cosmic-sub {
+  font-size: 1rem;
+  color: #8a7a64;
+  max-width: 550px;
+  margin: 1rem auto 0;
+  border-top: 1px solid rgba(180, 140, 100, 0.3);
+  display: inline-block;
+  padding-top: 0.8rem;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+}
+
+/* Línea de tiempo narrativa - SIN CARDS */
+.narrative-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Cada nodo con efecto de aparición */
+.narrative-node {
+  position: relative;
+  margin-bottom: 6rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.2), transform 0.7s cubic-bezier(0.2, 0.8, 0.4, 1);
+  scroll-margin-top: 100px;
+}
+
+.narrative-node.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CONECTOR PUNTEADO moderno con glow */
+.dotted-connector {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -4rem;
+  width: 2px;
+  height: 4rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    #c8aa7a,
+    #c8aa7a 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  z-index: 5;
+  opacity: 0.5;
+  box-shadow: 0 0 6px rgba(200, 170, 122, 0.4);
+}
+
+.narrative-node:last-child .dotted-connector {
+  display: none;
+}
+
+/* Wrapper contenido - SIN FONDO DE CARD */
+.node-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Columna izquierda: texto jerárquico */
+.node-text {
+  flex: 1.6;
+  min-width: 280px;
+}
+
+.numeral-block {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid #e0b07f;
+  padding-left: 1.2rem;
+}
+
+.numeral-large {
+  font-size: 3.2rem;
+  font-weight: 800;
+  font-family: 'Inter', monospace;
+  background: linear-gradient(145deg, #f0e0c8, #c8aa7a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(200, 170, 122, 0.2);
+}
+
+.numeral-icon-large {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #e8c89a, #c8925a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 6px;
+  width: 44px;
+  text-align: center;
+}
+
+.node-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f5ede2, #e0c8a8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0.5rem 0 0.4rem 0;
+  letter-spacing: -0.3px;
+}
+
+.node-subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #dbb87a;
+  margin-bottom: 1.5rem;
+  border-left: 2px solid #b8865b;
+  padding-left: 1rem;
+  opacity: 0.9;
+}
+
+.node-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.node-p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #cbc0ae;
+  font-weight: 400;
+}
+
+.node-meta {
+  display: flex;
+  gap: 1.8rem;
+  margin-top: 1.2rem;
+  font-size: 0.8rem;
+  color: #9e8868;
+  border-top: 1px dashed rgba(200, 170, 130, 0.3);
+  padding-top: 1rem;
+}
+
+.node-meta i {
+  margin-right: 6px;
+  color: #e0b07f;
+  width: 18px;
+}
+
+/* Botón de descarga PDF específico de la sección */
+.node-pdf-download {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(200, 170, 130, 0.2);
+}
+
+.section-pdf-btn {
+  background: rgba(30, 25, 40, 0.7);
+  border: 1px solid rgba(200, 170, 130, 0.4);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #e0c8a8;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.3px;
+}
+
+.section-pdf-btn i {
+  font-size: 1rem;
+  color: #c8aa7a;
+}
+
+.section-pdf-btn:hover {
+  background: rgba(50, 42, 62, 0.9);
+  border-color: #dcb185;
+  transform: translateY(-2px);
+  color: #f5ede2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Columna derecha: SVG diagrama */
+.node-diagram {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.svg-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.svg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: rgba(5, 7, 15, 0.4);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(200, 170, 130, 0.2);
+}
+
+.narrative-node.revealed .svg-container {
+  border-color: rgba(200, 170, 130, 0.4);
+  background: rgba(10, 12, 22, 0.5);
+}
+
+.svg-container svg {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  max-height: 200px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.narrative-node.revealed .svg-container svg {
+  transform: scale(1.02);
+}
+
+.diagram-label {
+  font-size: 0.7rem;
+  color: #a58e6e;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  padding: 0.2rem 0;
+  letter-spacing: 0.4px;
+  border: none;
+}
+
+.diagram-label i {
+  color: #c8aa7a;
+}
+
+/* CTA descarga general - MÚLTIPLES PDFs */
+.cta-footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem 0 1rem;
+  border-top: 1px dashed rgba(200, 170, 130, 0.3);
+  position: relative;
+  z-index: 10;
+}
+
+.pdf-section-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #e0c8a8;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.pdf-buttons-container {
+  margin-bottom: 1.5rem;
+}
+
+.pdf-buttons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.download-cta {
+  background: linear-gradient(105deg, #1a1713, #100e0b);
+  border: 1px solid #b78f62;
+  padding: 0.8rem 1.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #f7efdf;
+  border-radius: 40px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.3px;
+}
+
+.download-cta.secondary {
+  background: rgba(30, 25, 40, 0.8);
+  border-color: #9e8868;
+}
+
+.download-cta i {
+  font-size: 1rem;
+}
+
+.download-cta:hover {
+  background: linear-gradient(105deg, #2f2820, #221d17);
+  transform: translateY(-2px);
+  border-color: #dcb185;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  color: #f7efdf;
+}
+
+.download-cta.secondary:hover {
+  background: rgba(50, 42, 62, 0.9);
+  border-color: #c8aa7a;
+}
+
+.cta-footnote {
+  font-size: 0.7rem;
+  color: #7a6a52;
+  margin-top: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .particles-left, .particles-right {
+    width: 60px;
+  }
+  .particle {
+    opacity: 0.2 !important;
+  }
+}
+
+@media (max-width: 780px) {
+  .node-content-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .node-title {
+    font-size: 1.8rem;
+  }
+  .cosmic-title {
+    font-size: 2.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .dotted-connector {
+    left: 20px;
+    transform: none;
+    width: 2px;
+    height: 3rem;
+    bottom: -2.5rem;
+  }
+  .numeral-block {
+    padding-left: 0.8rem;
+  }
+  .narrative-container {
+    padding: 1rem 1.5rem 4rem 1.5rem;
+  }
+  .node-diagram {
+    min-width: auto;
+  }
+  .svg-container {
+    padding: 1rem;
+  }
+  .particles-left, .particles-right {
+    display: none;
+  }
+  .pdf-buttons-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .download-cta {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05070c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b78f62;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dbaa72;
+}
+</style>
+
+<script>
+// ========== REVELADO CON SCROLL ==========
+function initNarrativeReveal() {
+  const nodes = document.querySelectorAll('.narrative-node');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3, rootMargin: "0px 0px -30px 0px" });
+  
+  nodes.forEach(node => observer.observe(node));
+  
+  // Comprobar nodos ya visibles al inicio
+  nodes.forEach(node => {
+    const rect = node.getBoundingClientRect();
+    const winHeight = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top < winHeight - 100) {
+      node.classList.add('revealed');
+      observer.unobserve(node);
+    }
+  });
+}
+
+// ========== FUNCIÓN PARA DESCARGAR PDF ==========
+async function downloadPDF(pdfUrl, titulo) {
+  try {
+    // Crear nombre de archivo basado en el título
+    const fileName = titulo.toLowerCase().replace(/\s+/g, '_').replace(/[&/\\#,+()$~%.'":*?<>{}]/g, '') + '.pdf';
+    
+    // Hacer fetch del PDF
+    const response = await fetch(pdfUrl);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    // Obtener el blob con el tipo MIME correcto
+    const blob = await response.blob();
+    
+    // Crear URL del blob
+    const url = window.URL.createObjectURL(blob);
+    
+    // Crear enlace temporal y descargar
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    
+    // Limpiar
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+    
+  } catch (error) {
+    console.error('Error al descargar el PDF:', error);
+    alert('Error al descargar el PDF. Por favor, intenta nuevamente.');
+  }
+}
+
+// ========== INICIALIZACIÓN ==========
+document.addEventListener('DOMContentLoaded', () => {
+  initNarrativeReveal();
+  
+  // Configurar botones de descarga de PDF individuales por sección
+  const sectionPdfButtons = document.querySelectorAll('.section-pdf-btn');
+  sectionPdfButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const pdfUrl = btn.dataset.pdfUrl;
+      const pdfTitle = btn.dataset.pdfTitle;
+      if (pdfUrl && pdfTitle) {
+        downloadPDF(pdfUrl, pdfTitle);
+      }
+    });
+  });
+  
+  // Configurar botones de descarga de PDF en el footer
+  const footerPdfButtons = document.querySelectorAll('.download-cta');
+  footerPdfButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const pdfUrl = btn.dataset.pdfUrl;
+      const pdfTitle = btn.dataset.pdfTitle;
+      if (pdfUrl && pdfTitle) {
+        downloadPDF(pdfUrl, pdfTitle);
+      }
+    });
+  });
+  
+  // Refuerzo para revelar elementos en scroll continuo
+  window.addEventListener('scroll', () => {
+    const notRevealed = document.querySelectorAll('.narrative-node:not(.revealed)');
+    if (notRevealed.length) {
+      notRevealed.forEach(node => {
+        const rect = node.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          node.classList.add('revealed');
+        }
+      });
+    }
+  });
+});
+</script>
