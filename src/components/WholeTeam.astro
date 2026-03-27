@@ -1,0 +1,197 @@
+---
+// Team.astro
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  teamImage: string;
+  imageAlt?: string;
+  description?: string;
+}
+
+const { 
+  title = "Nuestro Equipo", 
+  subtitle = "Conoce a los profesionales que hacen posible todo esto",
+  teamImage,
+  imageAlt = "Equipo completo",
+  description = "Un equipo multidisciplinario de expertos apasionados por la innovación y la excelencia"
+} = Astro.props;
+
+import team from '../assets/theme-images/team.png';
+---
+
+<section class="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+  <!-- Background Grid Pattern -->
+  <div class="absolute inset-0 z-0 opacity-20">
+    <div class="absolute inset-0" style="background-image: linear-gradient(to right, #475569 1px, transparent 1px), linear-gradient(to bottom, #475569 1px, transparent 1px); background-size: 40px 40px;"></div>
+  </div>
+  
+  <!-- Particle Effect Canvas -->
+  <canvas id="particleCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <div class="container relative z-10 mx-auto px-4 max-w-7xl">
+    <!-- Header with Modern Typography -->
+    <div class="text-center mb-16 md:mb-24">
+      {title && (
+        <div class="inline-block mb-4">
+          <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-indigo-300 border border-indigo-500/30 backdrop-blur-sm">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            Team Excellence
+          </span>
+        </div>
+      )}
+      
+      {title && (
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-indigo-200 to-white bg-clip-text text-transparent tracking-tight">
+          {title}
+        </h2>
+      )}
+      
+      {subtitle && (
+        <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+          {subtitle}
+        </p>
+      )}
+      
+      <!-- Decorative Line -->
+      <div class="flex justify-center mt-8">
+        <div class="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+      </div>
+    </div>
+
+    <!-- Team Image - Sin card, sin efectos -->
+    <div class="relative max-w-6xl mx-auto mt-1">
+      <img 
+        src={team.src || teamImage} 
+        alt={imageAlt}
+        class="w-full h-auto"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Description with Modern Styling -->
+    {description && (
+      <div class="text-center mt-16 max-w-4xl mx-auto">
+        <div class="relative">
+          <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+            <svg class="w-12 h-12 text-indigo-500/30" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"></path>
+            </svg>
+          </div>
+          <p class="text-lg md:text-xl text-slate-300 leading-relaxed font-light italic">
+            "{description}"
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  // Particle Effect Animation
+  function initParticles() {
+    const canvas = document.getElementById('particleCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationFrameId;
+    let mouseX = null;
+    let mouseY = null;
+    
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    
+    function createParticles() {
+      const particleCount = 60;
+      particles = [];
+      
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 2 + 1,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          opacity: Math.random() * 0.4 + 0.1,
+          color: `rgba(139, 92, 246, ${Math.random() * 0.3 + 0.1})`
+        });
+      }
+    }
+    
+    function drawParticles() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+        
+        // Update position
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+        if (particle.y > canvas.height) particle.y = 0;
+        
+        // Mouse interaction
+        if (mouseX && mouseY) {
+          const dx = particle.x - mouseX;
+          const dy = particle.y - mouseY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            const angle = Math.atan2(dy, dx);
+            const force = (100 - distance) / 100;
+            particle.x += Math.cos(angle) * force * 0.3;
+            particle.y += Math.sin(angle) * force * 0.3;
+          }
+        }
+      });
+      
+      animationFrameId = requestAnimationFrame(drawParticles);
+    }
+    
+    function init() {
+      resizeCanvas();
+      createParticles();
+      drawParticles();
+      
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        createParticles();
+      });
+      
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+      
+      canvas.addEventListener('mouseleave', () => {
+        mouseX = null;
+        mouseY = null;
+      });
+    }
+    
+    init();
+    
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }
+  
+  // Start particles when component is mounted
+  if (typeof window !== 'undefined') {
+    initParticles();
+  }
+</script>
