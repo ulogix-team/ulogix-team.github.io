@@ -10,7 +10,6 @@ import global_settings from "../data/global_settings.json"
 import caseStudies from "../data/case_studies.json"
 import clients from "../data/clients.json"
 import testimonials from "../data/testimonials.json"
-import home from "../data/home.json"
 
 import CaseStudiesSection from "../components/CaseStudiesSection.astro"
 import ClientsSection from "../components/ClientsSection.astro"
@@ -19,10 +18,11 @@ import TeamPresentation from "../components/TeamPresentation.astro"
 import AboutUlogix from "../components/AboutUlogix.astro"
 import QuoteSection from "../components/QuoteSection.astro"
 
-import heroImage from "../assets/theme-images/hero-image.png"
+import heroProduction from "../assets/theme-images/hero-production.jpg"
 import diagnostico from "../assets/theme-images/diagnostico.png"
 import heroScreens from "../assets/theme-images/hero-screens.png"
 import team from "../assets/theme-images/team.png"
+import heroImage from "../assets/theme-images/hero-image.png"
 
 const apmModules = modulesNav.find((g) => g.group === "Módulos APM")?.items ?? []
 const archModules = modulesNav.find((g) => g.group === "Arquitectura IT/OT")?.items ?? []
@@ -37,28 +37,31 @@ const moduleVisuals = [
 
 <Layout title={global_settings.title} description={global_settings.description} variant="home">
 
-  <!-- HERO full-bleed Apple-like -->
+  <!-- HERO full-bleed — imagen de planta / producción -->
   <section class="relative min-h-[100svh] flex items-end overflow-hidden">
     <div class="absolute inset-0">
       <Image
-        src={heroImage}
-        alt="Automatización Ulogix"
-        class="w-full h-full object-cover"
+        src={heroProduction}
+        alt="Planta de producción industrial"
+        class="w-full h-full object-cover object-center scale-105"
         widths={[900, 1400, 2000]}
         sizes="100vw"
         loading="eager"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-black/20"></div>
+      <!-- Overlay: oscurece base, deja leer tipografía, tinte azul sutil -->
+      <div class="absolute inset-0 bg-black/55"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-[#0071e3]/15"></div>
     </div>
 
     <div class="bs-container relative z-10 pb-20 md:pb-28 pt-40 w-full">
-      <p class="font-mono text-sm tracking-[0.3em] text-ulogix-accent uppercase mb-5 animate-[fadeUp_0.8s_ease]">
+      <p class="text-sm tracking-[0.2em] text-ulogix-accent uppercase mb-5">
         APM 2026 · Coca-Cola FEMSA Fontibón
       </p>
-      <h1 class="font-display font-semibold tracking-tight text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.95] mb-6">
-        <span class="ulogix-gradient-text">Ulogix</span>
+      <h1 class="font-display font-semibold tracking-tight text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.95] mb-6 text-white">
+        Ulogix
       </h1>
-      <p class="max-w-xl text-lg md:text-2xl text-white/80 leading-relaxed mb-10">
+      <p class="max-w-xl text-lg md:text-2xl text-white/85 leading-relaxed mb-10">
         Automatización que se siente producto. Desde el campo hasta el ERP —
         celdas robotizadas, gemelo digital y Unified Namespace.
       </p>
@@ -66,8 +69,8 @@ const moduleVisuals = [
         <a href="#productos" class="bs-btn bg-ulogix-accent-strong! text-white!">
           Ver productos
         </a>
-        <a href="#modulos" class="bs-btn ulogix-glass">Explorar módulos</a>
-        <a href="https://www.youtube.com/watch?v=9-S5_Xe6yho" target="_blank" rel="noopener" class="bs-btn bg-transparent! border border-white/20">
+        <a href="#modulos" class="bs-btn bg-white/10! border border-white/25 text-white!">Explorar módulos</a>
+        <a href="https://www.youtube.com/watch?v=9-S5_Xe6yho" target="_blank" rel="noopener" class="bs-btn bg-transparent! border border-white/25 text-white!">
           Video de entrega
         </a>
       </div>
@@ -75,9 +78,7 @@ const moduleVisuals = [
   </section>
 
   <!-- Clientes / aliados -->
-  <div class="pt-8">
-    <ClientsSection clients={clients} title="Tecnología y aliados" />
-  </div>
+  <ClientsSection clients={clients} title="Tecnología y aliados" />
 
   <!-- Productos visuales -->
   <div id="productos" class="pt-8 pb-8">
@@ -85,39 +86,36 @@ const moduleVisuals = [
   </div>
 
   <!-- Quote -->
-  <QuoteSection
-    cite={home.quote_cite}
-    content={home.quote_content}
-    image={home.quote_image}
-    role={home.quote_role}
-  />
+  <QuoteSection />
 
   <!-- Quiénes somos -->
   <AboutUlogix />
 
-  <!-- Cuadro resumen visual -->
-  <section id="resumen" class="bs-container py-20 md:py-28">
-    <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Cuadro resumen</p>
-    <h2 class="bs-h2 mb-3">La propuesta <span class="ulogix-gradient-text">en números</span></h2>
-    <p class="text-bs-foreground-dark max-w-2xl mb-12">{resumen.subtitle}</p>
+  <!-- Cuadro resumen — banda light -->
+  <section id="resumen" class="bg-white text-gray-900 py-20 md:py-28 mt-8">
+    <div class="bs-container">
+      <p class="text-xs tracking-widest text-blue-600 uppercase mb-3 font-medium">Cuadro resumen</p>
+      <h2 class="bs-h2 mb-3 text-gray-900">La propuesta en números</h2>
+      <p class="text-gray-500 max-w-2xl mb-12">{resumen.subtitle}</p>
 
-    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 mb-10">
-      {resumen.items.map((item) => (
-        <article class="ulogix-glass ulogix-glow rounded-3xl p-6 md:p-8 hover:scale-[1.02] transition-transform duration-500">
-          <p class="text-xs uppercase tracking-wider text-ulogix-accent mb-2">{item.label}</p>
-          <p class="font-display text-2xl md:text-3xl text-white mb-3">{item.value}</p>
-          <p class="text-sm text-bs-foreground-dark leading-relaxed">{item.detail}</p>
-        </article>
-      ))}
-    </div>
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 mb-10">
+        {resumen.items.map((item) => (
+          <article class="rounded-3xl p-6 md:p-8 bg-gray-50 border border-gray-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300">
+            <p class="text-xs uppercase tracking-wider text-blue-600 mb-2 font-medium">{item.label}</p>
+            <p class="font-display text-2xl md:text-3xl text-gray-900 mb-3">{item.value}</p>
+            <p class="text-sm text-gray-500 leading-relaxed">{item.detail}</p>
+          </article>
+        ))}
+      </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {resumen.finance.map((f) => (
-        <div class="rounded-2xl p-6 text-center bg-bs-surface-3 border border-ulogix-line">
-          <p class="text-xs text-bs-foreground-dark uppercase tracking-wider">{f.label}</p>
-          <p class="font-display text-2xl md:text-3xl mt-2 text-white">{f.value}</p>
-        </div>
-      ))}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {resumen.finance.map((f) => (
+          <div class="rounded-2xl p-6 text-center bg-blue-50 border border-blue-100">
+            <p class="text-xs text-gray-500 uppercase tracking-wider">{f.label}</p>
+            <p class="font-display text-2xl md:text-3xl mt-2 text-blue-700">{f.value}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 

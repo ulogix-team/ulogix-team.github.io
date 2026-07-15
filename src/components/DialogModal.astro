@@ -1,59 +1,232 @@
 ---
 import X from '../assets/theme-images/icon-x.svg'
 
-const { content } = Astro.props
+const servicesBlurb = [
+  'Arquitectura ISA-95 y Unified Namespace (MQTT)',
+  'Celdas robotizadas: Gantry e IRB 5710',
+  'Digital Factory · gemelo digital · Tecnomatix / NX',
+  'PLC · Grafcet · Ladder (Logix Emulate)',
+  'SCADA Ignition · HMI bajo ISA-101',
+  'MES · ERP · Middleware Node-RED',
+]
+
+const dossierText = [
+  'Arquitectura ISA-95 y Unified Namespace (MQTT)',
+  'Celdas robotizadas: Gantry e IRB 5710',
+  'Digital Factory · gemelo digital · Tecnomatix / NX',
+  'PLC · Grafcet · Ladder (Logix Emulate)',
+  'SCADA Ignition · HMI bajo ISA-101',
+  'MES · ERP · Middleware Node-RED',
+  'Demos: uns / mes / erp / scada .ulogix.online',
+  'Video: https://www.youtube.com/watch?v=9-S5_Xe6yho',
+].join('\n• ')
 ---
 
-<dialog id="demo" closedby="any" class="fixed inset-0 bg-bs-surface-0 m-auto z-50 p-6 md:p-12 rounded-xl w-full max-w-[95%] md:max-w-lg">
-  <!-- Form -->
-  <form method="dialog" class="flex gap-6 flex-col">
-    <!-- Header -->
-    <h2 class="text-2xl flex justify-between items-center gap-4">
-      <span>{content.title}</span>
-
-      <button onclick="this.closest('dialog').close('close')" aria-label="Close" class="bs-btn rounded-full p-0! flex items-center justify-center h-10 w-10">
+<dialog id="demo" closedby="any" class="fixed inset-0 bg-[#0f0f10] text-white m-auto z-[200] p-0 rounded-2xl w-full max-w-[95%] md:max-w-lg border border-white/10 shadow-2xl overflow-hidden">
+  <div class="flex flex-col max-h-[90vh]">
+    <header class="flex items-center justify-between gap-4 px-6 md:px-8 pt-6 md:pt-8 pb-4 border-b border-white/10 shrink-0">
+      <div>
+        <p class="text-xs tracking-wider text-ulogix-accent uppercase mb-1">Ulogix</p>
+        <h2 class="text-xl md:text-2xl font-display font-semibold">Contacto profesional</h2>
+      </div>
+      <button type="button" onclick="demo.close()" aria-label="Cerrar" class="bs-btn rounded-full p-0! flex items-center justify-center h-10 w-10 bg-white/5! shrink-0">
         <X class="scale-75 opacity-75" width="32" height="32" />
       </button>
-    </h2>
+    </header>
 
-    <!-- Content -->
+    <form id="ulogix-contact-form" class="flex flex-col gap-5 px-6 md:px-8 py-6 overflow-y-auto" novalidate>
+      <p class="text-sm text-white/65 leading-relaxed">
+        Déjanos tus datos. Te enviamos el dossier Ulogix a tu correo y el equipo recibe tu solicitud en
+        <span class="text-white">ulogixteam@gmail.com</span>.
+      </p>
 
-    <div class="flex flex-col gap-4">
-      <!-- Intro -->
-      <div class="bs-body-text mb-3" set:html={content.content} />
+      <!-- Honeypot anti-spam -->
+      <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-      <!-- Form inputs -->
+      <div class="flex flex-col gap-1.5">
+        <label for="contact-name" class="text-xs uppercase tracking-wider text-white/50">Nombre completo</label>
+        <input
+          id="contact-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+          class="rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-ulogix-accent"
+          placeholder="Tu nombre y apellido"
+        />
+      </div>
 
-      <!-- Name -->
-      <label class="sr-only" for="name">Name</label>
+      <div class="flex flex-col gap-1.5">
+        <label for="contact-company" class="text-xs uppercase tracking-wider text-white/50">Empresa</label>
+        <input
+          id="contact-company"
+          name="company"
+          type="text"
+          required
+          autocomplete="organization"
+          class="rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-ulogix-accent"
+          placeholder="Nombre de la organización"
+        />
+      </div>
 
-      <input id="name" type="text" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your name" />
+      <div class="flex flex-col gap-1.5">
+        <label for="contact-email" class="text-xs uppercase tracking-wider text-white/50">Correo de contacto</label>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          class="rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-ulogix-accent"
+          placeholder="nombre@empresa.com"
+        />
+      </div>
 
-      <!-- Company -->
-      <label class="sr-only" for="company">Company</label>
+      <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+        <p class="text-xs uppercase tracking-wider text-ulogix-accent mb-2">Recibirás información sobre</p>
+        <ul class="grid gap-1.5">
+          {servicesBlurb.map((s) => (
+            <li class="text-xs text-white/60 flex gap-2">
+              <span class="text-ulogix-accent">▸</span>{s}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <input id="company" type="text" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your company" />
+      <p id="contact-form-status" class="text-sm hidden" role="status"></p>
 
-      <!-- Email -->
-      <label class="sr-only" for="email">Email</label>
+      <button type="submit" id="contact-submit" class="bs-btn bg-ulogix-accent-strong! text-white! w-full justify-center py-4! disabled:opacity-60 disabled:pointer-events-none">
+        Enviar y recibir información
+      </button>
 
-      <input id="email" type="email" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your email" />
-
-      <!-- Submit -->
-      <button class="bs-btn form-input px-4 py-3">{content.cta}</button>
-    </div>
-  </form>
+      <p class="text-[11px] text-white/40 text-center leading-relaxed">
+        Envío real por correo (FormSubmit). La primera vez hay que confirmar
+        <span class="text-white/55">ulogixteam@gmail.com</span> desde el link de activación.
+      </p>
+    </form>
+  </div>
 </dialog>
+
+<script define:vars={{ dossierText }}>
+  const TEAM_EMAIL = 'ulogixteam@gmail.com'
+  const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${TEAM_EMAIL}`
+
+  function setupContactForm() {
+    const form = document.getElementById('ulogix-contact-form')
+    const status = document.getElementById('contact-form-status')
+    const submitBtn = document.getElementById('contact-submit')
+    if (!(form instanceof HTMLFormElement)) return
+    if (form.dataset.bound === '1') return
+    form.dataset.bound = '1'
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      const name = /** @type {HTMLInputElement} */ (form.elements.namedItem('name')).value.trim()
+      const company = /** @type {HTMLInputElement} */ (form.elements.namedItem('company')).value.trim()
+      const email = /** @type {HTMLInputElement} */ (form.elements.namedItem('email')).value.trim()
+      const honey = /** @type {HTMLInputElement} */ (form.elements.namedItem('_honey'))?.value
+
+      if (honey) return
+      if (!name || !company || !email) {
+        if (status) {
+          status.textContent = 'Completa nombre, empresa y correo.'
+          status.className = 'text-sm text-red-400'
+        }
+        return
+      }
+
+      if (submitBtn instanceof HTMLButtonElement) {
+        submitBtn.disabled = true
+        submitBtn.textContent = 'Enviando…'
+      }
+      if (status) {
+        status.textContent = 'Enviando solicitud…'
+        status.className = 'text-sm text-ulogix-accent'
+      }
+
+      const dossier =
+        `Hola ${name},\n\n` +
+        `Gracias por contactar a Ulogix (APM · Universidad Nacional).\n\n` +
+        `Empresa registrada: ${company}\n\n` +
+        `Dossier / stack de servicios:\n• ${dossierText}\n\n` +
+        `Si quieres agendar una demo, responde a este correo o escribe a ${TEAM_EMAIL}.\n\n` +
+        `— Equipo Ulogix`
+
+      const payload = {
+        name,
+        email,
+        company,
+        _subject: `Nuevo contacto web — ${name} · ${company}`,
+        _template: 'table',
+        _cc: email,
+        _replyto: email,
+        _captcha: 'false',
+        message:
+          `Nuevo lead desde ulogix.online\n\n` +
+          `Nombre: ${name}\n` +
+          `Empresa: ${company}\n` +
+          `Correo: ${email}\n\n` +
+          `--- Copia del dossier enviada en CC al contacto ---\n\n` +
+          dossier,
+      }
+
+      try {
+        const res = await fetch(FORMSUBMIT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+
+        const data = await res.json().catch(() => ({}))
+
+        if (!res.ok) {
+          throw new Error(data.message || `Error ${res.status}`)
+        }
+
+        if (status) {
+          status.textContent =
+            'Listo. Revisamos tu solicitud y te llega copia del dossier (revisa spam). El equipo también fue notificado.'
+          status.className = 'text-sm text-emerald-400'
+        }
+
+        form.reset()
+
+        const dialog = document.getElementById('demo')
+        if (dialog instanceof HTMLDialogElement) {
+          setTimeout(() => dialog.close(), 2800)
+        }
+      } catch (err) {
+        console.error(err)
+        if (status) {
+          status.textContent =
+            'No se pudo enviar automáticamente. Si es la primera vez, confirma ulogixteam@gmail.com en FormSubmit; luego reintenta. También puedes escribirnos directo a ese correo.'
+          status.className = 'text-sm text-amber-300'
+        }
+      } finally {
+        if (submitBtn instanceof HTMLButtonElement) {
+          submitBtn.disabled = false
+          submitBtn.textContent = 'Enviar y recibir información'
+        }
+      }
+    })
+  }
+
+  setupContactForm()
+  document.addEventListener('astro:page-load', setupContactForm)
+</script>
 
 <style>
   html:has(dialog[open]) {
     overflow: hidden;
-    backdrop-filter: blur(0);
     scrollbar-gutter: stable;
   }
 
   dialog[open]::backdrop {
-    backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.7);
   }
 
   @keyframes scale-up {
@@ -65,12 +238,12 @@ const { content } = Astro.props
 
   @media (prefers-reduced-motion: no-preference) {
     dialog {
-      translate: 0 2rem;
-      scale: 0.8;
+      translate: 0 1.5rem;
+      scale: 0.96;
     }
 
     dialog[open] {
-      animation: scale-up forwards 1s;
+      animation: scale-up forwards 0.55s;
       animation-timing-function: var(--ease-bs-spring);
     }
   }

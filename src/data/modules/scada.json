@@ -65,21 +65,22 @@
     {
       "type": "photo-grid",
       "title": "Interfaces de supervisión",
+      "body": "Referencia visual del entorno de operación: layout de planta, drill-down por línea/etapa y variables en vivo (como en la demo Ignition). Abre scada.ulogix.online para la HMI real.",
       "items": [
+        {
+          "file": "modules/scada-hmi.jpg",
+          "title": "HMI de proceso",
+          "caption": "ISA-101 · setpoints y estados"
+        },
+        {
+          "file": "modules/factory-line.jpg",
+          "title": "Vista de planta",
+          "caption": "Layout → drill-down por línea"
+        },
         {
           "file": "control-room.jpg",
           "title": "Sala de control",
-          "caption": "Operación HMI"
-        },
-        {
-          "file": "dashboard.jpg",
-          "title": "Pantallas de proceso",
-          "caption": "ISA-101"
-        },
-        {
-          "file": "factory.jpg",
-          "title": "Vista de planta",
-          "caption": "Layout → drill-down"
+          "caption": "Supervisión integrada al gemelo"
         }
       ]
     },

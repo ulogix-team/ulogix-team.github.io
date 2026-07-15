@@ -104,21 +104,22 @@
     {
       "type": "photo-grid",
       "title": "Celda y manipulación",
+      "body": "Referencias de celda industrial alineadas con lo simulado en RobotStudio: Gantry L1/L2 e IRB 5710 en L3, con señales OPC hacia Ignition.",
       "items": [
         {
-          "file": "robot-arm.jpg",
-          "title": "Brazo industrial",
-          "caption": "Referencia IRB / 6 ejes"
+          "file": "modules/robot-cell.jpg",
+          "title": "Celda robotizada",
+          "caption": "Referencia 6 ejes · tipo IRB 5710"
         },
         {
-          "file": "factory.jpg",
+          "file": "modules/factory-line.jpg",
           "title": "Fin de línea",
-          "caption": "Paletizado L1–L3"
+          "caption": "Paletizado L1–L3 · FEMSA"
         },
         {
-          "file": "control-room.jpg",
-          "title": "Supervisión de celda",
-          "caption": "Pose y velocidad vía OPC"
+          "file": "robot-arm.jpg",
+          "title": "Manipulación",
+          "caption": "Gripper / trayectorias RobotStudio"
         }
       ]
     },

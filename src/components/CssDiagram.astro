@@ -6,25 +6,29 @@
 const { variant = 'isa95', title } = Astro.props
 ---
 
-<figure class="css-diagram ulogix-glass ulogix-glow rounded-3xl p-6 md:p-10 overflow-hidden relative">
-  {title && <figcaption class="text-sm font-medium text-ulogix-accent mb-6 tracking-wide">{title}</figcaption>}
+<figure class="css-diagram relative overflow-hidden rounded-[1.75rem] border border-white/10 px-5 py-8 md:px-10 md:py-12"
+  style="background: linear-gradient(165deg, rgba(41,151,255,0.08) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.15) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);">
+  <div class="pointer-events-none absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 20%, rgba(41,151,255,0.25), transparent 45%), radial-gradient(circle at 80% 80%, rgba(100,210,255,0.12), transparent 40%);"></div>
+  <div class="relative z-10">
+  {title && <figcaption class="text-sm font-medium text-ulogix-accent mb-8 tracking-wide">{title}</figcaption>}
 
   {variant === 'isa95' && (
-    <div class="flex flex-col items-center gap-2 max-w-lg mx-auto">
+    <div class="relative flex flex-col items-center gap-3 max-w-xl mx-auto py-2">
+      <div class="absolute left-1/2 top-6 bottom-6 w-px -translate-x-1/2 bg-gradient-to-b from-ulogix-accent/60 via-ulogix-accent/20 to-transparent"></div>
       {[
-        { l: '4', n: 'ERP', d: 'Planeación · inventario · finanzas' },
-        { l: '3', n: 'MES', d: 'Ejecución · OEE · calidad · lotes' },
-        { l: '2', n: 'SCADA / HMI', d: 'Ignition · ISA-101 · OPC UA' },
-        { l: '1–2', n: 'Control PLC', d: 'Grafcet · Ladder · Logix Emulate' },
-        { l: '0–1', n: 'Campo', d: 'Sensores · robots · actuadores' },
+        { l: '4', n: 'ERP', d: 'Planeación · inventario · finanzas', w: 100 },
+        { l: '3', n: 'MES', d: 'Ejecución · OEE · calidad · lotes', w: 92 },
+        { l: '2', n: 'SCADA / HMI', d: 'Ignition · ISA-101 · OPC UA', w: 84 },
+        { l: '1–2', n: 'Control PLC', d: 'Grafcet · Ladder · Logix Emulate', w: 76 },
+        { l: '0–1', n: 'Campo', d: 'Sensores · robots · actuadores', w: 68 },
       ].map((row, i) => (
         <div
-          class="w-full text-center py-3 md:py-4 rounded-xl border border-white/10 transition-transform hover:scale-[1.02]"
-          style={`width: ${100 - i * 8}%; background: linear-gradient(90deg, rgba(41,151,255,${0.35 - i * 0.05}), rgba(10,132,255,${0.25 - i * 0.03}));`}
+          class="relative z-10 text-center py-3.5 md:py-4 rounded-2xl border border-white/10 backdrop-blur-none transition-all duration-300 hover:-translate-y-0.5 hover:border-ulogix-accent/40"
+          style={`width: ${row.w}%; background: linear-gradient(120deg, rgba(41,151,255,${0.28 - i * 0.035}), rgba(0,0,0,0.45) 55%);`}
         >
-          <p class="font-mono text-[10px] text-white/60">Nivel {row.l}</p>
-          <p class="font-semibold text-white">{row.n}</p>
-          <p class="text-xs text-white/70 hidden sm:block">{row.d}</p>
+          <p class="font-mono text-[10px] text-ulogix-accent/90">Nivel {row.l}</p>
+          <p class="font-semibold text-white tracking-tight">{row.n}</p>
+          <p class="text-xs text-white/60 hidden sm:block mt-0.5">{row.d}</p>
         </div>
       ))}
     </div>
@@ -232,4 +236,5 @@ const { variant = 'isa95', title } = Astro.props
       ))}
     </div>
   )}
+  </div>
 </figure>

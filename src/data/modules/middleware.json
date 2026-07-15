@@ -22,9 +22,9 @@
       "title": "Contexto visual",
       "body": "Interfaz de flujos Node-RED y el entorno de servidores donde corre el puente en Docker (Hetzner).",
       "items": [
-        { "file": "node-red-flow.png", "title": "Flujo Node-RED", "caption": "Ejemplo de flujo visual pub/sub y transformación" },
-        { "file": "servers.jpg", "title": "Infraestructura", "caption": "Servicios containerizados · Hetzner DE" },
-        { "file": "dashboard.jpg", "title": "Datos hacia IT", "caption": "KPIs y órdenes llegan a MES / ERP" }
+        { "file": "node-red-flow.png", "title": "Flujo Node-RED", "caption": "OPC DA → UA → MQTT" },
+        { "file": "modules/servers-ops.jpg", "title": "Infraestructura", "caption": "Servicios containerizados · Hetzner DE" },
+        { "file": "dashboard.jpg", "title": "Datos hacia IT", "caption": "KPIs y órdenes → MES / ERP" }
       ]
     },
     {

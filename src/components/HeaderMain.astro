@@ -5,62 +5,65 @@ import Logo from '../assets/theme-images/logo.svg'
 const { settings } = Astro.props
 ---
 
-<header class="sticky top-0 z-50 border-b border-ulogix-line bg-black/85">
+<header class="site-header sticky top-0 z-[100] isolate border-b border-ulogix-line bg-black/90 backdrop-blur-md">
   <div class="bs-container py-4 flex justify-between items-center gap-4">
     <a class="flex items-center gap-3 group min-w-0" href="/" aria-label="Ulogix — Inicio">
       <Logo class="group-hover:-rotate-180 transition-transform ease-bs-spring duration-1000 shrink-0" height="40" width="40" />
       <span class="font-display font-semibold tracking-tight text-lg hidden sm:block">Ulogix</span>
     </a>
 
-    <nav class="hidden lg:flex items-center gap-1 mx-auto">
+    <nav class="hidden lg:flex items-center gap-1 mx-auto relative z-[110]">
       {settings.nav.map((item) => (
         <a class="bs-btn bg-transparent! py-3! px-4! text-sm before:translate-y-full hover:before:translate-y-0" href={item.link}>
           {item.title}
         </a>
       ))}
 
-      <div class="relative group">
-        <button type="button" class="bs-btn flex items-center gap-1 bg-transparent! py-3! px-4! text-sm" aria-haspopup="true">
+      <!-- Dropdown: pt-2 hover bridge + sólido #111 por encima del ambient -->
+      <div class="relative group/nav">
+        <button type="button" class="bs-btn flex items-center gap-1 bg-transparent! py-3! px-4! text-sm" aria-expanded="false" aria-haspopup="true">
           Propuesta
-          <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="w-4 h-4 transition-transform group-hover/nav:rotate-180 group-focus-within/nav:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
 
-        <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-[min(92vw,36rem)] bg-bs-surface-0 border border-ulogix-line shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-4 grid sm:grid-cols-2 gap-4">
-          {modulesNav.map((group) => (
-            <div>
-              <p class="font-mono text-[10px] tracking-widest text-ulogix-accent uppercase px-3 mb-2">{group.group}</p>
-              <ul class="flex flex-col">
-                {group.items.map((item) => (
-                  <li>
-                    <a href={item.href} class="block px-3 py-2 text-sm text-bs-foreground-light hover:bg-ulogix-accent-soft hover:text-ulogix-accent transition-colors">
-                      {item.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-[120] opacity-0 invisible pointer-events-none group-hover/nav:opacity-100 group-hover/nav:visible group-hover/nav:pointer-events-auto group-focus-within/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:pointer-events-auto transition-all duration-150">
+          <div class="w-[min(92vw,38rem)] rounded-2xl border border-white/10 bg-[#111] shadow-2xl shadow-black/60 p-4 grid sm:grid-cols-2 gap-4">
+            {modulesNav.map((group) => (
+              <div>
+                <p class="font-mono text-[10px] tracking-widest text-ulogix-accent uppercase px-3 mb-2">{group.group}</p>
+                <ul class="flex flex-col">
+                  {group.items.map((item) => (
+                    <li>
+                      <a href={item.href} class="block px-3 py-2 text-sm text-white/90 rounded-lg hover:bg-white/5 hover:text-ulogix-accent transition-colors">
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </nav>
 
     <div class="flex items-center gap-2">
-      <details class="lg:hidden relative">
+      <details class="lg:hidden relative z-[120]">
         <summary class="bs-btn py-3! px-4! text-sm list-none cursor-pointer">Menú</summary>
-        <div class="absolute right-0 mt-2 w-72 max-h-[70vh] overflow-y-auto bg-bs-surface-0 border border-ulogix-line p-3 z-50">
+        <div class="absolute right-0 mt-2 w-72 max-h-[70vh] overflow-y-auto bg-[#111] border border-white/10 rounded-2xl p-3 shadow-2xl">
           {settings.nav.map((item) => (
             <a class="block px-3 py-2 text-sm hover:text-ulogix-accent" href={item.link}>{item.title}</a>
           ))}
-          <hr class="border-ulogix-line my-2" />
+          <hr class="border-white/10 my-2" />
           {modulesNav.flatMap((g) => g.items).map((item) => (
             <a class="block px-3 py-2 text-sm hover:text-ulogix-accent" href={item.href}>{item.title}</a>
           ))}
         </div>
       </details>
 
-      <button type="button" class="hidden sm:inline-flex min-w-28 bs-btn py-3! text-sm" onclick="demo.showModal()">
+      <button type="button" class="hidden sm:inline-flex min-w-28 bs-btn py-3! text-sm bg-ulogix-accent-strong!" onclick="demo.showModal()">
         {settings.demo.title}
       </button>
     </div>

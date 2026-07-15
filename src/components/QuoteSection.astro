@@ -1,16 +1,66 @@
 ---
-const { content, image, cite, role } = Astro.props
+/**
+ * Strategic partners — 3 full-bleed quote cards
+ */
+const partners = [
+  {
+    name: 'Elon Musk',
+    role: 'Socio estratégico',
+    quote: 'Suben el OEE como cohetes. Cuando la automatización despega así, la planta deja de pelear con la gravedad de las paradas.',
+    image: '/tech/partners/elon.jpg',
+    accent: 'from-orange-500/20 to-transparent',
+  },
+  {
+    name: 'Tim Cook',
+    role: 'Socio estratégico',
+    quote: 'El servicio se siente como un producto: cocreado, personalizado y con esa obsesión por el detalle que esperas cuando todo tiene que funcionar a la primera.',
+    image: '/tech/partners/tim.jpg',
+    accent: 'from-blue-500/20 to-transparent',
+  },
+  {
+    name: 'Peter Corke',
+    role: 'Socio estratégico · Robótica',
+    quote: 'Su manejo de celdas robotizadas es excepcional: diseño, simulación y seguridad con el rigor que exige la robótica de verdad.',
+    image: '/tech/partners/peter.jpg',
+    accent: 'from-emerald-500/20 to-transparent',
+  },
+]
 ---
 
-<blockquote class="bs-container py-20 md:py-28" id="quote">
-  <div class="ulogix-glass ulogix-glow rounded-[2rem] p-8 md:p-14 max-w-5xl">
-    <div set:html={content} class="font-display text-2xl md:text-4xl lg:text-5xl leading-snug text-white/90 bs-st-quote [&_strong]:text-ulogix-accent [&_strong]:font-semibold" />
-    <cite class="not-italic flex gap-4 items-center mt-10">
-      <img src={image} class="h-14 w-14 rounded-full ring-1 ring-white/20 object-cover" alt="" width="128" height="128" loading="lazy" />
-      <div>
-        <p class="text-white font-semibold text-lg">{cite}</p>
-        <p class="text-bs-foreground-dark text-sm">{role}</p>
-      </div>
-    </cite>
+<section class="w-full py-8 md:py-16" id="socios">
+  <div class="bs-container mb-10 md:mb-14">
+    <p class="text-xs tracking-widest text-ulogix-accent uppercase mb-3 font-medium">Socios estratégicos</p>
+    <h2 class="bs-h2">Voces que inspiran la visión</h2>
   </div>
-</blockquote>
+
+  <div class="w-full grid lg:grid-cols-3 gap-0 border-y border-white/10">
+    {partners.map((p) => (
+      <article class={`relative min-h-[28rem] md:min-h-[32rem] overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 last:border-r-0 group`}>
+        <img
+          src={p.image}
+          alt={p.name}
+          class:list={[
+            'absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105',
+            p.name === 'Peter Corke' ? 'object-[center_20%]' : 'object-top',
+          ]}
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/25"></div>
+        <div class={`absolute inset-0 bg-gradient-to-br ${p.accent}`}></div>
+
+        <div class="relative z-10 h-full flex flex-col justify-end p-8 md:p-10">
+          <p class="font-display text-xl md:text-2xl leading-snug text-white/95 mb-8">
+            “{p.quote}”
+          </p>
+          <div class="flex items-center gap-4">
+            <img src={p.image} alt="" class="w-12 h-12 rounded-full object-cover ring-2 ring-white/25" loading="lazy" />
+            <div>
+              <p class="font-semibold text-white">{p.name}</p>
+              <p class="text-sm text-white/55">{p.role}</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

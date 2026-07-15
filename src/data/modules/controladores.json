@@ -87,21 +87,22 @@
     {
       "type": "photo-grid",
       "title": "Control industrial",
+      "body": "Del Grafcet multinivel al Ladder en Studio 5000 / Logix Emulate, validado sobre el gemelo y expuesto hacia SCADA vía middleware.",
       "items": [
         {
-          "file": "control-room.jpg",
-          "title": "Entorno de control",
-          "caption": "Operación y validación"
+          "file": "modules/plc-panel.jpg",
+          "title": "Panel / lógica de control",
+          "caption": "Grafcet → Ladder IEC 61131-3"
         },
         {
           "file": "node-red-flow.png",
           "title": "Flujos Node-RED",
-          "caption": "Tags hacia SCADA"
+          "caption": "OPC DA → OPC UA"
         },
         {
-          "file": "dashboard.jpg",
-          "title": "Monitoreo",
-          "caption": "Estados de secuencia"
+          "file": "modules/scada-hmi.jpg",
+          "title": "Monitoreo de secuencia",
+          "caption": "Estados hacia Ignition"
         }
       ]
     }

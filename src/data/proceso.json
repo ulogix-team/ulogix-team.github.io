@@ -3,72 +3,72 @@
   "subtitle": "Reflexiones grupales e individuales del aprendizaje en el proyecto ABP · APM 2026",
   "grupal": {
     "title": "Reflexión grupal",
-    "gestion": "Como equipo Ulogix aprendimos a gestionar un proyecto de automatización de extremo a extremo: desde el diagnóstico de planta hasta la arquitectura UNS, pasando por celdas robotizadas, gemelo digital, PLC, SCADA, MES y ERP. La gestión se sostuvo en roles claros, entregas por módulo y una columna vertebral común (ISA-95 + comunicaciones OPC UA / MQTT).",
-    "colaborativo": "El trabajo colaborativo fue el diferencial: cada integrante aportó un dominio (redes, finanzas, PLC, NX, robótica, SCADA, Digital Factory) y el valor surgió al integrarlos. Las fricciones típicas de ABP —dependencias entre módulos, versiones de software, sincronización de demos— se resolvieron con comunicación continua, demos compartidas en Docker (Hetzner) y una narrativa única para el cliente FEMSA."
+    "gestion": "Ulogix aprendió a gestionar un proyecto de automatización de extremo a extremo para Coca-Cola FEMSA Fontibón: diagnóstico de tres líneas (retornables, Quatro 1.5 L, garrafones 25 L), diseño de celdas, gemelo digital, PLC, SCADA, MES, ERP y Unified Namespace. La gestión se sostuvo en roles claros por módulo, una columna vertebral común (ISA-95 + OPC UA / MQTT) y entregas que cerraban en una sola narrativa de cliente —no en silos técnicos.",
+    "colaborativo": "El diferencial fue integrar dominios distintos (redes/UNS, finanzas/ERP, Ladder, NX, RobotStudio, SCADA, Tecnomatix) sin perder coherencia. Las fricciones típicas de ABP —dependencias entre módulos, límites de simulación, sincronización de demos— se resolvieron con comunicación continua, demos compartidas en Docker (Hetzner: uns/mes/erp/scada.ulogix.online) y el video de entrega como hilo conductor único para el cliente."
   },
   "individuales": [
     {
       "name": "Andrés Morales",
       "role": "Líder · Arquitectura de red / UNS",
       "personKey": "andres",
-      "aprendizaje": "Integrar IT/OT con OPC UA, MQTT y Unified Namespace; diseñar un flujo extremo a extremo ERP→MES→SCADA→PLC→campo sin perder contexto semántico.",
-      "dificultades": "Puentes OPCDA↔OPCUA (Logix Emulate), orquestar múltiples clientes sobre Ignition y mantener coherencia de tópicos MQTT en el broker.",
-      "logros": "Arquitectura UNS desplegada, Node-RED como middleware y visión clara de cómo la planta publica/consume datos en un nodo central.",
-      "recomendaciones": "Definir el modelo de tópicos UNS desde el día uno y versionar contratos de datos entre equipos para evitar rehacer integraciones."
+      "aprendizaje": "Diseñar el flujo extremo a extremo ERP→MES→SCADA→PLC→campo sobre ISA-95, y articularlo como Unified Namespace (MQTT) para no depender de una cadena lineal frágil entre capas.",
+      "dificultades": "Puentes OPC DA↔OPC UA con Logix Emulate, orquestar múltiples clientes sobre Ignition y mantener tópicos MQTT semánticamente coherentes en el broker.",
+      "logros": "Arquitectura UNS desplegada, Node-RED como middleware y una visión clara de cómo la planta publica/consume datos en un nodo central (Mosquitto).",
+      "recomendaciones": "Definir el modelo de tópicos UNS desde el día uno y versionar contratos de datos entre equipos antes de congelar pantallas o dashboards."
     },
     {
       "name": "Samuel Sánchez",
       "role": "Finanzas · tiempos · ERP",
       "personKey": "samuel",
-      "aprendizaje": "Traducir una propuesta técnica en CAPEX, flujo de caja, VPN, TIR, ROI y payback; modelar escenarios (p. ej. Mundial) y vincular pronóstico de demanda con inventario y órdenes.",
-      "dificultades": "Centralizar ERP entre Odoo y herramientas propias, alinear costos de maquinaria usada europea y justificar ingeniería (APU + AIU).",
-      "logros": "Modelo financiero viable (~$9.000 M CAPEX, TIR ~78 %, payback ~22 meses) y ERP con pronóstico Holt-Winters conectado al UNS.",
+      "aprendizaje": "Traducir la propuesta técnica en CAPEX, flujo de caja, VPN, TIR, ROI y payback; modelar escenarios (p. ej. Mundial) y vincular pronóstico de demanda (Holt-Winters) con inventario y órdenes.",
+      "dificultades": "Centralizar ERP entre Odoo y herramientas propias, alinear costos de maquinaria usada europea y justificar ingeniería (APU + AIU) con evidencia de cotizaciones.",
+      "logros": "Modelo financiero viable (~$9.000 M CAPEX, VPN ~$11.000 M, TIR ~78 %, ROI ~26 %, payback ~22–25 meses) y ERP articulado al UNS.",
       "recomendaciones": "Cerrar cotizaciones tempranas y amarrar el escenario base financiero a los tiempos reales que salen de NX/Tecnomatix."
     },
     {
       "name": "Juan José Díaz",
       "role": "PLC · Grafcet · Ladder",
       "personKey": "juanjose",
-      "aprendizaje": "Metodología Grafcet (IEC 60848) y su implementación en Ladder (IEC 61131-3) en Studio 5000 / Logix Emulate, con validación sobre el gemelo digital.",
-      "dificultades": "Pasar de Grafcet multinivel a lógica robusta (latches, timers, flancos) y sincronizar receptividad/transiciones con sensores virtuales.",
-      "logros": "Grafcet de 1.º, 2.º y 3.º nivel para paletizado y Ladder ejecutable integrado al gemelo.",
-      "recomendaciones": "Documentar siempre el Grafcet antes de Ladder y validar cada transición con la misma nomenclatura de tags que usará SCADA."
+      "aprendizaje": "Metodología Grafcet (IEC 60848) multinivel y su paso a Ladder (IEC 61131-3) en Studio 5000 / Logix Emulate, validando la lógica sobre el gemelo digital de paletizado.",
+      "dificultades": "Pasar de Grafcet de 1.º/2.º/3.º nivel a lógica robusta (latches, timers, flancos) y sincronizar receptividad/transiciones con sensores virtuales.",
+      "logros": "Grafcet documentado para embotellado/paletizado y Ladder ejecutable integrado al gemelo y a la cadena de señales hacia SCADA.",
+      "recomendaciones": "Documentar siempre el Grafcet antes de Ladder y usar la misma nomenclatura de tags que consumirá Ignition."
     },
     {
       "name": "Juan Manuel Beltrán",
       "role": "Gemelo digital · Siemens NX",
       "personKey": "juanmanuel",
-      "aprendizaje": "Modelar el gemelo con sensores/actuadores virtuales, validar cinemática y lógica, y exportar tiempos de ciclo útiles para Tecnomatix.",
-      "dificultades": "Fidelidad vs. carga computacional (entidades, smart components) y sincronización con RobotStudio y OPC.",
-      "logros": "Validación mecánica/cinemática del paletizado L1–L3 y tiempos transferibles al Digital Factory.",
+      "aprendizaje": "Modelar el gemelo con sensores/actuadores virtuales, validar mecánica/cinemática/lógica del paletizado L1–L3 y exportar tiempos de ciclo útiles para Tecnomatix.",
+      "dificultades": "Equilibrar fidelidad vs. carga computacional (entidades, smart components) y sincronizar con RobotStudio y el servidor OPC.",
+      "logros": "Validación del paletizado en NX y tiempos transferibles al Digital Factory para balanceo de línea.",
       "recomendaciones": "Separar simulación de trayectorias de la simulación masiva de entidades; priorizar señales críticas para el OPC."
     },
     {
       "name": "Andrés Felipe Quenan",
       "role": "Celdas robotizadas · RobotStudio",
       "personKey": "andresq",
-      "aprendizaje": "Justificar y diseñar dos celdas: Gantry compartido L1/L2 y manipulador ABB IRB 5710 para garrafones; simulación funcional y señales OPC.",
-      "dificultades": "Alternancia de capas en Gantry, grip neumático/ventosas en IRB y no saturar la simulación con demasiadas entidades.",
-      "logros": "Dos celdas simuladas en RobotStudio con smart components, sensores por eje y control de velocidad vía OPC hacia Ignition.",
-      "recomendaciones": "Cerrar análisis de riesgos y mitigaciones en paralelo al path planning, no al final."
+      "aprendizaje": "Justificar y diseñar dos celdas: Gantry compartido (L1/L2, paletizado alternado) e IRB 5710 con gripper/ventosas para garrafones 25 L; simulación funcional y señales OPC.",
+      "dificultades": "Alternancia de capas en Gantry, grip neumático en IRB y no saturar RobotStudio con demasiadas entidades en la demo.",
+      "logros": "Dos celdas en RobotStudio con smart components, sensores por eje y control de velocidad vía OPC hacia Ignition.",
+      "recomendaciones": "Cerrar análisis de riesgos y mitigaciones en paralelo al path planning, no al final del diseño."
     },
     {
       "name": "Juan Felipe Triana",
       "role": "SCADA · HMI · Ignition",
       "personKey": "felipe",
-      "aprendizaje": "Diseñar HMI bajo ISA-101 en Ignition Perspective: layout de planta, drill-down por línea/etapa, setpoints, válvulas, motores y posiciones de robots.",
-      "dificultades": "Organizar tags OPC UA, históricos (TimeSeries/Postgres) y UX clara sin sobrecargar la operación.",
-      "logros": "SCADA vivo en scada.ulogix.online con supervisión integrada al gemelo y a las celdas.",
-      "recomendaciones": "Partir de jerarquía de planta y navegación ISA-101 antes de pintar pantallas detalladas."
+      "aprendizaje": "Diseñar HMI bajo ISA-101 en Ignition Perspective: layout de planta, drill-down por línea/etapa, setpoints, válvulas, motores y posiciones de Gantry/IRB.",
+      "dificultades": "Organizar tags OPC UA, históricos (TimeSeries/Postgres) y una UX clara sin sobrecargar al operador.",
+      "logros": "SCADA vivo en scada.ulogix.online con supervisión integrada al gemelo y a las celdas robotizadas.",
+      "recomendaciones": "Partir de la jerarquía de planta y navegación ISA-101 antes de pintar pantallas detalladas."
     },
     {
       "name": "Nicolás Garzón",
       "role": "Digital Factory · Tecnomatix",
       "personKey": "nicolas",
-      "aprendizaje": "Levantar la planta en Plant Simulation, balancear líneas con tiempos de NX, evaluar cuellos de botella y publicar KPIs vía OPC UA/MQTT.",
-      "dificultades": "Modelar tres líneas (retornables, PET/Quatro, garrafones) con métodos/bloques coherentes y datos realistas de ciclo.",
-      "logros": "Simulación de planta que conecta mejoras locales de paletizado con indicadores globales de flujo.",
-      "recomendaciones": "Usar el Digital Factory como banco de pruebas de escenarios antes de congelar CAPEX y layout."
+      "aprendizaje": "Levantar las tres líneas en Plant Simulation, balancear con tiempos de NX, evaluar cuellos de botella y publicar KPIs vía OPC UA/MQTT.",
+      "dificultades": "Modelar retornables, PET/Quatro y garrafones con métodos/bloques coherentes y datos realistas de ciclo.",
+      "logros": "Simulación de planta que conecta mejoras locales de paletizado con indicadores globales de flujo (Takt, OEE, MLT).",
+      "recomendaciones": "Usar el Digital Factory como banco de escenarios antes de congelar CAPEX y layout de fin de línea."
     }
   ]
 }

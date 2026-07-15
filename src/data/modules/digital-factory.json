@@ -86,21 +86,22 @@
     {
       "type": "photo-grid",
       "title": "Simulación y planta virtual",
+      "body": "Cadena Digital Factory: validación en NX → balanceo en Tecnomatix Plant Simulation → KPIs publicados por OPC UA/MQTT al UNS.",
       "items": [
         {
-          "file": "robot-arm.jpg",
-          "title": "Celda virtual",
-          "caption": "Validación cinemática"
+          "file": "modules/digital-twin.jpg",
+          "title": "Gemelo / ingeniería digital",
+          "caption": "NX · cinemática y lógica"
         },
         {
-          "file": "factory.jpg",
+          "file": "modules/factory-line.jpg",
           "title": "Planta en simulación",
-          "caption": "Tres líneas"
+          "caption": "Tres líneas · Tecnomatix"
         },
         {
           "file": "dashboard.jpg",
           "title": "KPIs de simulación",
-          "caption": "Hacia UNS"
+          "caption": "Hacia UNS / MES"
         }
       ]
     },

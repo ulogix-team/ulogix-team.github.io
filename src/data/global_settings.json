@@ -5,8 +5,8 @@
   "base_url": "https://ulogix.online",
   "demo": {
     "title": "Contacto",
-    "content": "<strong>Equipo Ulogix · APM 2026</strong><br/>Universidad Nacional de Colombia.<br/><br/>Propuesta de automatización para Coca-Cola FEMSA Fontibón.<br/><br/>Demos: <a href='https://uns.ulogix.online'>UNS</a> · <a href='https://mes.ulogix.online'>MES</a> · <a href='https://erp.ulogix.online'>ERP</a> · <a href='https://scada.ulogix.online'>SCADA</a>",
-    "cta": "Hablar con el equipo"
+    "content": "",
+    "cta": "Abrir correo"
   },
   "theme_color": "#0a0a0a",
   "nav": [
@@ -18,6 +18,7 @@
   ],
   "social_links": [
     { "title": "GitHub", "link": "https://github.com/ulogix-team" },
-    { "title": "Video", "link": "https://www.youtube.com/watch?v=9-S5_Xe6yho" }
+    { "title": "Video", "link": "https://www.youtube.com/watch?v=9-S5_Xe6yho" },
+    { "title": "Email", "link": "mailto:ulogixteam@gmail.com" }
   ]
 }

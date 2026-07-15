@@ -12,6 +12,7 @@ import global_settings from '../data/global_settings.json'
 import DialogModal from '../components/DialogModal.astro'
 import FooterMain from '../components/FooterMain.astro'
 import HeaderMain from '../components/HeaderMain.astro'
+import AmbientBackground from '../components/AmbientBackground.astro'
 
 const { title, description, variant = "default" } = Astro.props
 ---
@@ -37,6 +38,7 @@ const { title, description, variant = "default" } = Astro.props
   </head>
 
   <body id="top">
+    <AmbientBackground />
     <a class="fixed -top-20 focus-visible:top-0 z-[100] p-3 bg-black/90 transition-all duration-300" href="#main">
       Saltar al contenido
     </a>

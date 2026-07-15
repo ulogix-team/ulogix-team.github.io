@@ -1,0 +1,174 @@
+---
+/** Ambient noise texture + soft particles + light parallax */
+---
+
+<div class="ambient-root" aria-hidden="true">
+  <div class="ambient-noise" data-parallax="0.15"></div>
+  <div class="ambient-orb ambient-orb-a" data-parallax="0.35"></div>
+  <div class="ambient-orb ambient-orb-b" data-parallax="0.25"></div>
+  <div class="ambient-grid" data-parallax="0.08"></div>
+  <canvas id="ambient-particles" class="ambient-canvas"></canvas>
+</div>
+
+<style is:global>
+  .ambient-root {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .ambient-noise {
+    position: absolute;
+    inset: -10%;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    mix-blend-mode: overlay;
+  }
+
+  .ambient-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image:
+      linear-gradient(to right, #2997ff 1px, transparent 1px),
+      linear-gradient(to bottom, #2997ff 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+  }
+
+  .ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+    will-change: transform;
+  }
+
+  .ambient-orb-a {
+    width: 42vw;
+    height: 42vw;
+    max-width: 520px;
+    max-height: 520px;
+    top: -8%;
+    left: -6%;
+    background: radial-gradient(circle, #0071e3 0%, transparent 70%);
+  }
+
+  .ambient-orb-b {
+    width: 36vw;
+    height: 36vw;
+    max-width: 420px;
+    max-height: 420px;
+    bottom: 5%;
+    right: -4%;
+    background: radial-gradient(circle, #64d2ff 0%, transparent 70%);
+    opacity: 0.12;
+  }
+
+  .ambient-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Keep chrome above ambient; isolate so dropdown stacking isn't trapped */
+  header.site-header {
+    position: sticky;
+    z-index: 100;
+    isolation: isolate;
+  }
+
+  main,
+  footer {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  function initAmbient() {
+    const canvas = document.getElementById('ambient-particles')
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let w = 0
+    let h = 0
+    let raf = 0
+
+    const particles = Array.from({ length: reduceMotion ? 18 : 48 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      r: Math.random() * 1.6 + 0.4,
+      vx: (Math.random() - 0.5) * 0.00025,
+      vy: (Math.random() - 0.5) * 0.00025,
+      a: Math.random() * 0.35 + 0.1,
+    }))
+
+    const resize = () => {
+      w = canvas.width = window.innerWidth
+      h = canvas.height = window.innerHeight
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h)
+      for (const p of particles) {
+        if (!reduceMotion) {
+          p.x += p.vx
+          p.y += p.vy
+          if (p.x < 0 || p.x > 1) p.vx *= -1
+          if (p.y < 0 || p.y > 1) p.vy *= -1
+        }
+        ctx.beginPath()
+        ctx.fillStyle = `rgba(41, 151, 255, ${p.a})`
+        ctx.arc(p.x * w, p.y * h, p.r, 0, Math.PI * 2)
+        ctx.fill()
+      }
+      raf = requestAnimationFrame(draw)
+    }
+
+    const layers = document.querySelectorAll('[data-parallax]')
+    let mx = 0
+    let my = 0
+
+    const onScroll = () => {
+      const y = window.scrollY
+      layers.forEach((el) => {
+        if (!(el instanceof HTMLElement)) return
+        const speed = Number(el.dataset.parallax || 0.1)
+        const tx = mx * speed * 18
+        const ty = y * speed * 0.15 + my * speed * 12
+        el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`
+      })
+    }
+
+    const onMove = (e) => {
+      mx = (e.clientX / window.innerWidth - 0.5)
+      my = (e.clientY / window.innerHeight - 0.5)
+      onScroll()
+    }
+
+    resize()
+    draw()
+    onScroll()
+    window.addEventListener('resize', resize, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
+    if (!reduceMotion) window.addEventListener('mousemove', onMove, { passive: true })
+
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('mousemove', onMove)
+    }, { once: true })
+  }
+
+  initAmbient()
+  document.addEventListener('astro:page-load', initAmbient)
+</script>
