@@ -1,74 +1,106 @@
 {
   "title": "Informe de proceso",
   "subtitle": "Reflexiones grupales e individuales del aprendizaje en el proyecto ABP · APM 2026",
-  "grupal": {
-    "title": "Reflexión grupal",
-    "gestion": "Ulogix aprendió a gestionar un proyecto de automatización de extremo a extremo para Coca-Cola FEMSA Fontibón: diagnóstico de tres líneas (retornables, Quatro 1.5 L, garrafones 25 L), diseño de celdas, gemelo digital, PLC, SCADA, MES, ERP y Unified Namespace. La gestión se sostuvo en roles claros por módulo, una columna vertebral común (ISA-95 + OPC UA / MQTT) y entregas que cerraban en una sola narrativa de cliente —no en silos técnicos.",
-    "colaborativo": "El diferencial fue integrar dominios distintos (redes/UNS, finanzas/ERP, Ladder, NX, RobotStudio, SCADA, Tecnomatix) sin perder coherencia. Las fricciones típicas de ABP —dependencias entre módulos, límites de simulación, sincronización de demos— se resolvieron con comunicación continua, demos compartidas en Docker (Hetzner: uns/mes/erp/scada.ulogix.online) y el video de entrega como hilo conductor único para el cliente."
-  },
   "individuales": [
     {
-      "name": "Andrés Morales",
+      "name": "Andrés Mauricio Morales Martínez",
       "role": "Líder · Arquitectura de red / UNS",
       "personKey": "andres",
-      "aprendizaje": "Diseñar el flujo extremo a extremo ERP→MES→SCADA→PLC→campo sobre ISA-95, y articularlo como Unified Namespace (MQTT) para no depender de una cadena lineal frágil entre capas.",
-      "dificultades": "Puentes OPC DA↔OPC UA con Logix Emulate, orquestar múltiples clientes sobre Ignition y mantener tópicos MQTT semánticamente coherentes en el broker.",
-      "logros": "Arquitectura UNS desplegada, Node-RED como middleware y una visión clara de cómo la planta publica/consume datos en un nodo central (Mosquitto).",
-      "recomendaciones": "Definir el modelo de tópicos UNS desde el día uno y versionar contratos de datos entre equipos antes de congelar pantallas o dashboards."
+      "grupal": [
+        "Como líder del grupo, mi mayor aprendizaje fue comprobar que coordinar un proyecto con tantos frentes especializados —control, SCADA, celdas robóticas, gemelo digital, ERP y manufactura digital— exige mucho más que dominar la arquitectura técnica: exige mantener visibilidad constante sobre cómo el avance (o el retraso) de un subequipo afecta directamente a los demás. Definir desde el inicio una arquitectura de Nombre de Espacio Unificado (UNS) con un broker MQTT como nodo central fue clave para que cada subequipo pudiera integrar su información sin depender de una jerarquía rígida tipo ISA 95 tradicional, lo cual facilitó bastante la sincronización entre disciplinas tan distintas trabajando en paralelo.",
+        "Como grupo, considero que el mayor logro fue lograr que datos provenientes de PLCs con protocolos antiguos (OPC DA), celdas robóticas, SCADA y el ERP terminaran conviviendo en una misma estructura horizontal de datos, permitiendo calcular KPIs de disponibilidad y eficiencia de forma centralizada. La principal dificultad fue la complejidad inherente de modelar una planta real de la magnitud de Coca-Cola FEMSA, con tres líneas de producción distintas y múltiples cuellos de botella que identificamos desde el diagnóstico inicial."
+      ],
+      "individual": [
+        "Mi trabajo se concentró en el diagnóstico inicial de la planta y en el diseño de la arquitectura de datos que soportaría la integración de todos los subsistemas. Identificar que, aunque la calidad de producción estaba cercana al 100%, existían oportunidades significativas de mejora en eficiencia y disponibilidad, me permitió establecer objetivos concretos y medibles para el proyecto: un incremento del 11% en producción y una mejora de al menos 3 puntos en el OEE partiendo de un 83% inicial.",
+        "El mayor reto técnico fue decidir migrar de una estructura lineal ISA 95 hacia una arquitectura UNS, lo cual implicó repensar cómo se comunicarían los niveles de campo, control, SCADA, MES y ERP sin las divisiones jerárquicas rígidas tradicionales. Implementar Ignition como servidor central OPC UA, Node-RED como middleware para traducir protocolos antiguos, y un motor en Python para procesar los datos del UNS en métricas de negocio, fue un logro del que me siento particularmente satisfecho, ya que sentó las bases para que el resto del equipo pudiera trabajar de forma desacoplada sin perder integración.",
+        "Una dificultad importante que enfrenté, más allá de lo técnico, fue que considero que la materia tiene bastante potencial para guiarnos en el diseño de soluciones de automatización, pero la desorganización de los temas entre los distintos módulos y el desacople entre ellos no facilitó una sincronización efectiva para desarrollar una solución realmente integrada y escalable desde el enfoque que proponía el curso. Esto me llevó a investigar por cuenta propia plataformas más actualizadas y con mayores ventajas de integración (como la arquitectura UNS basada en MQTT que terminamos adoptando) para poder llevar el proyecto al nivel de integración que buscábamos como equipo.",
+        "Como recomendación para futuros proyectos ABP de esta escala, sugeriría dos cosas: primero, definir la arquitectura de comunicación de datos (el \"contrato\" entre subsistemas) desde las primeras semanas del proyecto, incluso antes de que cada subequipo tenga su desarrollo avanzado; y segundo, que los módulos de la materia estén mejor acoplados entre sí desde el diseño del curso, de forma que los estudiantes no tengan que suplir por su cuenta la integración conceptual que en teoría debería facilitar la materia misma."
+      ]
     },
     {
-      "name": "Samuel Sánchez",
+      "name": "Samuel David Sánchez Cárdenas",
       "role": "Finanzas · tiempos · ERP",
       "personKey": "samuel",
-      "aprendizaje": "Traducir la propuesta técnica en CAPEX, flujo de caja, VPN, TIR, ROI y payback; modelar escenarios (p. ej. Mundial) y vincular pronóstico de demanda (Holt-Winters) con inventario y órdenes.",
-      "dificultades": "Centralizar ERP entre Odoo y herramientas propias, alinear costos de maquinaria usada europea y justificar ingeniería (APU + AIU) con evidencia de cotizaciones.",
-      "logros": "Modelo financiero viable (~$9.000 M CAPEX, VPN ~$11.000 M, TIR ~78 %, ROI ~26 %, payback ~22–25 meses) y ERP articulado al UNS.",
-      "recomendaciones": "Cerrar cotizaciones tempranas y amarrar el escenario base financiero a los tiempos reales que salen de NX/Tecnomatix."
+      "grupal": [
+        "Mi trabajo en la parte financiera y de ERP me permitió ver el proyecto desde una perspectiva distinta a la de mis compañeros centrados en el aspecto técnico-operativo: para mí, el reto era traducir todo lo que el equipo estaba diseñando (celdas robóticas, automatización, gemelo digital) en indicadores financieros concretos que justificaran la inversión. Esto requirió coordinación constante con el resto del equipo, especialmente para obtener datos realistas de costos de ingeniería, instalación y puesta en marcha que alimentaran el modelo financiero.",
+        "Como grupo, considero un logro significativo haber centralizado la información financiera, de inventarios y de recursos humanos en un ERP propio conectado al mismo broker MQTT que integraba el resto de la planta, demostrando que incluso los aspectos administrativos y financieros pueden integrarse dentro de una arquitectura de datos unificada como la que definimos para todo el proyecto. La dificultad principal fue conseguir información financiera realista y actualizada de una empresa de la magnitud de Coca-Cola FEMSA para poder construir proyecciones creíbles."
+      ],
+      "individual": [
+        "Mi trabajo consistió en construir un ERP personalizado combinando Python, SQL, Google Sheets y Odoo, gestionando módulos de recursos humanos, inventarios (BOM), compras y finanzas, todo centralizado a través de un broker MQTT (Mosquitto) conectado al Nombre de Espacio Unificado del proyecto. Uno de los aspectos que más trabajo me exigió fue la integración de Odoo como base de datos para la gestión de los indicadores del proyecto, lo cual implicó no solo un reto técnico de integración, sino también la necesidad de hablar con múltiples profesionales de finanzas e ingenieros industriales para asegurarme de estar calculando correctamente los indicadores y aspectos financieros del proyecto, más allá de lo que yo mismo podía resolver desde mi formación.",
+        "Uno de mis principales logros fue implementar un modelo estadístico Holt-Winters utilizando datos históricos de reportes de Coca-Cola FEMSA desde 2022 para pronosticar la demanda de 2026, permitiendo además simular escenarios personalizados (como el impacto de un Mundial de fútbol) y observar automáticamente cómo afectarían el flujo de caja, el ROI y la TIR del proyecto. Los indicadores financieros obtenidos —un VPN de 11,000 millones de pesos, una TIR del 78.2%, un ROI del 26.7% y un periodo de retorno de 22 meses descontado— fueron un resultado del que me siento particularmente orgulloso, especialmente considerando que logramos reducir significativamente el Capex (estimado en 9,000 millones de pesos) al identificar proveedores europeos de maquinaria usada de alta calidad.",
+        "La mayor dificultad fue construir un modelo financiero robusto que pudiera responder dinámicamente a los datos técnicos que el resto del equipo iba generando, sin contar siempre con cifras definitivas de ingeniería en las etapas tempranas del proyecto, y validar que mis cálculos financieros fueran metodológicamente correctos consultando a personas externas al equipo con experticia real en el área. Como recomendación para futuros proyectos ABP, sugeriría que el modelamiento financiero se desarrolle en paralelo con el diseño técnico desde el inicio, y que se facilite el acceso a asesoría externa de profesionales de finanzas para estudiantes que, como yo, deben abordar aspectos financieros fuera de su formación principal."
+      ]
     },
     {
-      "name": "Juan José Díaz",
-      "role": "PLC · Grafcet · Ladder",
-      "personKey": "juanjose",
-      "aprendizaje": "Metodología Grafcet (IEC 60848) multinivel y su paso a Ladder (IEC 61131-3) en Studio 5000 / Logix Emulate, validando la lógica sobre el gemelo digital de paletizado.",
-      "dificultades": "Pasar de Grafcet de 1.º/2.º/3.º nivel a lógica robusta (latches, timers, flancos) y sincronizar receptividad/transiciones con sensores virtuales.",
-      "logros": "Grafcet documentado para embotellado/paletizado y Ladder ejecutable integrado al gemelo y a la cadena de señales hacia SCADA.",
-      "recomendaciones": "Documentar siempre el Grafcet antes de Ladder y usar la misma nomenclatura de tags que consumirá Ignition."
-    },
-    {
-      "name": "Juan Manuel Beltrán",
+      "name": "Juan Manuel Beltrán Botello",
       "role": "Gemelo digital · Siemens NX",
       "personKey": "juanmanuel",
-      "aprendizaje": "Modelar el gemelo con sensores/actuadores virtuales, validar mecánica/cinemática/lógica del paletizado L1–L3 y exportar tiempos de ciclo útiles para Tecnomatix.",
-      "dificultades": "Equilibrar fidelidad vs. carga computacional (entidades, smart components) y sincronizar con RobotStudio y el servidor OPC.",
-      "logros": "Validación del paletizado en NX y tiempos transferibles al Digital Factory para balanceo de línea.",
-      "recomendaciones": "Separar simulación de trayectorias de la simulación masiva de entidades; priorizar señales críticas para el OPC."
+      "grupal": [
+        "Mi rol como responsable del gemelo digital me exigió trabajar en estrecha coordinación con el equipo de celdas robóticas y con el resto de los subsistemas, ya que el gemelo digital dependía directamente de los comportamientos y tiempos de ciclo definidos por ellos para poder generar simulaciones cinemáticas y lógicas realistas. Esta dependencia mutua reforzó, desde mi perspectiva, lo importante que fue mantener una comunicación fluida entre subequipos a lo largo de todo el proyecto.",
+        "Como grupo, destaco que el uso del gemelo digital nos permitió validar mecánica, cinemática y lógicamente el comportamiento de las tres líneas de producción sin incurrir en los altísimos costos y riesgos de hacer pruebas directamente sobre una planta física —algo que habría sido inviable en un contexto académico. La dificultad más relevante fue el volumen de entidades y comportamientos físicos que debían simularse simultáneamente, lo cual exigió un esfuerzo computacional considerable por parte de todo el equipo."
+      ],
+      "individual": [
+        "Mi trabajo se centró en construir el flujo de simulación del gemelo digital, iniciando en Siemens NX para definir comportamientos mecánicos y cinemáticos y obtener tiempos de ciclo precisos, los cuales luego exporté a Tecnomatix Plant Simulation para realizar el balanceo de líneas y la evaluación de cuellos de botella en las tres líneas de producción (garrafones, PET y retornables).",
+        "Uno de los principales retos fue asegurar que los tiempos de ciclo obtenidos en NX se trasladaran de forma precisa y representativa a Tecnomatix, ya que cualquier imprecisión en esa transferencia de datos se propagaba directamente al análisis de balanceo de líneas y a la identificación de cuellos de botella, afectando la validez de las conclusiones sobre eficiencia de la planta completa. Esta dificultad se agravó porque el proceso de simulación en NX requería conocimientos profundos tanto en comunicaciones como en las características físicas de los componentes del gemelo digital, y no conté con el acompañamiento del profesor encargado del módulo de NX en las sesiones finales del proyecto —los correos de consulta no obtuvieron respuesta a tiempo—, justo en la etapa donde más necesitaba resolver dudas técnicas específicas para cerrar correctamente la simulación.",
+        "Considero un logro importante haber logrado integrar ambos entornos de simulación en un flujo coherente pese a esa falta de acompañamiento, permitiendo validar el comportamiento de la planta sin necesidad de pruebas físicas. Como recomendación para futuros proyectos ABP, sugeriría dos cosas: definir desde el inicio del proyecto un formato estandarizado de intercambio de datos entre herramientas de simulación (NX y Tecnomatix en este caso), y asegurar que el acompañamiento docente esté garantizado específicamente durante las etapas finales del proyecto, que suelen ser las más críticas y donde más dudas técnicas surgen."
+      ]
     },
     {
-      "name": "Andrés Felipe Quenan",
-      "role": "Celdas robotizadas · RobotStudio",
-      "personKey": "andresq",
-      "aprendizaje": "Justificar y diseñar dos celdas: Gantry compartido (L1/L2, paletizado alternado) e IRB 5710 con gripper/ventosas para garrafones 25 L; simulación funcional y señales OPC.",
-      "dificultades": "Alternancia de capas en Gantry, grip neumático en IRB y no saturar RobotStudio con demasiadas entidades en la demo.",
-      "logros": "Dos celdas en RobotStudio con smart components, sensores por eje y control de velocidad vía OPC hacia Ignition.",
-      "recomendaciones": "Cerrar análisis de riesgos y mitigaciones en paralelo al path planning, no al final del diseño."
-    },
-    {
-      "name": "Juan Felipe Triana",
+      "name": "Juan Felipe Triana Aguilera",
       "role": "SCADA · HMI · Ignition",
       "personKey": "felipe",
-      "aprendizaje": "Diseñar HMI bajo ISA-101 en Ignition Perspective: layout de planta, drill-down por línea/etapa, setpoints, válvulas, motores y posiciones de Gantry/IRB.",
-      "dificultades": "Organizar tags OPC UA, históricos (TimeSeries/Postgres) y una UX clara sin sobrecargar al operador.",
-      "logros": "SCADA vivo en scada.ulogix.online con supervisión integrada al gemelo y a las celdas robotizadas.",
-      "recomendaciones": "Partir de la jerarquía de planta y navegación ISA-101 antes de pintar pantallas detalladas."
+      "grupal": [
+        "Desarrollar el sistema SCADA me puso en una posición particular dentro del equipo: mi trabajo dependía de recibir correctamente los datos de prácticamente todos los demás subsistemas —PLC, celdas robóticas, arquitectura de red— para poder mostrarlos de forma coherente al usuario final. Esto hizo que la comunicación con los demás equipos fuera constante, ya que cualquier cambio en la estructura de datos expuesta por el PLC o por las celdas robóticas se reflejaba directamente en lo que yo debía ajustar en la interfaz.",
+        "Como grupo, valoro mucho haber logrado un sistema donde el operador puede monitorear en tiempo real variables tan diversas como temperaturas de lavado, presiones de formado, estado de válvulas y posición de los motores de los robots, todo desde una única interfaz centralizada. La dificultad principal fue la complejidad de diseñar una interfaz que resultara clara para el usuario a pesar de la enorme cantidad de variables e instancias de máquina que debían representarse simultáneamente en una planta con múltiples líneas."
+      ],
+      "individual": [
+        "Mi trabajo consistió en desarrollar el sistema SCADA completo utilizando Ignition Perspective, permitiendo el monitoreo constante de las variables críticas del proceso. Diseñé un layout general de la planta donde el usuario puede seleccionar líneas específicas para ver el detalle de sus etapas, incluyendo botones de arranque/parada y campos de entrada para actualizar los set points de operación en vivo.",
+        "Uno de mis logros más importantes fue integrar el almacenamiento de datos históricos mediante TimescaleDB (basada en PostgreSQL), lo cual permite supervisar tendencias históricas y gestionar alarmas de forma robusta, replicando cómo funcionaría un sistema SCADA real en una planta industrial de esta escala.",
+        "La mayor dificultad fue diseñar una interfaz que balanceara la cantidad de información disponible con la usabilidad real para un operador —mostrar demasiadas variables a la vez puede saturar la interfaz y dificultar la toma de decisiones rápidas. Como recomendación para futuros proyectos ABP, sugeriría involucrar criterios de experiencia de usuario (UX) desde etapas tempranas del diseño del HMI, en lugar de tratarlo únicamente como una capa de visualización añadida al final del desarrollo."
+      ]
     },
     {
-      "name": "Nicolás Garzón",
+      "name": "Jorge Nicolás Garzón Acevedo",
       "role": "Digital Factory · Tecnomatix",
       "personKey": "nicolas",
-      "aprendizaje": "Levantar las tres líneas en Plant Simulation, balancear con tiempos de NX, evaluar cuellos de botella y publicar KPIs vía OPC UA/MQTT.",
-      "dificultades": "Modelar retornables, PET/Quatro y garrafones con métodos/bloques coherentes y datos realistas de ciclo.",
-      "logros": "Simulación de planta que conecta mejoras locales de paletizado con indicadores globales de flujo (Takt, OEE, MLT).",
-      "recomendaciones": "Usar el Digital Factory como banco de escenarios antes de congelar CAPEX y layout de fin de línea."
+      "grupal": [
+        "Mi rol de coordinación entre los módulos de Digital Factory y los procesos de manufactura me permitió ver de cerca cómo la integración global del proyecto dependía de que cada pieza individual —control, SCADA, celdas robóticas, gemelo digital— encajara correctamente dentro de una visión de manufactura coherente. Esto reforzó la importancia del trabajo colaborativo y sincronizado que caracterizó a todo el equipo a lo largo del proyecto, especialmente en un contexto de la complejidad de una planta como Coca-Cola FEMSA.",
+        "Como grupo, coincido con mis compañeros en que el mayor logro fue lograr sincronizar disciplinas tan diversas bajo una misma visión de proyecto, y que la principal dificultad fue la complejidad inherente de trabajar sobre una planta real de esta escala, sumada a las exigencias computacionales de las simulaciones conjuntas."
+      ],
+      "individual": [
+        "Mi trabajo se centró en la coordinación de los módulos de Digital Factory y los procesos de manufactura dentro de la integración global del proyecto, un rol que exigió mantener visión de conjunto sobre cómo los distintos desarrollos técnicos de mis compañeros debían converger en un modelo de manufactura coherente. Como recomendación para futuros proyectos ABP, sugeriría que los roles de coordinación e integración se documenten desde el inicio con responsabilidades y entregables específicos, de forma que su contribución al proyecto quede tan trazable como la de los roles técnicos más especializados."
+      ]
+    },
+    {
+      "name": "Juan José Díaz Guerrero",
+      "role": "PLC · Grafcet · Ladder",
+      "personKey": "juanjose",
+      "grupal": [
+        "Trabajar en la lógica de control del proyecto me permitió entender de primera mano cuánto depende la integración final del trabajo de todos: la lógica Ladder que desarrollé debía comunicarse correctamente tanto con las celdas robóticas como con el sistema SCADA y, en última instancia, con la arquitectura UNS definida por el equipo de redes. Esto exigió mantener una comunicación constante con los demás subequipos para asegurar que la estructura de datos que expone el PLC fuera compatible con lo que esperaban recibir SCADA y el motor de cálculo de KPIs.",
+        "Como grupo, destaco la capacidad de sincronizar un proyecto que combinaba software tan distintos como Studio 5000, Ignition, RobotStudio, NX y Tecnomatix, todo bajo un estándar común (ISA 95) que sirvió como columna vertebral conceptual del proyecto, incluso cuando la arquitectura de datos evolucionó hacia un modelo más horizontal (UNS). La dificultad más notoria fue la complejidad de replicar fielmente el comportamiento de una planta embotelladora real de esta escala, particularmente en la precisión que exige la lógica de control para no introducir errores de sincronización entre estaciones."
+      ],
+      "individual": [
+        "Mi trabajo se enfocó en desarrollar toda la lógica de control del gemelo digital utilizando Studio 5000 de Rockwell, empleando estructuras como latches, bobinas, temporizadores, contadores y detectores de flancos para garantizar la precisión del funcionamiento de cada estación del proceso de embotellado.",
+        "Uno de mis principales aprendizajes fue la aplicación de la metodología Grafcet en tres niveles: partir de un primer nivel de acciones simples, refinarlo en un segundo nivel detallando actuadores y sensores específicos, y finalmente definir en un tercer nivel las transiciones y receptividades necesarias para el cambio de etapas. Este enfoque estructurado fue clave para que la lógica de control fuera trazable y depurable, especialmente considerando la cantidad de estaciones y transiciones que debía gestionar simultáneamente.",
+        "La principal dificultad que enfrenté fue mantener la precisión lógica necesaria para que cada estación operara sin condiciones de carrera ni ambigüedades en las transiciones, algo que se volvió más exigente a medida que el número de estaciones interconectadas crecía. Como recomendación para futuros proyectos ABP, sugeriría documentar los diagramas Grafcet de forma temprana y compartirlos con los equipos de SCADA y celdas robóticas antes de finalizar la programación, ya que esto habría facilitado detectar incompatibilidades de comunicación con más anticipación."
+      ]
+    },
+    {
+      "name": "Andrés Felipe Quenan Pozo",
+      "role": "Celdas robotizadas · RobotStudio",
+      "personKey": "andresq",
+      "grupal": [
+        "Uno de los aspectos que más destacamos como equipo a lo largo de este proyecto fue la capacidad de trabajar de forma ordenada y sincronizada a pesar de la diversidad de frentes que abarcaba: mientras desarrollaba las celdas robóticas de paletizado, otros compañeros trabajaron en paralelo en gemelos digitales, comunicaciones industriales, diseño de SCADA, MES y ERP, estudio de mercado, así como en diagramas de proceso (VSM, layout, P&ID). Coordinar todos estos frentes para que convergieran en una solución coherente de automatización fue, en sí mismo, uno de los aprendizajes más valiosos del proyecto, ya que exigió no solo conocimiento técnico individual, sino una gestión de dependencias constante entre equipos que dependían del avance de los demás para poder integrar su propio trabajo.",
+        "Lo más destacable de esta experiencia fue lograr la comunicación de datos vía OPC entre los distintos software utilizados —NX, RobotStudio, Studio 5000 y Tecnomatix—, lo cual nos permitió obtener datos en tiempo real desde las simulaciones y calcular indicadores de rendimiento (KPIs) de forma integrada, tal como ocurriría en una planta real con un sistema de automatización jerárquico completo. Este logro no habría sido posible sin una comunicación constante entre equipos, ya que cualquier cambio en la configuración de un software repercutía directamente en la integración con los demás.",
+        "Como principales dificultades identificamos la complejidad inherente de la planta sobre la cual trabajamos, lo cual implicó un volumen de trabajo considerablemente mayor al de un proyecto académico convencional, tanto en el diseño de cada subsistema como en la sincronización necesaria entre todos los programas involucrados. A esto se sumó la exigencia de recursos computacionales, dado el elevado número de entidades simuladas simultáneamente en el entorno de gemelo digital, lo cual en varios momentos limitó la fluidez del trabajo colaborativo y obligó a buscar estrategias de simplificación y optimización entre los distintos equipos.",
+        "En general, consideramos que la experiencia de gestionar un proyecto de esta escala, con múltiples disciplinas y software especializados trabajando de forma sincronizada, fue formativa no solo desde el punto de vista técnico, sino también desde la gestión de proyectos multidisciplinarios reales."
+      ],
+      "individual": [
+        "Durante el desarrollo de este proyecto, mi trabajo se concentró en el diseño de las dos celdas robóticas de paletizado (manipulador articulado y sistema gantry cartesiano), abarcando desde el diseño mecánico, eléctrico y neumático, la evaluación de riesgos de seguridad, y la simulación de ambas celdas como parte del gemelo digital de la línea.",
+        "Una de las principales dificultades que enfrenté fue la simulación misma, dado el elevado número de entidades y comportamientos físicos que debían representarse simultáneamente en el entorno de RobotStudio. Esto me obligó a simplificar las celdas robóticas, conservando únicamente los elementos estrictamente necesarios para establecer correctamente las trayectorias y rutinas del robot, sin comprometer la representatividad de la solución frente al proceso real. Este ejercicio de simplificación fue en sí mismo un aprendizaje importante: entender que un gemelo digital no necesita replicar cada detalle físico de la celda, sino los elementos que determinan su comportamiento funcional.",
+        "El reto más significativo fue, sin duda, el diseño desde cero de un robot tipo gantry para su simulación en RobotStudio, dado que ABB no ofrece un modelo de este tipo en su biblioteca estándar. Esto implicó un proceso de diseño propio y una búsqueda extensa de compatibilidad con el entorno de simulación, ya que era necesario que el modelo generado pudiera integrarse correctamente como ejes externos controlados por el mismo IRC5 que gestiona el resto de la celda. Lograr una solución funcional para el paletizado alternado entre la Línea 1 y la Línea 2 con este robot de diseño propio fue uno de mis principales logros del proyecto, junto con el desarrollo de un estudio riguroso de seguridad para ambas celdas, siguiendo los lineamientos de ISO 14121-1 e ISO 10218-1/2 desde la identificación de peligros hasta la reducción de riesgo.",
+        "Como recomendación para futuros proyectos de este tipo bajo la metodología ABP, considero fundamental que los equipos dimensionen desde etapas tempranas del proyecto la capacidad computacional que exigirán las simulaciones conjuntas, ya que el número de entidades en un gemelo digital de una planta completa puede escalar rápidamente y afectar los tiempos de desarrollo de todos los subequipos involucrados. Asimismo, recomendaría iniciar el proceso de definición de interfaces de comunicación (como OPC) entre los distintos software desde las primeras fases del proyecto, y no dejarlo para etapas de integración final, ya que esto permite detectar incompatibilidades con tiempo suficiente para resolverlas sin comprometer el cronograma general del proyecto."
+      ]
     }
   ]
 }

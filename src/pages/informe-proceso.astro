@@ -10,23 +10,11 @@ import proceso from '../data/proceso.json'
     <p class="bs-body-text text-bs-foreground-dark text-lg md:text-xl mt-6 max-w-3xl">{proceso.subtitle}</p>
   </section>
 
-  <section class="bs-container py-16 md:py-24 border-b border-ulogix-line">
-    <h2 class="bs-h2 mb-10">{proceso.grupal.title}</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <article class="border border-ulogix-line bg-bs-surface-0 p-6 md:p-8">
-        <h3 class="text-ulogix-accent font-mono text-xs tracking-wider uppercase mb-4">Gestión del proyecto</h3>
-        <p class="text-bs-foreground-dark leading-relaxed">{proceso.grupal.gestion}</p>
-      </article>
-      <article class="border border-ulogix-line bg-bs-surface-0 p-6 md:p-8">
-        <h3 class="text-ulogix-accent font-mono text-xs tracking-wider uppercase mb-4">Trabajo colaborativo</h3>
-        <p class="text-bs-foreground-dark leading-relaxed">{proceso.grupal.colaborativo}</p>
-      </article>
-    </div>
-  </section>
-
   <section class="bs-container py-16 md:py-24">
-    <h2 class="bs-h2 mb-4">Reflexiones individuales</h2>
-    <p class="text-bs-foreground-dark mb-12 max-w-2xl">Aprendizaje, dificultades, logros y recomendaciones para futuros proyectos ABP.</p>
+    <h2 class="bs-h2 mb-4">Reflexiones por integrante</h2>
+    <p class="text-bs-foreground-dark mb-12 max-w-2xl">
+      Cada integrante aporta su mirada grupal e individual sobre el aprendizaje, las dificultades, los logros y las recomendaciones del proyecto ABP.
+    </p>
 
     <div class="flex flex-col gap-10">
       {proceso.individuales.map((person, i) => (
@@ -38,22 +26,24 @@ import proceso from '../data/proceso.json'
               <p class="text-bs-foreground-dark mt-1">{person.role}</p>
             </div>
           </header>
+
           <div class="grid md:grid-cols-2 gap-px bg-ulogix-line">
             <div class="bg-bs-surface-0 p-6 md:p-8">
-              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Aprendizaje</h4>
-              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.aprendizaje}</p>
+              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-4">Reflexión grupal</h4>
+              <div class="flex flex-col gap-4">
+                {person.grupal.map((paragraph) => (
+                  <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{paragraph}</p>
+                ))}
+              </div>
             </div>
+
             <div class="bg-bs-surface-0 p-6 md:p-8">
-              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Dificultades</h4>
-              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.dificultades}</p>
-            </div>
-            <div class="bg-bs-surface-0 p-6 md:p-8">
-              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Logros</h4>
-              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.logros}</p>
-            </div>
-            <div class="bg-bs-surface-0 p-6 md:p-8">
-              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Recomendaciones</h4>
-              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.recomendaciones}</p>
+              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-4">Reflexión individual</h4>
+              <div class="flex flex-col gap-4">
+                {person.individual.map((paragraph) => (
+                  <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </article>
