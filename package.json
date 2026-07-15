@@ -1,7 +1,7 @@
 {
-  "name": "blackspike-astro-landing-page",
+  "name": "ulogix-webpage",
   "type": "module",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",

@@ -5,13 +5,22 @@
   --font-display: var(--font-inter-display), "ui-sans-serif", "system-ui", "sans-serif";
   --font-body: var(--font-inter), "ui-sans-serif", "system-ui", "sans-serif";
 
-  --color-bs-surface-0: #121212;
-  --color-bs-surface-1: #18181B;
-  --color-bs-surface-2: rgba(255, 255, 255, 0.03);
-  --color-bs-surface-3: #2F2F31;
+  /* Apple-like dark surfaces */
+  --color-bs-surface-0: #000000;
+  --color-bs-surface-1: #0a0a0a;
+  --color-bs-surface-2: rgba(255, 255, 255, 0.04);
+  --color-bs-surface-3: #1d1d1f;
 
-  --color-bs-foreground-light: #eee;
-  --color-bs-foreground-dark: #9f9f9f;
+  --color-bs-foreground-light: #f5f5f7;
+  --color-bs-foreground-dark: #86868b;
+
+  /* Restrained system blue */
+  --color-ulogix-accent: #2997ff;
+  --color-ulogix-accent-strong: #0071e3;
+  --color-ulogix-accent-soft: #0071e31a;
+  --color-ulogix-indigo: #64d2ff;
+  --color-ulogix-fuchsia: #2997ff;
+  --color-ulogix-line: #ffffff14;
 
   --color-current: currentColor;
 

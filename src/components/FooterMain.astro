@@ -1,84 +1,50 @@
 ---
-
 import Logo from '../assets/theme-images/logo.svg'
+import demos from '../data/demos.json'
 
 const { settings } = Astro.props
-
 ---
 
-<footer class="@container bs-container my-24 font-semibold text-bs-foreground-dark [&_a]:hover:text-bs-foreground-light [&_a]:transition-color [&_a]:duration-150" id="contact">
+<footer class="bs-container my-16 md:my-24 font-semibold text-bs-foreground-dark [&_a]:hover:text-bs-foreground-light [&_a]:transition-colors" id="contact">
+  <div class="bg-bs-surface-0 border border-ulogix-line p-6 md:p-12 grid md:grid-cols-2 gap-10">
+    <div class="flex flex-col gap-6 text-bs-foreground-light">
+      <a class="flex items-center gap-3 group w-fit" href="/" aria-label="Ulogix — Inicio">
+        <Logo class="group-hover:-rotate-180 transition-transform ease-bs-spring duration-1000" height="40" width="40" />
+        <span class="font-display text-xl">Ulogix</span>
+      </a>
+      <p class="text-bs-foreground-dark font-normal text-sm max-w-sm leading-relaxed">
+        Propuesta de automatización para Coca-Cola FEMSA Fontibón · APM 2026 · Universidad Nacional de Colombia.
+      </p>
+      <button type="button" class="min-w-32 bs-btn w-fit bg-bs-surface-3" onclick="demo.showModal()">
+        {settings.demo.cta}
+      </button>
+    </div>
 
-  <!-- Wrapper -->
-  <div class="bg-bs-surface-2 p-6 md:p-16 rounded-xl grid md:grid-cols-2 gap-8">
-
-      <!-- Left col -->
-      <div class="w-max flex flex-col gap-8 md:gap-0 justify-between text-bs-foreground-light">
-
-        <!-- Logo -->
-        <a class="flex group" href="#top" aria-label="Back to top">
-
-          <Logo class="group-hover:-rotate-180 group-hover:scale-80 transition-transform ease-bs-spring duration-1000" height="48" width="48" />
-
-        </a>
-
-        <!-- CTA title -->
-        <h2 class="bs-h3">{ settings.demo.title  }</h2>
-
-        <!-- CTA Button -->
-        <button type="button" class="min-w-32 bs-btn block bg-bs-surface-3" onclick="demo.showModal()">
-          { settings.demo.cta }
-        </button>
-
-      </div>
-
-      <!-- Right col -->
-      <div class="flex gap-10 md:gap-2 lg:gap-20 md:justify-end [&_a]:block md:[&_a]:px-5 [&_a]:py-2">
-
-        <!-- Nav -->
-        <nav class="flex flex-col">
-
-          { settings.nav.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
-
-            <a href={ item.link }>
-              { item.title }
-            </a>
-
-          )}
-
-        </nav>
-
-        <!-- Social links -->
-        <nav class="flex flex-col">
-
-          { settings.social_links.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
-
-            <a href={ item.link }>
-              { item.title }
-            </a>
-
-          )}
-
-        </nav>
-
-      </div>
-
+    <div class="flex flex-wrap gap-10 md:justify-end">
+      <nav class="flex flex-col gap-1">
+        <p class="text-xs uppercase tracking-wider text-ulogix-accent mb-2">Sitio</p>
+        {settings.nav.map((item) => (
+          <a class="py-1 font-normal" href={item.link}>{item.title}</a>
+        ))}
+        <a class="py-1 font-normal" href="/informe-proceso">Informe de proceso</a>
+      </nav>
+      <nav class="flex flex-col gap-1">
+        <p class="text-xs uppercase tracking-wider text-ulogix-accent mb-2">Demos</p>
+        {demos.map((d) => (
+          <a class="py-1 font-normal" href={d.url} target="_blank" rel="noopener">{d.title}</a>
+        ))}
+      </nav>
+      <nav class="flex flex-col gap-1">
+        <p class="text-xs uppercase tracking-wider text-ulogix-accent mb-2">Enlaces</p>
+        {settings.social_links.map((item) => (
+          <a class="py-1 font-normal" href={item.link} target="_blank" rel="noopener">{item.title}</a>
+        ))}
+      </nav>
+    </div>
   </div>
 
-
-  <!-- Colophon -->
-  <aside class="bs-container">
-
-      <nav class="flex gap-4 justify-center pt-16 md:pt-24 text-xs">
-
-        <!-- Copyright/Date -->
-        <a href="https://blackspike.com/">by FeedbackStreetBoys</a>
-
-        <!-- Credits -->
-        <a href="/credits">about / credits</a>
-
-      </nav>
-
+  <aside class="flex gap-4 justify-center pt-10 text-xs font-normal">
+    <span>© {new Date().getFullYear()} Ulogix</span>
+    <a href="/credits">Créditos</a>
   </aside>
-
 </footer>
-

@@ -1,0 +1,84 @@
+{
+  "slug": "erp",
+  "number": "ERP",
+  "title": "ERP — Planificación de recursos",
+  "subtitle": "Planeación, inventario, compras, producción, finanzas y escenarios de demanda.",
+  "rubric": "Capa ISA-95 nivel 4: gestiona recursos empresariales y alimenta al MES.",
+  "demoId": "erp",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Enfoque híbrido",
+      "body": "El ERP combina Odoo (prestaciones comerciales) con una capa propia conectada a bases de datos de manufactura y a hojas/servicios para contabilidad, pronóstico y RR.HH. La idea no es un ERP monolítico académico, sino un flujo realista articulado al UNS vía MQTT (Mosquitto)."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "erp",
+      "diagramTitle": "Módulos ERP"
+    },
+    {
+      "type": "bullets",
+      "title": "Módulos clave",
+      "items": [
+        "Pronóstico de demanda Holt-Winters con datos trimestrales FEMSA (volumen refrescos, agua, garrafones) y validación 2026-T1.",
+        "Escenarios (p. ej. Mundial) que recalculan demanda, VPN, TIR y ROI en vivo.",
+        "Inventario y BOM vinculados a proveedores y planes de compra.",
+        "Órdenes de manufactura, compra y venta con SKU/identificadores.",
+        "Producción MQTT: avance por línea y cumplimiento de órdenes.",
+        "Finanzas: precios, flujos, CAPEX, VPN, TIR, ROI y payback según escenario activo.",
+        "RR.HH. y segmentación por planta/departamento."
+      ]
+    },
+    {
+      "type": "tech-logos",
+      "title": "ERP stack",
+      "items": [
+        {
+          "file": "odoo.png",
+          "title": "Odoo"
+        },
+        {
+          "file": "mqtt.svg",
+          "title": "MQTT",
+          "invert": true
+        },
+        {
+          "file": "python.svg",
+          "title": "Pronóstico / modelos"
+        },
+        {
+          "file": "docker.svg",
+          "title": "Docker"
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Negocio y operaciones",
+      "items": [
+        {
+          "file": "dashboard.jpg",
+          "title": "Finanzas y escenarios",
+          "caption": "VPN · TIR · ROI"
+        },
+        {
+          "file": "servers.jpg",
+          "title": "erp.ulogix.online",
+          "caption": "Hetzner"
+        },
+        {
+          "file": "bottling.jpg",
+          "title": "Demanda de producto",
+          "caption": "Holt-Winters"
+        }
+      ]
+    },
+    {
+      "type": "demo",
+      "title": "Demo en vivo",
+      "body": "ERP desplegado en Docker · Hetzner."
+    }
+  ],
+  "heroImage": "heroScreens"
+}

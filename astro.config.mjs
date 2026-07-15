@@ -4,7 +4,15 @@ import tailwindcss from '@tailwindcss/vite'
 import alpinejs from '@astrojs/alpinejs';
 
 export default defineConfig({
-  site: 'https://ulogix-femsa.github.io',
+  site: 'https://ulogix.online',
+
+  redirects: {
+    '/pre-auto': '/intro-automatizacion',
+    '/performance': '/gestion-produccion',
+    '/finance': '/planeacion',
+    '/robot': '/celdas-robotizadas',
+    '/propuesta': '/',
+  },
 
   vite: {
     plugins: [tailwindcss()],

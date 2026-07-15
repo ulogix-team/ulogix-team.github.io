@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ModuleHero from '../components/ModuleHero.astro'
+import ModuleSections from '../components/ModuleSections.astro'
+import Robot from '../components/robot.astro'
+
+import diagnostico from '../assets/theme-images/diagnostico.png'
+import desempeno from '../assets/desempeño.jpeg'
+import heroImage from '../assets/theme-images/hero-image.png'
+import heroImage2 from '../assets/theme-images/hero-image2.jpg'
+import heroScreens from '../assets/theme-images/hero-screens.png'
+import heroScreens2 from '../assets/theme-images/hero-screens2.png'
+import garrafon from '../assets/theme-images/garrafon.png'
+import team from '../assets/theme-images/team.png'
+
+const heroMap = {
+  diagnostico,
+  desempeno,
+  heroImage,
+  heroImage2,
+  heroScreens,
+  heroScreens2,
+  garrafon,
+  team,
+}
+
+const { content } = Astro.props
+const heroImg = content.heroImage ? heroMap[content.heroImage] : null
+---
+
+<Layout title={`${content.title} · Ulogix`} description={content.subtitle} variant="module">
+  <ModuleHero
+    number={content.number}
+    title={content.title}
+    subtitle={content.subtitle}
+    rubric={content.rubric}
+    image={heroImg}
+    imageAlt={content.title}
+  />
+  <ModuleSections sections={content.sections} demoId={content.demoId} />
+  {content.showRobot && (
+    <div class="bs-container pb-24">
+      <h2 class="bs-h2 mb-8 ulogix-gradient-text">Vista 3D de celda</h2>
+      <div class="rounded-3xl overflow-hidden ulogix-glow border border-ulogix-line">
+        <Robot />
+      </div>
+    </div>
+  )}
+</Layout>

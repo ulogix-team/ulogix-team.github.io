@@ -1,42 +1,23 @@
 {
-  "title": "Propuesta de automatización",
-  "description": "Propuesta de automatización en lineas de producción de productos para CocaCola",
+  "title": "Ulogix — Automatización FEMSA",
+  "description": "Propuesta de automatización industrial para Coca-Cola FEMSA Fontibón. ISA-95, celdas robotizadas, Digital Factory, PLC, SCADA, MES, ERP y Unified Namespace.",
   "social_image": "/1200x630.jpg",
-  "base_url": "https://astro-theme.blackspike.com",
+  "base_url": "https://ulogix.online",
   "demo": {
-    "title": "Contáctanos",
-    "content": "<strong>Get a guided tour through our services</strong>, and find out how you and your team can change the way you work, forever.",
-    "cta": "Más información"
+    "title": "Contacto",
+    "content": "<strong>Equipo Ulogix · APM 2026</strong><br/>Universidad Nacional de Colombia.<br/><br/>Propuesta de automatización para Coca-Cola FEMSA Fontibón.<br/><br/>Demos: <a href='https://uns.ulogix.online'>UNS</a> · <a href='https://mes.ulogix.online'>MES</a> · <a href='https://erp.ulogix.online'>ERP</a> · <a href='https://scada.ulogix.online'>SCADA</a>",
+    "cta": "Hablar con el equipo"
   },
-  "theme_color": "#18181b",
+  "theme_color": "#0a0a0a",
   "nav": [
-
-    {
-      "title": "FAQ",
-      "link": "/#faq"
-    },
-    {
-      "title": "Productos",
-      "link": "/#case-studies"
-    },
-    
-    {
-      "title": "¿Quiénes somos?",
-      "link": "/#about-us"
-    },
-     {
-      "title": "El Equipo",
-      "link": "/#team"
-    }
- 
+    { "title": "Productos", "link": "/#productos" },
+    { "title": "Quiénes somos", "link": "/#about-us" },
+    { "title": "Módulos", "link": "/#modulos" },
+    { "title": "Demos", "link": "/#demos" },
+    { "title": "Equipo", "link": "/#equipo" }
   ],
-
   "social_links": [
-
-    {
-      "title": "GitHub",
-      "link": "https://github.com/blackspike/"
-    }
-   
+    { "title": "GitHub", "link": "https://github.com/ulogix-team" },
+    { "title": "Video", "link": "https://www.youtube.com/watch?v=9-S5_Xe6yho" }
   ]
 }

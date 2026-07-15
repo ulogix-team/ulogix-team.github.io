@@ -1,0 +1,177 @@
+{
+  "slug": "intro-automatizacion",
+  "number": "01",
+  "title": "Automatización en manufactura",
+  "subtitle": "Arquitectura ISA-95, niveles de comunicación e instrumentación del proceso para Coca-Cola FEMSA Fontibón.",
+  "rubric": "Evidenciar arquitectura de automatización basada en ISA-95, describiendo niveles y comunicaciones, junto con diagramas de instrumentación que identifiquen sensores y actuadores del proceso.",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Contexto del cliente",
+      "body": "La propuesta se dirige a la embotelladora Coca-Cola FEMSA en Fontibón, Bogotá. El diagnóstico preliminar identificó oportunidad de mejora en tres líneas: botellas retornables de Coca-Cola, no retornables (Quatro 1.5 L) y garrafones de 25 L. El OEE base ronda el 83 %: la calidad está cerca del 100 %, por lo que el foco de automatización está en disponibilidad y eficiencia."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "isa95",
+      "diagramTitle": "Pirámide ISA-95 · Ulogix"
+    },
+    {
+      "type": "prose",
+      "title": "Columna vertebral: ISA-95",
+      "body": "ISA-95 (IEC/ISO 62264) organiza la integración empresa–control. En Ulogix la usamos como mapa de la solución: desde el proceso físico hasta ERP, con comunicaciones explícitas entre capas."
+    },
+    {
+      "type": "levels",
+      "title": "Niveles de la arquitectura",
+      "items": [
+        {
+          "level": "0–1",
+          "name": "Campo",
+          "desc": "Proceso físico, sensores, actuadores, motores, variadores y sistemas robóticos (Gantry e IRB 5710). En ausencia de planta física, se valida con Tecnomatix y gemelo NX."
+        },
+        {
+          "level": "2",
+          "name": "Control",
+          "desc": "Studio 5000 / Logix Emulate: lógica Ladder derivada de Grafcet para secuencias de paletizado e integración con el gemelo."
+        },
+        {
+          "level": "2–3",
+          "name": "Supervisión",
+          "desc": "Ignition Perspective (SCADA/HMI ISA-101) con servidor OPC UA, históricos y operación por línea/etapa."
+        },
+        {
+          "level": "3",
+          "name": "MES",
+          "desc": "Dashboard propio: indicadores, ejecución, calidad, lotes y contexto de operación. Publica/consume vía MQTT en el UNS."
+        },
+        {
+          "level": "4",
+          "name": "ERP",
+          "desc": "Odoo + capa propia: planeación, inventario, compras, producción, finanzas y escenarios de demanda."
+        }
+      ]
+    },
+    {
+      "type": "bullets",
+      "title": "Comunicaciones",
+      "items": [
+        "OPC UA como bus industrial de planta (Ignition como servidor/gestor de clientes).",
+        "MQTT + Unified Namespace para desacoplar IT/OT y evitar la cadena frágil solo vertical.",
+        "Node-RED como puente cuando hace falta transformar OPCDA (Logix Emulate) hacia OPC UA.",
+        "APIs y motor Python en MES para calcular disponibilidad, eficiencia, calidad y OEE desde datos de planta."
+      ]
+    },
+    {
+      "type": "diagrams",
+      "title": "Instrumentación y diagramas",
+      "body": "Identificamos sensores y actuadores del proceso (lavado, formado, llenado, inspección, transporte y paletizado) mediante SIPOC, P&ID, análisis de proceso/operaciones, VSM y layout de planta.",
+      "items": [
+        {
+          "title": "SIPOC",
+          "image": "SIPOC.png"
+        },
+        {
+          "title": "P&ID",
+          "image": "P&ID.png"
+        },
+        {
+          "title": "VSM",
+          "image": "VSM.png"
+        },
+        {
+          "title": "Layout",
+          "image": "Layout.png"
+        },
+        {
+          "title": "Análisis de proceso",
+          "image": "Analisis de proceso.png"
+        },
+        {
+          "title": "Análisis de operaciones",
+          "image": "Analisis de operaciones.png"
+        }
+      ]
+    },
+    {
+      "type": "objectives",
+      "title": "Objetivos de automatización",
+      "items": [
+        "Incrementar capacidad de producción ~10–11 %.",
+        "Mejorar OEE al menos +3 a +5 puntos porcentuales (foco en disponibilidad y eficiencia).",
+        "Reducir intervención manual en paletizado y tiempos muertos no planeados.",
+        "Integrar IoT / IT–OT hasta MES y ERP sobre un UNS."
+      ]
+    },
+    {
+      "type": "tech-logos",
+      "title": "Stack tecnológico",
+      "body": "Plataformas que articulan la propuesta de automatización FEMSA.",
+      "items": [
+        {
+          "file": "abb.svg",
+          "title": "ABB"
+        },
+        {
+          "file": "siemens.svg",
+          "title": "Siemens",
+          "invert": true
+        },
+        {
+          "file": "rockwell.svg",
+          "title": "Rockwell",
+          "invert": true
+        },
+        {
+          "file": "ignition.svg",
+          "title": "Ignition"
+        },
+        {
+          "file": "node-red.svg",
+          "title": "Node-RED"
+        },
+        {
+          "file": "mqtt.svg",
+          "title": "MQTT",
+          "invert": true
+        },
+        {
+          "file": "odoo.png",
+          "title": "Odoo"
+        },
+        {
+          "file": "docker.svg",
+          "title": "Docker"
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Planta e interfaces",
+      "body": "Referencias visuales del entorno industrial que modelamos.",
+      "items": [
+        {
+          "file": "factory.jpg",
+          "title": "Entorno industrial",
+          "caption": "Contexto de manufactura"
+        },
+        {
+          "file": "bottling.jpg",
+          "title": "Proceso / datos",
+          "caption": "Señales y operación"
+        },
+        {
+          "file": "control-room.jpg",
+          "title": "Supervisión",
+          "caption": "HMI / control room"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "title": "Middleware",
+      "body": "El puente OPC DA → OPC UA lo resolvemos con Node-RED. Detalle completo en la página Middleware."
+    }
+  ],
+  "heroImage": "diagnostico"
+}

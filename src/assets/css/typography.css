@@ -2,19 +2,18 @@
 @reference "./global.css";
 
 .bs-h1 {
-  @apply font-display font-medium text-balance text-5xl md:text-6xl;
+  @apply font-display font-semibold text-balance text-5xl md:text-6xl tracking-tight;
 }
 
 .bs-h2 {
-  @apply font-display font-medium text-balance text-3xl md:text-4xl;
+  @apply font-display font-semibold text-balance text-3xl md:text-4xl tracking-tight;
 }
 
 .bs-h3 {
-  @apply font-display font-medium text-balance text-lg md:text-2xl;
+  @apply font-display font-semibold text-balance text-lg md:text-2xl tracking-tight;
 }
 
 .bs-body-text {
-  @apply leading-relaxed;
-  font-weight: 50;
-  line-height: 1.4rem;
+  @apply leading-relaxed font-normal;
+  line-height: 1.6;
 }

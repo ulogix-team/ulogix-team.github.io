@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro'
+import proceso from '../data/proceso.json'
+---
+
+<Layout title="Informe de proceso · Ulogix" description={proceso.subtitle} variant="module">
+  <section class="bs-container pt-10 pb-16 md:pt-16 md:pb-20 border-b border-ulogix-line">
+    <p class="font-mono text-sm tracking-[0.2em] text-ulogix-accent mb-4 uppercase">ABP · APM 2026</p>
+    <h1 class="bs-h1 max-w-4xl">{proceso.title}</h1>
+    <p class="bs-body-text text-bs-foreground-dark text-lg md:text-xl mt-6 max-w-3xl">{proceso.subtitle}</p>
+  </section>
+
+  <section class="bs-container py-16 md:py-24 border-b border-ulogix-line">
+    <h2 class="bs-h2 mb-10">{proceso.grupal.title}</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <article class="border border-ulogix-line bg-bs-surface-0 p-6 md:p-8">
+        <h3 class="text-ulogix-accent font-mono text-xs tracking-wider uppercase mb-4">Gestión del proyecto</h3>
+        <p class="text-bs-foreground-dark leading-relaxed">{proceso.grupal.gestion}</p>
+      </article>
+      <article class="border border-ulogix-line bg-bs-surface-0 p-6 md:p-8">
+        <h3 class="text-ulogix-accent font-mono text-xs tracking-wider uppercase mb-4">Trabajo colaborativo</h3>
+        <p class="text-bs-foreground-dark leading-relaxed">{proceso.grupal.colaborativo}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bs-container py-16 md:py-24">
+    <h2 class="bs-h2 mb-4">Reflexiones individuales</h2>
+    <p class="text-bs-foreground-dark mb-12 max-w-2xl">Aprendizaje, dificultades, logros y recomendaciones para futuros proyectos ABP.</p>
+
+    <div class="flex flex-col gap-10">
+      {proceso.individuales.map((person, i) => (
+        <article class="border border-ulogix-line bg-bs-surface-0" id={person.personKey}>
+          <header class="flex flex-col md:flex-row md:items-end justify-between gap-2 p-6 md:p-8 border-b border-ulogix-line">
+            <div>
+              <p class="font-mono text-xs text-ulogix-accent mb-2">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="text-2xl md:text-3xl font-display font-medium">{person.name}</h3>
+              <p class="text-bs-foreground-dark mt-1">{person.role}</p>
+            </div>
+          </header>
+          <div class="grid md:grid-cols-2 gap-px bg-ulogix-line">
+            <div class="bg-bs-surface-0 p-6 md:p-8">
+              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Aprendizaje</h4>
+              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.aprendizaje}</p>
+            </div>
+            <div class="bg-bs-surface-0 p-6 md:p-8">
+              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Dificultades</h4>
+              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.dificultades}</p>
+            </div>
+            <div class="bg-bs-surface-0 p-6 md:p-8">
+              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Logros</h4>
+              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.logros}</p>
+            </div>
+            <div class="bg-bs-surface-0 p-6 md:p-8">
+              <h4 class="text-xs uppercase tracking-wider text-ulogix-accent mb-3">Recomendaciones</h4>
+              <p class="text-bs-foreground-dark leading-relaxed text-sm md:text-base">{person.recomendaciones}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "uns",
+    "title": "Unified Namespace",
+    "subtitle": "Broker MQTT · arquitectura horizontal",
+    "url": "https://uns.ulogix.online",
+    "status": "live"
+  },
+  {
+    "id": "mes",
+    "title": "MES",
+    "subtitle": "Ejecución, OEE, calidad y lotes",
+    "url": "https://mes.ulogix.online",
+    "status": "live"
+  },
+  {
+    "id": "erp",
+    "title": "ERP",
+    "subtitle": "Planeación, inventario, finanzas",
+    "url": "https://erp.ulogix.online",
+    "status": "live"
+  },
+  {
+    "id": "scada",
+    "title": "SCADA Ignition",
+    "subtitle": "Supervisión ISA-101 · OPC UA",
+    "url": "https://scada.ulogix.online",
+    "status": "live"
+  }
+]

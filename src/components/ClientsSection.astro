@@ -1,38 +1,32 @@
 ---
-
 const { title, clients } = Astro.props
-
 ---
 
-<section class="anim-wrapper bs-container bs-mt-lg grid">
+<section class="anim-wrapper bs-container py-16 md:py-24">
+  {title && (
+    <div class="text-center mb-4">
+      <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Partners</p>
+      <h2 class="bs-h2" set:html={title} />
+    </div>
+  )}
 
-  <!-- Title -->
-  { title && <h2 class="bs-h2 text-center" set:html={ title } />}
-
-  <!-- Logos -->
-  <div class="bs-mt-md grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 place-content-center gap-4">
-
-    <!-- Logo link -->
-     {
-      clients.map( item =>
-
-  <a class="group py-10 px-5 rounded-xl flex place-content-center bg-bs-surface-2/70 hover:bg-bs-surface-2 transition-colors duration-300" href={ item.link }>
-
-  <img
-    src={ item.image }
-    alt={ item.title }
-    class="opacity-60 max-w-32 min-h-16 grayscale group-hover:grayscale-0 group-hover:scale-[1.05] group-hover:-translate-y-1 group-hover:opacity-100 group-hover:-rotate-1 transition-all duration-1000"
-    width="140"
-    height="40"
-    loading="lazy"
-  >
-
-</a>
-
-      )
-
-    }
-
+  <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    {clients.map((item) => (
+      <a
+        class="group ulogix-glass rounded-2xl py-10 px-5 flex place-content-center hover:scale-105 hover:border-ulogix-accent/40 transition-all duration-500"
+        href={item.link}
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          class="opacity-50 max-w-28 min-h-12 object-contain brightness-0 invert group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+          width="140"
+          height="40"
+          loading="lazy"
+        />
+      </a>
+    ))}
   </div>
-
 </section>

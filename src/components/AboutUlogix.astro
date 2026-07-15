@@ -1,0 +1,56 @@
+---
+/**
+ * About Ulogix — clean Apple-like storytelling
+ */
+import { Image } from 'astro:assets'
+import team from '../assets/theme-images/team.png'
+import logo from '../assets/logo.png'
+---
+
+<section id="about-us" class="relative py-24 md:py-36 overflow-hidden border-t border-ulogix-line">
+  <div class="bs-container relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div>
+        <p class="text-sm tracking-wide text-ulogix-accent mb-4">Quiénes somos</p>
+        <h2 class="bs-h1 mb-6 tracking-tight">
+          Somos Ulogix
+        </h2>
+        <p class="text-lg md:text-xl text-bs-foreground-dark leading-relaxed mb-8 max-w-xl">
+          Una empresa de automatización industrial nacida en la Universidad Nacional.
+          Diseñamos, integramos y demostramos soluciones desde el sensor hasta el ERP —
+          con gemelo digital, robótica y Unified Namespace.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-10">
+          {[
+            { t: 'Misión', d: 'Democratizar la automatización inteligente en manufactura latinoamericana con arquitecturas abiertas e integradas.' },
+            { t: 'Visión', d: 'Ser el referente de propuestas Industria 4.0 que unen piso de planta, datos y negocio en un solo sistema.' },
+          ].map((b) => (
+            <div class="rounded-2xl p-5 bg-bs-surface-3/60 border border-ulogix-line">
+              <h3 class="text-ulogix-accent font-semibold mb-2">{b.t}</h3>
+              <p class="text-sm text-bs-foreground-dark leading-relaxed">{b.d}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="flex items-center gap-4">
+          <Image src={logo} alt="Ulogix" class="w-14 h-14 rounded-2xl border border-ulogix-line" />
+          <div>
+            <p class="font-display font-semibold text-lg">Ulogix Automation</p>
+            <p class="text-sm text-bs-foreground-dark">APM 2026 · Bogotá, Colombia</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <Image
+          src={team}
+          alt="Equipo Ulogix"
+          class="relative rounded-[1.5rem] w-full object-cover border border-ulogix-line"
+          widths={[600, 900, 1200]}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
+      </div>
+    </div>
+  </div>
+</section>

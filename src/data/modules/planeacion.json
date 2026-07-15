@@ -1,0 +1,133 @@
+{
+  "slug": "planeacion",
+  "number": "03",
+  "title": "Planeación de proyectos",
+  "subtitle": "EDT, cronograma, análisis económico y propuesta de valor comercial para FEMSA.",
+  "rubric": "Planeación estructurada (EDT y cronograma), análisis económico (presupuesto, flujo de caja e indicadores) y formulación de propuesta de valor / oferta comercial que sustente la viabilidad técnica y financiera.",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Planeación estructurada",
+      "body": "El proyecto se organiza en EDT orientada a ingeniería detallada (FAT/SAT/PMO), instalación y puesta en marcha, y capacitación / gestión del cambio. El horizonte de ejecución es de aproximadamente 4 meses desde diseño hasta operación asistida."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "architecture",
+      "diagramTitle": "Flujo técnico–financiero"
+    },
+    {
+      "type": "steps",
+      "title": "Fases del cronograma",
+      "items": [
+        {
+          "title": "Ingeniería detallada",
+          "desc": "Proceso, mecánico (Gantry/encajonadoras), eléctrico, seguridad, trayectorias, MES y arquitectura de comunicaciones."
+        },
+        {
+          "title": "Instalación y puesta en marcha",
+          "desc": "Montaje de fillers/conveyors, celda Gantry compartida, celda IRB, permisos y comisionado."
+        },
+        {
+          "title": "Capacitación y cambio",
+          "desc": "Entrenamiento operativo, transferencia a planta y estabilización de KPIs en MES/ERP."
+        }
+      ]
+    },
+    {
+      "type": "finance",
+      "title": "Análisis económico",
+      "items": [
+        {
+          "label": "CAPEX",
+          "value": "~$9.000 M COP",
+          "detail": "Máquinas (incluye usados europeos), ingeniería, licencias e integración."
+        },
+        {
+          "label": "VPN",
+          "value": "~$11.000 M",
+          "detail": "Escenario base viable; escenarios (p. ej. Mundial) se evalúan en el ERP."
+        },
+        {
+          "label": "TIR",
+          "value": "~78 %",
+          "detail": "Muestra atractivo del proyecto bajo supuestos de demanda y costos."
+        },
+        {
+          "label": "ROI anual",
+          "value": "~26–27 %",
+          "detail": "Dentro del rango típico 20–30 % para este tipo de automatización."
+        },
+        {
+          "label": "Payback",
+          "value": "~22 meses",
+          "detail": "Descontado ~25 meses según flujo actualizado."
+        },
+        {
+          "label": "Ingeniería (APU)",
+          "value": "~$1.400–1.800 M",
+          "detail": "Incluye AIU (administración, imprevistos y utilidad)."
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "title": "Propuesta de valor",
+      "body": "Ulogix no vende solo robots: entrega una planta conectada. El diferencial es la integración ISA-95 + UNS con gemelo digital, SCADA Ignition, MES y ERP desplegados (Hetzner/Docker), más un caso financiero cerrado y escenarios de demanda. El cliente elige una oferta que mejora OEE y capacidad con trazabilidad de extremo a extremo."
+    },
+    {
+      "type": "bullets",
+      "title": "Oferta comercial — qué incluye",
+      "items": [
+        "Dos celdas de paletizado (Gantry L1/L2 + IRB 5710 L3) simuladas y especificadas.",
+        "Control Ladder/Grafcet, SCADA ISA-101 e integración OPC UA.",
+        "MES + ERP + UNS operativos como demos de la arquitectura objetivo.",
+        "Modelo financiero con CAPEX desglosado, proveedores y APU de ingeniería."
+      ]
+    },
+    {
+      "type": "tech-logos",
+      "title": "Herramientas del caso de negocio",
+      "items": [
+        {
+          "file": "odoo.png",
+          "title": "Odoo ERP"
+        },
+        {
+          "file": "python.svg",
+          "title": "Modelos / Python"
+        },
+        {
+          "file": "docker.svg",
+          "title": "Docker · demos"
+        },
+        {
+          "file": "mqtt-icon.svg",
+          "title": "MQTT"
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Visión de negocio",
+      "items": [
+        {
+          "file": "dashboard.jpg",
+          "title": "Indicadores financieros",
+          "caption": "VPN · TIR · ROI"
+        },
+        {
+          "file": "servers.jpg",
+          "title": "Infraestructura",
+          "caption": "Despliegue Hetzner"
+        },
+        {
+          "file": "bottling.jpg",
+          "title": "Producto",
+          "caption": "Tres líneas FEMSA"
+        }
+      ]
+    }
+  ],
+  "heroImage": "heroScreens"
+}

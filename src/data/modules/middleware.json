@@ -1,0 +1,87 @@
+{
+  "slug": "middleware",
+  "number": "MW",
+  "title": "Middleware · Node-RED",
+  "subtitle": "El puente entre el mundo PLC (OPC DA) y la arquitectura moderna (OPC UA + MQTT + UNS).",
+  "rubric": "Explicar el rol del middleware en la integración IT/OT: normalización de protocolos, transformación de datos y desacoplamiento de capas.",
+  "heroImage": "heroScreens",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "¿Por qué middleware?",
+      "body": "En la planta real (y en nuestra simulación) conviven protocolos de distintas generaciones. Studio 5000 / Logix Emulate y RSLinx exponen datos típicamente por OPC DA. Ignition, el gemelo digital, Tecnomatix y el Unified Namespace trabajan con OPC UA y MQTT. Sin un puente, la pirámide ISA-95 se rompe en la frontera OT→IT."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Flujo del middleware",
+      "variant": "middleware",
+      "diagramTitle": "Logix → Node-RED → Ignition → UNS"
+    },
+    {
+      "type": "photo-grid",
+      "title": "Contexto visual",
+      "body": "Interfaz de flujos Node-RED y el entorno de servidores donde corre el puente en Docker (Hetzner).",
+      "items": [
+        { "file": "node-red-flow.png", "title": "Flujo Node-RED", "caption": "Ejemplo de flujo visual pub/sub y transformación" },
+        { "file": "servers.jpg", "title": "Infraestructura", "caption": "Servicios containerizados · Hetzner DE" },
+        { "file": "dashboard.jpg", "title": "Datos hacia IT", "caption": "KPIs y órdenes llegan a MES / ERP" }
+      ]
+    },
+    {
+      "type": "tech-logos",
+      "title": "Stack del puente",
+      "body": "Herramientas que participan en la capa middleware de Ulogix.",
+      "items": [
+        { "file": "node-red.svg", "title": "Node-RED" },
+        { "file": "rockwell.svg", "title": "Rockwell / Logix", "invert": true },
+        { "file": "ignition.svg", "title": "Ignition" },
+        { "file": "mqtt.svg", "title": "MQTT", "invert": true },
+        { "file": "docker.svg", "title": "Docker" },
+        { "file": "python.svg", "title": "Python MES" }
+      ]
+    },
+    {
+      "type": "prose",
+      "title": "Qué hace Node-RED en Ulogix",
+      "body": "Usamos Node-RED como middleware de integración de bajo código: conecta el PLC emulado, traduce/normaliza tags, y reexpone la información hacia Ignition (OPC UA) y hacia el broker MQTT del Unified Namespace. También puede enrutar eventos hacia el engine Python del MES."
+    },
+    {
+      "type": "steps",
+      "title": "Cadena de transformación",
+      "items": [
+        { "title": "1 · Lectura OPC DA", "desc": "Node-RED (o nodos OPC) consume tags desde Logix Emulate / enlace OPC DA — el protocolo nativo del emulador Rockwell en nuestro laboratorio." },
+        { "title": "2 · Normalización", "desc": "Renombrado semántico de tags, tipado, filtrado de ruido y alineación con el modelo de planta (línea, etapa, equipo)." },
+        { "title": "3 · Publicación OPC UA", "desc": "Se entrega a Ignition como servidor/cliente OPC UA para que SCADA, RobotStudio, NX y Tecnomatix compartan el mismo universo de tags." },
+        { "title": "4 · Puente a MQTT / UNS", "desc": "Los mismos datos (o agregados) se publican en Mosquitto con tópicos del Unified Namespace para MES, ERP y analítica." }
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Protocolos en juego",
+      "variant": "comms",
+      "diagramTitle": "Mapa de comunicaciones"
+    },
+    {
+      "type": "bullets",
+      "title": "Beneficios del enfoque",
+      "items": [
+        "No forzamos al PLC a hablar MQTT directamente: respetamos su stack nativo.",
+        "Ignition sigue siendo el hub OPC UA de planta.",
+        "El UNS no depende de un cable punto a punto frágil entre cada capa.",
+        "Los flujos Node-RED se documentan visualmente y se versionan con el resto del despliegue Docker.",
+        "Si cambia un endpoint (p. ej. otro broker), se ajusta el flujo sin reescribir Ladder."
+      ]
+    },
+    {
+      "type": "callout",
+      "title": "En una frase",
+      "body": "Node-RED es el traductor industrial de Ulogix: convierte el lenguaje del PLC emulado en el lenguaje de la arquitectura ISA-95 + UNS."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Encaje en el UNS",
+      "variant": "uns",
+      "diagramTitle": "Middleware dentro del bus"
+    }
+  ]
+}

@@ -1,100 +1,221 @@
 ---
-
 import Layout from "../layouts/Layout.astro"
+import { Image } from "astro:assets"
+
+import modulesNav from "../data/modules_nav.json"
+import demos from "../data/demos.json"
+import resumen from "../data/resumen.json"
+import people from "../data/people.json"
+import global_settings from "../data/global_settings.json"
+import caseStudies from "../data/case_studies.json"
+import clients from "../data/clients.json"
+import testimonials from "../data/testimonials.json"
+import home from "../data/home.json"
 
 import CaseStudiesSection from "../components/CaseStudiesSection.astro"
 import ClientsSection from "../components/ClientsSection.astro"
-import FaqSection from "../components/FaqSection.astro"
-import ServicesCarousel from "../components/ServicesCarousel.astro"
-import HeroSection from "../components/HeroSection.astro"
-import NewsletterSection from "../components/NewsletterSection.astro"
-import PricingSection from "../components/PricingSection.astro"
-import QuoteSection from "../components/QuoteSection.astro"
 import TestimonialsSection from "../components/TestimonialsSection.astro"
 import TeamPresentation from "../components/TeamPresentation.astro"
-import ULogixPresentation from "../components/ULogixPresentation.astro"
+import AboutUlogix from "../components/AboutUlogix.astro"
+import QuoteSection from "../components/QuoteSection.astro"
 
+import heroImage from "../assets/theme-images/hero-image.png"
+import diagnostico from "../assets/theme-images/diagnostico.png"
+import heroScreens from "../assets/theme-images/hero-screens.png"
+import team from "../assets/theme-images/team.png"
 
-import caseStudies from "../data/case_studies.json"
-import clients from "../data/clients.json"
-import faq from "../data/faq.json"
-import services from "../data/services.json"
-import home from "../data/home.json"
-import pricing from "../data/pricing.json"
-import global_settings from "../data/global_settings.json"
-import newsletter from "../data/newsletter.json"
-import testimonials from "../data/testimonials.json"
-import people from "../data/people.json"
-import WholeTeam from "../components/WholeTeam.astro"
+const apmModules = modulesNav.find((g) => g.group === "Módulos APM")?.items ?? []
+const archModules = modulesNav.find((g) => g.group === "Arquitectura IT/OT")?.items ?? []
+
+const moduleVisuals = [
+  { href: "/intro-automatizacion", img: diagnostico, label: "01 · ISA-95" },
+  { href: "/gestion-produccion", img: heroScreens, label: "02 · Producción" },
+  { href: "/celdas-robotizadas", img: heroImage, label: "04 · Celdas" },
+  { href: "/digital-factory", img: team, label: "05 · Digital Factory" },
+]
 ---
 
-<Layout title={ global_settings.title } variant ="home">
+<Layout title={global_settings.title} description={global_settings.description} variant="home">
 
-  <HeroSection
-    content={ home.hero_content }
-    settings={ global_settings }
-    title={ home.hero_title }
-  />
+  <!-- HERO full-bleed Apple-like -->
+  <section class="relative min-h-[100svh] flex items-end overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImage}
+        alt="Automatización Ulogix"
+        class="w-full h-full object-cover"
+        widths={[900, 1400, 2000]}
+        sizes="100vw"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-black/20"></div>
+    </div>
 
-  <ServicesCarousel
-    services={ services }
-    title={ home.services_title }
-  />
+    <div class="bs-container relative z-10 pb-20 md:pb-28 pt-40 w-full">
+      <p class="font-mono text-sm tracking-[0.3em] text-ulogix-accent uppercase mb-5 animate-[fadeUp_0.8s_ease]">
+        APM 2026 · Coca-Cola FEMSA Fontibón
+      </p>
+      <h1 class="font-display font-semibold tracking-tight text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.95] mb-6">
+        <span class="ulogix-gradient-text">Ulogix</span>
+      </h1>
+      <p class="max-w-xl text-lg md:text-2xl text-white/80 leading-relaxed mb-10">
+        Automatización que se siente producto. Desde el campo hasta el ERP —
+        celdas robotizadas, gemelo digital y Unified Namespace.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#productos" class="bs-btn bg-ulogix-accent-strong! text-white!">
+          Ver productos
+        </a>
+        <a href="#modulos" class="bs-btn ulogix-glass">Explorar módulos</a>
+        <a href="https://www.youtube.com/watch?v=9-S5_Xe6yho" target="_blank" rel="noopener" class="bs-btn bg-transparent! border border-white/20">
+          Video de entrega
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <ClientsSection
-    clients={ clients }
-    title={ home.clients_title }
-  />
+  <!-- Clientes / aliados -->
+  <div class="pt-8">
+    <ClientsSection clients={clients} title="Tecnología y aliados" />
+  </div>
 
+  <!-- Productos visuales -->
+  <div id="productos" class="pt-8 pb-8">
+    <CaseStudiesSection caseStudies={caseStudies} title="Nuestros productos en línea" />
+  </div>
+
+  <!-- Quote -->
   <QuoteSection
-    cite={ home.quote_cite }
-    content={ home.quote_content }
-    image={ home.quote_image }
-    role={ home.quote_role }
+    cite={home.quote_cite}
+    content={home.quote_content}
+    image={home.quote_image}
+    role={home.quote_role}
   />
 
-    <WholeTeam 
-    title="Nuestro Equipo Profesional"
-    subtitle="Un grupo de expertos dedicados a ofrecer los mejores resultados"
-    teamImage="/images/equipo-completo.jpg"
-    imageAlt="Foto del equipo completo en nuestras oficinas"
-    description="Contamos con un equipo multidisciplinario de profesionales altamente capacitados, comprometidos con la excelencia y la innovación."
-  />
-  
-  <TeamPresentation 
-    title = " Nuestro equipo" 
-    people = { people }
-  /> 
+  <!-- Quiénes somos -->
+  <AboutUlogix />
 
-  <CaseStudiesSection
-    caseStudies={ caseStudies }
-    title={ home.case_studies_title }
-  />
+  <!-- Cuadro resumen visual -->
+  <section id="resumen" class="bs-container py-20 md:py-28">
+    <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Cuadro resumen</p>
+    <h2 class="bs-h2 mb-3">La propuesta <span class="ulogix-gradient-text">en números</span></h2>
+    <p class="text-bs-foreground-dark max-w-2xl mb-12">{resumen.subtitle}</p>
 
-  <!-- <TestimonialsSection
-    testimonials={ testimonials }
-    title={ home.testimonials_title }
-  /> -->
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 mb-10">
+      {resumen.items.map((item) => (
+        <article class="ulogix-glass ulogix-glow rounded-3xl p-6 md:p-8 hover:scale-[1.02] transition-transform duration-500">
+          <p class="text-xs uppercase tracking-wider text-ulogix-accent mb-2">{item.label}</p>
+          <p class="font-display text-2xl md:text-3xl text-white mb-3">{item.value}</p>
+          <p class="text-sm text-bs-foreground-dark leading-relaxed">{item.detail}</p>
+        </article>
+      ))}
+    </div>
 
-  <!-- <PricingSection
-    pricing={ pricing }
-    title={ home.pricing_title }
-  /> -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {resumen.finance.map((f) => (
+        <div class="rounded-2xl p-6 text-center bg-bs-surface-3 border border-ulogix-line">
+          <p class="text-xs text-bs-foreground-dark uppercase tracking-wider">{f.label}</p>
+          <p class="font-display text-2xl md:text-3xl mt-2 text-white">{f.value}</p>
+        </div>
+      ))}
+    </div>
+  </section>
 
+  <!-- Galería módulos con imagen -->
+  <section id="modulos" class="bs-container py-20 md:py-28">
+    <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Módulos APM</p>
+    <h2 class="bs-h2 mb-3">Profundidad <span class="ulogix-gradient-text">con estilo</span></h2>
+    <p class="text-bs-foreground-dark max-w-2xl mb-12">
+      Cada módulo responde a la rúbrica — y se presenta como una pieza del producto Ulogix.
+    </p>
 
+    <div class="grid sm:grid-cols-2 gap-5 mb-10">
+      {moduleVisuals.map((m) => (
+        <a href={m.href} class="group relative aspect-[16/10] rounded-3xl overflow-hidden ulogix-glow border border-white/10">
+          <Image src={m.img} alt={m.label} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" widths={[600, 900]} sizes="50vw" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6 md:p-8">
+            <p class="font-display text-2xl text-white">{m.label}</p>
+            <p class="text-sm text-white/60 mt-1 group-hover:text-ulogix-accent transition-colors">Explorar →</p>
+          </div>
+        </a>
+      ))}
+    </div>
 
-  <ULogixPresentation 
-    title = "¿Por qué U-Logix?" 
-    content = "En U-Logix, no solo ofrecemos soluciones de automatización, sino que también nos comprometemos a transformar la forma en que las plantas industriales operan. Nuestra propuesta de valor se basa en tres pilares fundamentales: innovación, personalización y resultados tangibles. Con un enfoque centrado en el cliente, trabajamos estrechamente con cada planta para entender sus desafíos únicos y diseñar soluciones a medida que optimicen sus procesos, reduzcan costos y aumenten la eficiencia. Nuestro equipo de expertos combina tecnología de vanguardia con un profundo conocimiento de la industria para garantizar que cada proyecto no solo cumpla, sino supere las expectativas. En U-Logix, estamos dedicados a impulsar la transformación digital en la industria, ayudando a las plantas a alcanzar su máximo potencial y mantenerse competitivas en un mercado en constante evolución."
-  <FaqSection
-    faq={ faq }
-    title={ home.faq_title }
-  />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      {apmModules.map((m) => (
+        <a href={m.href} class="group ulogix-glass rounded-2xl p-5 hover:border-ulogix-accent transition-all hover:-translate-y-1">
+          <span class="font-display text-base group-hover:text-ulogix-accent transition-colors">{m.title}</span>
+        </a>
+      ))}
+    </div>
 
+    <h3 class="bs-h3 mt-16 mb-6">Arquitectura IT/OT</h3>
+    <div class="grid sm:grid-cols-3 gap-4">
+      {archModules.map((m, i) => (
+        <a href={m.href} class="relative overflow-hidden rounded-3xl p-8 min-h-40 border border-ulogix-line bg-bs-surface-3 group hover:border-ulogix-accent/40 transition-colors">
+          <span class="font-display text-2xl">{m.title}</span>
+          <span class="block mt-3 text-sm text-bs-foreground-dark group-hover:text-ulogix-accent">Ver detalle →</span>
+        </a>
+      ))}
+    </div>
+  </section>
 
+  <!-- Demos -->
+  <section id="demos" class="bs-container py-20 md:py-28">
+    <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Live demos</p>
+    <h2 class="bs-h2 mb-3">Stack en <span class="ulogix-gradient-text">Hetzner</span></h2>
+    <p class="text-bs-foreground-dark max-w-2xl mb-12">Docker en Alemania. Entra a cada sistema en vivo.</p>
+    <div class="grid sm:grid-cols-2 gap-5">
+      {demos.map((d) => (
+        <a
+          href={d.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ulogix-glass ulogix-glow rounded-3xl p-7 md:p-9 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:scale-[1.02] transition-transform group"
+        >
+          <div>
+            <p class="font-display text-3xl group-hover:ulogix-gradient-text">{d.title}</p>
+            <p class="text-bs-foreground-dark text-sm mt-2">{d.subtitle}</p>
+            <p class="font-mono text-xs text-ulogix-accent mt-3">{d.url.replace('https://','')}</p>
+          </div>
+          <span class="shrink-0 rounded-full px-5 py-3 text-sm bg-ulogix-accent-strong text-white">
+            Abrir →
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
 
+  <!-- Testimonios -->
+  <TestimonialsSection testimonials={testimonials} title="Lo que se dice del enfoque Ulogix" />
 
+  <!-- Equipo interactivo -->
+  <div id="equipo">
+    <TeamPresentation people={people} />
+  </div>
 
-  <NewsletterSection newsletter={newsletter} />
+  <!-- Video -->
+  <section class="bs-container py-20 md:py-28">
+    <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Entrega</p>
+    <h2 class="bs-h2 mb-8">Mira la <span class="ulogix-gradient-text">propuesta</span></h2>
+    <div class="aspect-video w-full max-w-5xl rounded-3xl overflow-hidden ulogix-glow border border-white/10">
+      <iframe
+        class="w-full h-full"
+        src="https://www.youtube.com/embed/9-S5_Xe6yho"
+        title="Entrega final APM equipo Ulogix"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
 
 </Layout>
+
+<style>
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

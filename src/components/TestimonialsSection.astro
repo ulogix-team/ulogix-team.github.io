@@ -1,34 +1,29 @@
 ---
-
 const { title, testimonials } = Astro.props
-
 ---
 
-<section class="bs-container bs-mt-lg">
+<section class="bs-container py-20 md:py-28">
+  {title && (
+    <>
+      <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Testimonios</p>
+      <h2 class="bs-h2 mb-10">{title}</h2>
+    </>
+  )}
 
-  <!-- Title -->
-  { title && <h2 class="bs-h2 text-center md:text-left">{ title }</h2>}
-
-  <!-- Testimonials -->
-  <div class="group bs-mt-md grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 place-content-center gap-4">
-
-    <!-- Quote -->
-    { testimonials.map( item =>
-
+  <div class="group grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {testimonials.map((item) => (
       <blockquote
-        class:list={["group-hover:opacity-75 hover:opacity-100 duration-300 p-3 md:p-5 flex flex-col gap-3 justify-between border rounded-md bg-bs-surface-2 border-bs-surface-3 transition-all grid-flow-dense", item.quote.length > 100 ? "lg:col-span-2" : ""]}>
-
-        <!-- Text -->
-        <p set:html={ item.quote } class:list={["text-sm lg:text-lg", item.quote.length > 100 ? "line-clamp-4 lg:line-clamp-none" : ""]} />
-
-        <!-- Cite -->
-        <cite class="not-italic text-bs-foreground-dark text-sm font-semibold">@{ item.handle }</cite>
-
+        class:list={[
+          "ulogix-glass rounded-3xl p-5 md:p-6 flex flex-col gap-4 justify-between transition-all duration-300 group-hover:opacity-70 hover:opacity-100! hover:scale-[1.03] hover:border-ulogix-accent/40",
+          item.quote.length > 100 ? "lg:col-span-2" : "",
+        ]}
+      >
+        <p
+          set:html={item.quote}
+          class:list={["text-sm md:text-base leading-relaxed text-white/90", item.quote.length > 100 ? "line-clamp-5 lg:line-clamp-none" : ""]}
+        />
+        <cite class="not-italic text-ulogix-accent text-sm font-semibold">@{item.handle}</cite>
       </blockquote>
-
-    )}
-
+    ))}
   </div>
-
 </section>
-

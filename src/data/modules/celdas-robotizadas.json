@@ -1,0 +1,134 @@
+{
+  "slug": "celdas-robotizadas",
+  "number": "04",
+  "title": "Celdas de manufactura robotizadas",
+  "subtitle": "Dos celdas: Gantry para líneas 1 y 2, e IRB 5710 para garrafones. Diseño, simulación RobotStudio y riesgos.",
+  "rubric": "Justificación de la robotización, diseño técnico de la celda (flujo y seguridad), simulación funcional en RobotStudio y análisis de riesgos con mitigaciones.",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Justificación",
+      "body": "El paletizado manual eleva tiempos de parada y fatiga. En L3 (garrafones 25 L) las cargas hacen crítica la ergonomía. Automatizar el fin de línea libera capacidad, estabiliza ciclos y alimenta mejor los KPIs de disponibilidad y eficiencia."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "dual-cells",
+      "diagramTitle": "Dos celdas de paletizado"
+    },
+    {
+      "type": "cells",
+      "title": "Dos celdas Ulogix",
+      "items": [
+        {
+          "name": "Gantry — Líneas 1 y 2",
+          "tag": "Retornables + Quatro / PET",
+          "body": "Mecanismo de dos ejes que paletiza de forma alternada las capas hacia las bandas de salida de L1 y L2. La organización de capas es lateral y de abajo hacia arriba. Incluye tres bandas (salida L1, salida L2 y entrada de producto por capas), smart components y sensores en eslabones que publican vía OPC hacia Ignition. Control de velocidad desde SCADA hacia el controlador en RobotStudio.",
+          "highlights": [
+            "Paletizado alternado L1/L2",
+            "Smart components + sensores",
+            "OPC → Ignition",
+            "Velocidad remota"
+          ]
+        },
+        {
+          "name": "ABB IRB 5710 — Línea 3",
+          "tag": "Garrafones 25 L",
+          "body": "Manipulador de seis ejes con gripper neumático y ventosas. Coloca garrafones de forma lateral en los racks del pallet, con libertad de orientación que un Gantry no ofrece. Sensores por eje publican pose en tiempo real por tópicos OPC; hay setpoint de velocidad de TCP y sincronización con el gemelo NX.",
+          "highlights": [
+            "6 ejes ABB IRB 5710",
+            "Gripper + ventosas",
+            "Pose por eje vía OPC",
+            "Sync con gemelo digital"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "bullets",
+      "title": "Simulación en RobotStudio",
+      "items": [
+        "Modelado CAD de mecanismos, bandas y físicos por componente.",
+        "Trayectorias validadas; en demos densas se prioriza movimiento funcional para no saturar entidades.",
+        "Señales de controlador y sensores integradas al servidor OPC de Ignition.",
+        "La simulación sincronizada completa se observa también en el gemelo / Digital Factory."
+      ]
+    },
+    {
+      "type": "risks",
+      "title": "Riesgos y mitigación",
+      "items": [
+        {
+          "risk": "Colisión en zona compartida Gantry / operadores",
+          "mitigation": "Cercado, interlocks, zonas de seguridad y validación de trayectorias offline."
+        },
+        {
+          "risk": "Pérdida de vacío / drop de garrafón",
+          "mitigation": "Monitoreo de vacío, grip redundante y parada segura ante falla de ventosa."
+        },
+        {
+          "risk": "Desincronización con bandas",
+          "mitigation": "Sensores de presencia, handshakes en Ladder/Grafcet y supervisión SCADA."
+        },
+        {
+          "risk": "Sobrecarga de simulación / falsos negativos",
+          "mitigation": "Separar prueba de trayectoria vs. prueba masiva; validar señales críticas en OPC."
+        }
+      ]
+    },
+    {
+      "type": "tech-logos",
+      "title": "Robótica y control",
+      "body": "ABB para el manipulador; integración OPC hacia Ignition.",
+      "items": [
+        {
+          "file": "abb.svg",
+          "title": "ABB IRB 5710"
+        },
+        {
+          "file": "rockwell.svg",
+          "title": "Rockwell",
+          "invert": true
+        },
+        {
+          "file": "ignition.svg",
+          "title": "Ignition OPC"
+        },
+        {
+          "file": "siemens.svg",
+          "title": "Siemens NX",
+          "invert": true
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Celda y manipulación",
+      "items": [
+        {
+          "file": "robot-arm.jpg",
+          "title": "Brazo industrial",
+          "caption": "Referencia IRB / 6 ejes"
+        },
+        {
+          "file": "factory.jpg",
+          "title": "Fin de línea",
+          "caption": "Paletizado L1–L3"
+        },
+        {
+          "file": "control-room.jpg",
+          "title": "Supervisión de celda",
+          "caption": "Pose y velocidad vía OPC"
+        }
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Señales de celda",
+      "variant": "comms",
+      "diagramTitle": "OPC hacia SCADA / UNS"
+    }
+  ],
+  "showRobot": true,
+  "heroImage": "garrafon"
+}

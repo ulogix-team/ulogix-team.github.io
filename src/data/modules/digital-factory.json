@@ -1,0 +1,115 @@
+{
+  "slug": "digital-factory",
+  "number": "05",
+  "title": "Digital Factory",
+  "subtitle": "Gemelo digital en NX, planta en Tecnomatix y ventajas de simular antes de invertir.",
+  "rubric": "Modelado del gemelo digital con integración de sensores y actuadores virtuales, conexión con Logix Emulate y validación funcional mediante simulación.",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Por qué simular",
+      "body": "Sin planta física propia —y aun teniéndola— los costos y riesgos de probar en piso son altos. El gemelo digital y el Digital Factory permiten validar mecánica, cinemática, lógica y flujo de planta antes del CAPEX definitivo."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "factory-flow",
+      "diagramTitle": "Cadena Digital Factory"
+    },
+    {
+      "type": "split",
+      "title": "NX + Tecnomatix",
+      "left": {
+        "title": "Siemens NX — gemelo de celda",
+        "items": [
+          "Validación mecánica y cinemática del paletizado L1–L3",
+          "Sensores y actuadores virtuales integrados a la lógica",
+          "Conexión con Logix Emulate / control para validación funcional",
+          "Entrega de tiempos de ciclo hacia Tecnomatix"
+        ]
+      },
+      "right": {
+        "title": "Tecnomatix Plant Simulation",
+        "items": [
+          "Levantamiento de las tres líneas (retornables, PET/Quatro, garrafones)",
+          "Bloques/métodos con tiempos provenientes de NX",
+          "Balanceo de línea, cuellos de botella y escenarios",
+          "Publicación de KPIs por OPC UA / MQTT al UNS"
+        ]
+      }
+    },
+    {
+      "type": "bullets",
+      "title": "Ventajas de la simulación",
+      "items": [
+        "Probar mejoras de paletizado sin detener producción real.",
+        "Comparar layouts y reglas de prioridad antes de comprar.",
+        "Obtener tiempos creíbles para el modelo financiero.",
+        "Entrenar la integración OPC/MQTT con datos realistas de planta.",
+        "Detectar errores de flujo (WIP, bloqueos, starvations) temprano."
+      ]
+    },
+    {
+      "type": "prose",
+      "title": "Cómo se levantó la planta",
+      "body": "En Plant Simulation se modelaron las tres líneas con sus estaciones y se parametrizaron bloques con los tiempos de NX. Un dashboard de métodos concentra indicadores y habilita la comunicación industrial. Las imágenes y capturas del modelo documentan el levantamiento; el valor está en poder iterar el diseño de fin de línea y ver el impacto en Takt, OEE y MLT."
+    },
+    {
+      "type": "callout",
+      "title": "Validación funcional",
+      "body": "El ciclo completo valida: trayectorias en RobotStudio → comportamiento en NX → flujo de planta en Tecnomatix → tags en Ignition → KPIs en MES. Esa cadena es el corazón del Digital Factory Ulogix."
+    },
+    {
+      "type": "tech-logos",
+      "title": "Software Digital Factory",
+      "items": [
+        {
+          "file": "siemens.svg",
+          "title": "Siemens NX / Tecnomatix",
+          "invert": true
+        },
+        {
+          "file": "abb.svg",
+          "title": "RobotStudio / ABB"
+        },
+        {
+          "file": "ignition.svg",
+          "title": "Ignition"
+        },
+        {
+          "file": "mqtt.svg",
+          "title": "MQTT KPIs",
+          "invert": true
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Simulación y planta virtual",
+      "items": [
+        {
+          "file": "robot-arm.jpg",
+          "title": "Celda virtual",
+          "caption": "Validación cinemática"
+        },
+        {
+          "file": "factory.jpg",
+          "title": "Planta en simulación",
+          "caption": "Tres líneas"
+        },
+        {
+          "file": "dashboard.jpg",
+          "title": "KPIs de simulación",
+          "caption": "Hacia UNS"
+        }
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Integración",
+      "variant": "architecture",
+      "diagramTitle": "Gemelo → UNS"
+    }
+  ],
+  "heroImage": "heroImage2"
+}

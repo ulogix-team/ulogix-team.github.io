@@ -1,0 +1,68 @@
+[
+  {
+    "group": "Módulos APM",
+    "items": [
+      {
+        "title": "01 · Automatización en manufactura",
+        "href": "/intro-automatizacion"
+      },
+      {
+        "title": "02 · Gestión de producción",
+        "href": "/gestion-produccion"
+      },
+      {
+        "title": "03 · Planeación de proyectos",
+        "href": "/planeacion"
+      },
+      {
+        "title": "04 · Celdas de manufactura",
+        "href": "/celdas-robotizadas"
+      },
+      {
+        "title": "05 · Digital Factory",
+        "href": "/digital-factory"
+      },
+      {
+        "title": "06 · PLC y control",
+        "href": "/controladores"
+      },
+      {
+        "title": "07 · SCADA",
+        "href": "/scada"
+      }
+    ]
+  },
+  {
+    "group": "Arquitectura IT/OT",
+    "items": [
+      {
+        "title": "Middleware · Node-RED",
+        "href": "/middleware"
+      },
+      {
+        "title": "Unified Namespace",
+        "href": "/uns",
+        "external": "https://uns.ulogix.online"
+      },
+      {
+        "title": "MES",
+        "href": "/mes",
+        "external": "https://mes.ulogix.online"
+      },
+      {
+        "title": "ERP",
+        "href": "/erp",
+        "external": "https://erp.ulogix.online"
+      }
+    ]
+  },
+  {
+    "group": "Equipo",
+    "items": [
+      {
+        "title": "Informe de proceso",
+        "href": "/informe-proceso"
+      }
+    ]
+  }
+]

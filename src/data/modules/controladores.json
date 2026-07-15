@@ -1,0 +1,110 @@
+{
+  "slug": "controladores",
+  "number": "06",
+  "title": "PLC y controladores industriales",
+  "subtitle": "Metodología Grafcet (IEC 60848), Ladder (IEC 61131-3) y validación en Logix Emulate.",
+  "rubric": "Diseño del control secuencial (Grafcet), implementación en lógica Ladder en Logix Emulate y validación funcional del sistema en ejecución.",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Metodología Grafcet e IEC",
+      "body": "Grafcet (IEC 60848) describe el control secuencial con etapas, transiciones y receptividades: un lenguaje claro para acordar el comportamiento antes de programar. La implementación se realiza en Ladder Diagram según IEC 61131-3 en Studio 5000 / Logix Emulate (Rockwell), alineando tags con el gemelo y con SCADA."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "grafcet",
+      "diagramTitle": "De Grafcet a Ladder"
+    },
+    {
+      "type": "steps",
+      "title": "De Grafcet a Ladder",
+      "items": [
+        {
+          "title": "Grafcet 1.er nivel",
+          "desc": "Vista macro de la secuencia de paletizado: etapas principales y transiciones de proceso."
+        },
+        {
+          "title": "Grafcet 2.º nivel",
+          "desc": "Actuadores, sensores y estado de cada etapa; definición de receptividades para franquear transiciones."
+        },
+        {
+          "title": "Grafcet 3.er nivel",
+          "desc": "Detalle fino (ej. embotellado/paletizado de garrafones) alineado a la simulación NX."
+        },
+        {
+          "title": "Ladder en Logix Emulate",
+          "desc": "Latches, bobinas, contactos, timers, contadores y flancos de subida/bajada que materializan el Grafcet."
+        }
+      ]
+    },
+    {
+      "type": "bullets",
+      "title": "Qué se valida en ejecución",
+      "items": [
+        "Transiciones solo cuando la receptividad (sensores/condiciones) es verdadera.",
+        "Sincronización con bandas y celdas robotizadas.",
+        "Comportamiento observado en el gemelo digital bajo la misma lógica.",
+        "Puente de comunicación hacia OPC UA (vía middleware cuando aplica OPCDA)."
+      ]
+    },
+    {
+      "type": "callout",
+      "title": "Por qué este orden",
+      "body": "Programar Ladder sin Grafcet genera lógica opaca y difícil de auditar. En Ulogix el Grafcet es el contrato funcional; el Ladder es su implementación verificable en emulación y en el gemelo."
+    },
+    {
+      "type": "tech-logos",
+      "title": "PLC y emulación",
+      "body": "Studio 5000 / Logix Emulate (Rockwell) y puente a OPC UA.",
+      "items": [
+        {
+          "file": "rockwell.svg",
+          "title": "Rockwell Automation",
+          "invert": true
+        },
+        {
+          "file": "node-red.svg",
+          "title": "Node-RED puente"
+        },
+        {
+          "file": "ignition.svg",
+          "title": "Ignition"
+        },
+        {
+          "file": "siemens.svg",
+          "title": "Validación NX",
+          "invert": true
+        }
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Middleware hacia el gemelo",
+      "variant": "middleware",
+      "diagramTitle": "OPC DA → UA"
+    },
+    {
+      "type": "photo-grid",
+      "title": "Control industrial",
+      "items": [
+        {
+          "file": "control-room.jpg",
+          "title": "Entorno de control",
+          "caption": "Operación y validación"
+        },
+        {
+          "file": "node-red-flow.png",
+          "title": "Flujos Node-RED",
+          "caption": "Tags hacia SCADA"
+        },
+        {
+          "file": "dashboard.jpg",
+          "title": "Monitoreo",
+          "caption": "Estados de secuencia"
+        }
+      ]
+    }
+  ],
+  "heroImage": "heroScreens2"
+}

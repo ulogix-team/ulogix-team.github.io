@@ -1,0 +1,37 @@
+{
+  "title": "Cuadro resumen",
+  "subtitle": "Lo esencial de la propuesta para Coca-Cola FEMSA Fontibón",
+  "items": [
+    {
+      "label": "Tiempos antes de automatizar",
+      "value": "Paletizado manual",
+      "detail": "Paradas no planeadas y fatiga operativa, especialmente en garrafones de 25 L. OEE base ~83 %."
+    },
+    {
+      "label": "Tiempos después de automatizar",
+      "value": "+10–11 % capacidad",
+      "detail": "Celdas Gantry + IRB 5710, balanceo en Tecnomatix y control integrado. Meta OEE: +3 a +5 pp."
+    },
+    {
+      "label": "Costo total del proyecto",
+      "value": "~$9.000 M COP",
+      "detail": "CAPEX de ingeniería, maquinaria (incluye usados europeos), licencias e integración IT/OT."
+    },
+    {
+      "label": "Tiempo de ejecución",
+      "value": "4 meses",
+      "detail": "Diseño detallado (FAT/SAT/PMO), instalación y puesta en marcha, capacitación y gestión del cambio."
+    },
+    {
+      "label": "Diferencial Ulogix",
+      "value": "Integración de punta a punta",
+      "detail": "ISA-95 + UNS (MQTT), gemelo digital, RobotStudio, Ignition, MES y ERP vivos en Hetzner — no solo una celda aislada."
+    }
+  ],
+  "finance": [
+    { "label": "VPN", "value": "~$11.000 M" },
+    { "label": "TIR", "value": "~78 %" },
+    { "label": "ROI anual", "value": "~26–27 %" },
+    { "label": "Payback", "value": "~22–25 meses" }
+  ]
+}

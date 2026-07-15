@@ -1,0 +1,98 @@
+{
+  "slug": "gestion-produccion",
+  "number": "02",
+  "title": "Gestión de producción",
+  "subtitle": "VSM, tiempos, simulación e indicadores productivos antes y después de automatizar.",
+  "rubric": "Análisis del proceso mediante diagramas, estimación de tiempos y VSM antes/después, simulación del sistema con evaluación de indicadores (Takt, OEE, MLT, entre otros) y análisis comparativo de mejoras.",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Diagnóstico del proceso productivo",
+      "body": "Con VSM y análisis temporales localizamos cuellos de botella a lo largo del embotellado. El paletizado manual concentra paradas y fatiga —crítico en la línea de garrafones de 25 L—, lo que degrada disponibilidad y eficiencia aunque la calidad se mantenga alta."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "oee",
+      "diagramTitle": "Descomposición OEE"
+    },
+    {
+      "type": "compare",
+      "title": "Antes vs después",
+      "before": {
+        "title": "Antes de automatizar",
+        "items": [
+          "Paletizado manual en las tres líneas",
+          "OEE global ≈ 83 %",
+          "Calidad ≈ 100 % (poca oportunidad ahí)",
+          "Paradas no planeadas y dependencia de intervención humana",
+          "Fatiga por cargas altas en L3 (garrafones)"
+        ]
+      },
+      "after": {
+        "title": "Después de automatizar",
+        "items": [
+          "Gantry compartido L1/L2 + IRB 5710 en L3",
+          "Meta OEE: +3 a +5 pp",
+          "Capacidad +10–11 %",
+          "Tiempos de ciclo validados en NX → Tecnomatix",
+          "KPIs vivos en MES vía UNS"
+        ]
+      }
+    },
+    {
+      "type": "metrics",
+      "title": "Indicadores productivos",
+      "oee": {
+        "disponibilidad": 85.5,
+        "eficencia": 92.3,
+        "calidad": 98.7,
+        "oeeTotal": 83
+      },
+      "notes": [
+        "OEE = Disponibilidad × Eficiencia × Calidad. El diagnóstico apunta a atacar D y E.",
+        "Takt: ritmo que exige la demanda; la simulación busca balancear estaciones al takt.",
+        "MLT: lead time de manufactura; se reduce al eliminar esperas en paletizado y mejorar flujo.",
+        "Tecnomatix permite ver cuellos de botella y rebalancear antes de invertir en piso."
+      ]
+    },
+    {
+      "type": "bullets",
+      "title": "Simulación y evaluación",
+      "items": [
+        "NX entrega tiempos de preparación/paletizado por línea.",
+        "Plant Simulation (Tecnomatix) arma las tres líneas y evalúa flujo, WIP y estaciones.",
+        "Dashboard de métodos publica indicadores hacia OPC UA / MQTT.",
+        "Comparativo de mejoras alimenta el caso financiero (VPN, TIR, payback)."
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Arquitectura de indicadores",
+      "variant": "architecture",
+      "diagramTitle": "De planta a negocio"
+    },
+    {
+      "type": "photo-grid",
+      "title": "Datos de operación",
+      "items": [
+        {
+          "file": "dashboard.jpg",
+          "title": "Dashboards KPIs",
+          "caption": "OEE, Takt, MLT"
+        },
+        {
+          "file": "factory.jpg",
+          "title": "Línea de producción",
+          "caption": "Antes / después de automatizar"
+        },
+        {
+          "file": "control-room.jpg",
+          "title": "Monitoreo",
+          "caption": "Disponibilidad y paradas"
+        }
+      ]
+    }
+  ],
+  "heroImage": "desempeno"
+}

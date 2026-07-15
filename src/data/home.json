@@ -2,13 +2,13 @@
   "hero_title": "Automatización <strong>FEMSA</strong>",
   "hero_content": "<p><strong>Conoce la nueva línea de producción de FEMSA. Donde se encuentra la industria 4.0 y el sabor inconfundible de Coca-Cola</p>",
   "services_title": "Nuestra propuesta",
-  "clients_title": "Empresas asociadas",
-  "testimonials_title": "Clients ♥ us",
+  "clients_title": "Tecnología y aliados",
+  "testimonials_title": "Voces del proyecto",
   "case_studies_title": "Nuestros productos",
   "pricing_title": "We do design retainers",
-  "quote_content": "El <strong>equipo de ULogix Automation</strong> es <strong>increíble</strong>. Su análisis y propuestas de solución, incrementan el OEE de cualquier empresa! Ya los quiero en TESLA ",
-  "quote_cite": "Elon Musk",
-  "quote_role": "Socio Estratégico",
-  "quote_image": "https://futureoflife.org/wp-content/uploads/2020/08/elon_musk_royal_society.jpg",
-  "faq_title": "Frequently Asked Questions"
+  "quote_content": "El <strong>equipo de Ulogix Automation</strong> integra planta, datos y negocio. Su arquitectura ISA-95 + UNS es exactamente lo que una embotelladora necesita para el siguiente salto de OEE.",
+  "quote_cite": "Comité técnico APM",
+  "quote_role": "Evaluación de propuesta",
+  "quote_image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
+  "faq_title": "Preguntas frecuentes"
 }

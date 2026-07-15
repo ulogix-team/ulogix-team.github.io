@@ -2,42 +2,15 @@
 const { content, image, cite, role } = Astro.props
 ---
 
-<!-- Quote -->
-<blockquote class="bs-container bs-mt-lg font-display text-3xl md:text-5xl lg:text-6xl flex flex-col gap-6" id="quote">
-  <!-- Text -->
-  <div set:html={content} class="text-bs-foreground-dark bs-st-quote [&_strong]:font-normal font-display" />
-
-  <!-- Cite -->
-  <cite class="not-italic flex gap-4 items-center">
-    <img src={image} class="h-12 w-12 rounded-full" alt="" width="128" height="128" loading="lazy" />
-
-    <div class="text-bs-foreground-light bs-h3">
-      {cite}
-      <span class="text-bs-foreground-dark">{role}</span>
-    </div>
-  </cite>
+<blockquote class="bs-container py-20 md:py-28" id="quote">
+  <div class="ulogix-glass ulogix-glow rounded-[2rem] p-8 md:p-14 max-w-5xl">
+    <div set:html={content} class="font-display text-2xl md:text-4xl lg:text-5xl leading-snug text-white/90 bs-st-quote [&_strong]:text-ulogix-accent [&_strong]:font-semibold" />
+    <cite class="not-italic flex gap-4 items-center mt-10">
+      <img src={image} class="h-14 w-14 rounded-full ring-1 ring-white/20 object-cover" alt="" width="128" height="128" loading="lazy" />
+      <div>
+        <p class="text-white font-semibold text-lg">{cite}</p>
+        <p class="text-bs-foreground-dark text-sm">{role}</p>
+      </div>
+    </cite>
+  </div>
 </blockquote>
-
-<style is:global>
-  /* Lighten text when scrolling into view */
-
-  @keyframes white-text {
-    to {
-      color: var(--color-bs-foreground-light);
-    }
-  }
-
-  @supports (animation-timeline: view()) {
-    .bs-st-quote strong {
-      animation: white-text linear;
-      animation-timeline: view(20% block);
-      animation-fill-mode: forwards;
-    }
-  }
-
-  @supports (not (animation-timeline: view())) {
-    .bs-st-quote strong {
-      color: var(--color-bs-foreground-light);
-    }
-  }
-</style>

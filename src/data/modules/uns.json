@@ -1,0 +1,124 @@
+{
+  "slug": "uns",
+  "number": "UNS",
+  "title": "Arquitectura Unified Namespace",
+  "subtitle": "Nodo central MQTT: campo, PLC, SCADA, MES, analítica y ERP en el mismo bus semántico.",
+  "rubric": "Arquitectura horizontal moderna sobre ISA-95: desacoplar capas y evitar puntos únicos de ruptura en la cadena vertical clásica.",
+  "demoId": "uns",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "De la pirámide al bus",
+      "body": "ISA-95 sigue siendo el mapa de roles, pero la comunicación ya no tiene que ser solo vertical y frágil. El Unified Namespace centraliza la información en un broker MQTT: cualquier nodo autorizado publica o suscribe tópicos con organización semántica, estructural y funcional."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "uns",
+      "diagramTitle": "Unified Namespace"
+    },
+    {
+      "type": "bullets",
+      "title": "Ventajas",
+      "items": [
+        "Centralizar: un solo lugar para el estado de planta y de negocio.",
+        "Contextualizar: tópicos con significado para analítica y dashboards.",
+        "Desacoplar: si una capa falla, no se rompe toda la cadena punto a punto.",
+        "Habilitar tiempo real: acciones y KPIs sin ETL batch innecesario."
+      ]
+    },
+    {
+      "type": "steps",
+      "title": "Cómo está montado",
+      "items": [
+        {
+          "title": "Planta (OT)",
+          "desc": "RobotStudio, NX y Tecnomatix; OPC UA servido por Ignition; PLC vía puente Node-RED cuando se requiere OPCDA→OPCUA."
+        },
+        {
+          "title": "SCADA",
+          "desc": "Perspective consume/publica tags; históricos en TimeSeries DB."
+        },
+        {
+          "title": "UNS (MQTT)",
+          "desc": "Broker Mosquitto: KPIs, órdenes, estados y eventos con namespaces claros."
+        },
+        {
+          "title": "IT",
+          "desc": "MES (engine Python) y ERP suscriben/publican; cierran el ciclo de planificación y ejecución."
+        }
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Middleware en el UNS",
+      "variant": "middleware",
+      "diagramTitle": "Node-RED como puente"
+    },
+    {
+      "type": "tech-logos",
+      "title": "Componentes UNS",
+      "items": [
+        {
+          "file": "mqtt.svg",
+          "title": "MQTT / Mosquitto",
+          "invert": true
+        },
+        {
+          "file": "node-red.svg",
+          "title": "Node-RED"
+        },
+        {
+          "file": "ignition.svg",
+          "title": "Ignition OPC UA"
+        },
+        {
+          "file": "docker.svg",
+          "title": "Docker"
+        },
+        {
+          "file": "python.svg",
+          "title": "MES engine"
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Infraestructura del bus",
+      "items": [
+        {
+          "file": "servers.jpg",
+          "title": "Broker y servicios",
+          "caption": "uns.ulogix.online"
+        },
+        {
+          "file": "node-red-flow.png",
+          "title": "Flujos middleware",
+          "caption": "OPC DA → UA → MQTT"
+        },
+        {
+          "file": "dashboard.jpg",
+          "title": "Consumidores IT",
+          "caption": "MES · ERP · analítica"
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "title": "Node-RED en detalle",
+      "body": "Node-RED es nuestro middleware: lee OPC DA del emulador Rockwell, normaliza tags y los publica a Ignition (OPC UA) y al broker MQTT del Unified Namespace. Así desacoplamos el PLC del resto de la arquitectura sin reescribir Ladder. Ver página Middleware para el flujo completo."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Mapa de protocolos",
+      "variant": "comms",
+      "diagramTitle": "OPC · MQTT · API"
+    },
+    {
+      "type": "demo",
+      "title": "Demo en vivo",
+      "body": "UNS / broker y vistas asociadas en Docker · Hetzner (Alemania)."
+    }
+  ],
+  "heroImage": "heroImage2"
+}

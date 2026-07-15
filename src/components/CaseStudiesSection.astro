@@ -1,37 +1,20 @@
 ---
-
 import CardCaseStudy from './CardCaseStudy.astro'
+import garrafon from '../assets/theme-images/garrafon.png'
 
 const { title, caseStudies } = Astro.props
-
-import garrafon from '../assets/theme-images/garrafon.png'; 
-
-
-
 ---
 
-<section class="bs-container bs-mt-lg" id="case-studies">
+<section class="bs-container py-16 md:py-24" id="case-studies">
+  <p class="font-mono text-xs tracking-widest text-ulogix-accent uppercase mb-3">Líneas de producto</p>
+  {title && <h2 class="bs-h2 mb-3">{title}</h2>}
+  <p class="text-bs-foreground-dark text-lg max-w-2xl mb-12">
+    Tres formatos. Tres ritmos de producción. Una sola arquitectura de automatización.
+  </p>
 
-  <!-- Header -->
-  { title && <h2 class="bs-h2 text-center md:text-left">{ title }</h2> }
-
-  <div class="bs-h8 mt-5 mb-20">
-  En la nuestra propuesta de automatización, nos centraremos en tres tipos de productos
+  <div class="grid lg:grid-cols-3 gap-6 md:gap-8">
+    <CardCaseStudy caseStudy={caseStudies[0]} />
+    <CardCaseStudy caseStudy={caseStudies[1]} />
+    <CardCaseStudy caseStudy={caseStudies[2]} img={garrafon} />
   </div>
-  <!-- Case Study 1 -->
-  <!-- <div class="bs-mt-md">
-
-
-
-  </div> -->
-
-  <!-- Case studies -->
-  <div class="mt-3 grid lg:grid-cols-3 gap-8 pb-0">
-    <CardCaseStudy caseStudy={ caseStudies[0] } />
-    <CardCaseStudy caseStudy={ caseStudies[1] } />
-    <CardCaseStudy caseStudy={ caseStudies[2] } img = { garrafon} />
-
-  </div>
-
 </section>
-

@@ -1,0 +1,287 @@
+---
+/**
+ * Renders structured module sections from JSON.
+ * Types: prose | bullets | levels | diagrams | objectives | compare |
+ *        metrics | steps | finance | cells | risks | split | callout | demo | css-diagram | tech-logos | photo-grid
+ */
+import DemoPanel from './DemoPanel.astro'
+import CssDiagram from './CssDiagram.astro'
+
+const diagramImages = import.meta.glob('../assets/logos/*.{png,jpg,jpeg,PNG}', {
+  eager: true,
+  import: 'default',
+})
+
+function resolveDiagram(filename) {
+  if (!filename) return null
+  const entry = Object.entries(diagramImages).find(([path]) => path.endsWith(filename))
+  return entry ? entry[1] : null
+}
+
+const { sections = [], demoId } = Astro.props
+---
+
+<div class="bs-container flex flex-col gap-20 md:gap-28 py-16 md:py-24">
+  {sections.map((section) => (
+    <section class="module-section">
+      {section.title && section.type !== 'demo' && (
+        <h2 class="bs-h2 mb-8 max-w-3xl">{section.title}</h2>
+      )}
+
+      {section.type === 'prose' && (
+        <p class="bs-body-text text-bs-foreground-dark text-lg max-w-3xl leading-relaxed">
+          {section.body}
+        </p>
+      )}
+
+      {section.type === 'css-diagram' && (
+        <CssDiagram variant={section.variant} title={section.diagramTitle} />
+      )}
+
+      {section.type === 'tech-logos' && (
+        <div>
+          {section.body && (
+            <p class="text-bs-foreground-dark text-lg max-w-3xl mb-8 leading-relaxed">{section.body}</p>
+          )}
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {section.items.map((item) => (
+              <div class="ulogix-glass rounded-2xl p-6 flex flex-col items-center justify-center gap-3 min-h-28 hover:scale-105 transition-transform">
+                <img
+                  src={`/tech/${item.file}`}
+                  alt={item.title}
+                  class:list={[
+                    "max-h-12 max-w-full object-contain",
+                    item.invert && "brightness-0 invert opacity-90",
+                  ]}
+                  loading="lazy"
+                />
+                <p class="text-xs text-center text-bs-foreground-dark">{item.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {section.type === 'photo-grid' && (
+        <div>
+          {section.body && (
+            <p class="text-bs-foreground-dark text-lg max-w-3xl mb-8 leading-relaxed">{section.body}</p>
+          )}
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {section.items.map((item) => (
+              <figure class="group relative rounded-3xl overflow-hidden border border-ulogix-line aspect-[4/3] ulogix-glow">
+                <img
+                  src={`/tech/${item.file}`}
+                  alt={item.title}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <figcaption class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                  <p class="font-medium text-white">{item.title}</p>
+                  {item.caption && <p class="text-xs text-white/70 mt-1">{item.caption}</p>}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {section.type === 'callout' && (
+        <div class="ulogix-glass rounded-3xl px-6 py-8 md:px-10 max-w-3xl ulogix-glow">
+          <p class="text-bs-foreground-light text-lg leading-relaxed">{section.body}</p>
+        </div>
+      )}
+
+      {section.type === 'bullets' && (
+        <ul class="flex flex-col gap-4 max-w-3xl">
+          {section.items.map((item) => (
+            <li class="flex gap-4 text-bs-foreground-dark leading-relaxed">
+              <span class="text-ulogix-accent mt-1 shrink-0">▸</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {section.type === 'objectives' && (
+        <ol class="grid md:grid-cols-2 gap-4">
+          {section.items.map((item, i) => (
+            <li class="ulogix-glass rounded-2xl p-6">
+              <span class="font-mono text-ulogix-accent text-sm">{String(i + 1).padStart(2, '0')}</span>
+              <p class="mt-3 text-bs-foreground-light leading-relaxed">{item}</p>
+            </li>
+          ))}
+        </ol>
+      )}
+
+      {section.type === 'levels' && (
+        <div class="flex flex-col divide-y divide-ulogix-line border border-ulogix-line rounded-3xl overflow-hidden ulogix-glow">
+          {section.items.map((item) => (
+            <div class="grid md:grid-cols-[7rem_10rem_1fr] gap-4 md:gap-8 p-6 md:p-8 bg-bs-surface-0/40">
+              <span class="font-mono text-ulogix-accent text-sm">{item.level}</span>
+              <strong class="text-bs-foreground-light">{item.name}</strong>
+              <p class="text-bs-foreground-dark leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {section.type === 'diagrams' && (
+        <div>
+          {section.body && (
+            <p class="bs-body-text text-bs-foreground-dark text-lg max-w-3xl mb-10 leading-relaxed">
+              {section.body}
+            </p>
+          )}
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {section.items.map((item) => {
+              const img = resolveDiagram(item.image)
+              return (
+                <figure class="border border-ulogix-line bg-bs-surface-0 overflow-hidden">
+                  {img ? (
+                    <img src={typeof img === 'string' ? img : img.src} alt={item.title} class="w-full aspect-[4/3] object-contain bg-white/95 p-2" loading="lazy" />
+                  ) : (
+                    <div class="aspect-[4/3] flex items-center justify-center text-bs-foreground-dark text-sm">Sin imagen</div>
+                  )}
+                  <figcaption class="px-4 py-3 text-sm font-medium border-t border-ulogix-line">{item.title}</figcaption>
+                </figure>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {section.type === 'compare' && (
+        <div class="grid md:grid-cols-2 gap-6">
+          {[section.before, section.after].map((col, idx) => (
+            <div class={`border p-6 md:p-8 ${idx === 1 ? 'border-ulogix-accent bg-ulogix-accent-soft' : 'border-ulogix-line bg-bs-surface-0'}`}>
+              <h3 class="font-display text-xl mb-6">{col.title}</h3>
+              <ul class="flex flex-col gap-3">
+                {col.items.map((item) => (
+                  <li class="flex gap-3 text-bs-foreground-dark">
+                    <span class={idx === 1 ? 'text-ulogix-accent' : 'opacity-40'}>▸</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {section.type === 'metrics' && (
+        <div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            {[
+              { label: 'OEE base', value: `${section.oee?.oeeTotal ?? 83} %` },
+              { label: 'Disponibilidad*', value: `${section.oee?.disponibilidad ?? '—'} %` },
+              { label: 'Eficiencia*', value: `${section.oee?.eficencia ?? '—'} %` },
+              { label: 'Calidad*', value: `${section.oee?.calidad ?? '—'} %` },
+            ].map((m) => (
+              <div class="border border-ulogix-line bg-bs-surface-0 p-5">
+                <p class="text-xs uppercase tracking-wider text-bs-foreground-dark mb-2">{m.label}</p>
+                <p class="font-display text-3xl text-ulogix-accent">{m.value}</p>
+              </div>
+            ))}
+          </div>
+          {section.notes && (
+            <ul class="flex flex-col gap-3 max-w-3xl text-bs-foreground-dark">
+              {section.notes.map((n) => (
+                <li class="flex gap-3"><span class="text-ulogix-accent">▸</span>{n}</li>
+              ))}
+            </ul>
+          )}
+          <p class="text-xs text-bs-foreground-dark mt-4 opacity-70">* Factores ilustrativos del diagnóstico; el OEE global reportado es ~83 %.</p>
+        </div>
+      )}
+
+      {section.type === 'steps' && (
+        <div class="flex flex-col gap-0 border-l border-ulogix-line ml-2">
+          {section.items.map((item, i) => (
+            <div class="relative pl-8 pb-10 last:pb-0">
+              <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-ulogix-accent" />
+              <p class="font-mono text-xs text-ulogix-accent mb-1">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="text-xl font-medium mb-2">{item.title}</h3>
+              <p class="text-bs-foreground-dark leading-relaxed max-w-2xl">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {section.type === 'finance' && (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {section.items.map((item) => (
+            <div class="border border-ulogix-line bg-bs-surface-0 p-6">
+              <p class="text-xs uppercase tracking-wider text-bs-foreground-dark">{item.label}</p>
+              <p class="font-display text-2xl text-ulogix-accent mt-2">{item.value}</p>
+              {item.detail && <p class="text-sm text-bs-foreground-dark mt-3 leading-relaxed">{item.detail}</p>}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {section.type === 'cells' && (
+        <div class="grid lg:grid-cols-2 gap-8">
+          {section.items.map((cell) => (
+            <article class="border border-ulogix-line bg-bs-surface-0 flex flex-col">
+              <header class="p-6 md:p-8 border-b border-ulogix-line">
+                <p class="font-mono text-xs text-ulogix-accent tracking-wider uppercase mb-2">{cell.tag}</p>
+                <h3 class="bs-h3">{cell.name}</h3>
+              </header>
+              <div class="p-6 md:p-8 flex-1">
+                <p class="text-bs-foreground-dark leading-relaxed mb-6">{cell.body}</p>
+                <ul class="flex flex-wrap gap-2">
+                  {cell.highlights.map((h) => (
+                    <li class="text-xs border border-ulogix-line px-3 py-1.5 text-bs-foreground-light">{h}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {section.type === 'risks' && (
+        <div class="overflow-x-auto border border-ulogix-line">
+          <table class="w-full text-left text-sm md:text-base">
+            <thead class="bg-bs-surface-0 text-bs-foreground-dark">
+              <tr>
+                <th class="p-4 md:p-5 font-medium">Riesgo</th>
+                <th class="p-4 md:p-5 font-medium">Mitigación</th>
+              </tr>
+            </thead>
+            <tbody>
+              {section.items.map((row) => (
+                <tr class="border-t border-ulogix-line">
+                  <td class="p-4 md:p-5 text-bs-foreground-light align-top">{row.risk}</td>
+                  <td class="p-4 md:p-5 text-bs-foreground-dark align-top">{row.mitigation}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {section.type === 'split' && (
+        <div class="grid md:grid-cols-2 gap-6">
+          {[section.left, section.right].map((col) => (
+            <div class="border border-ulogix-line bg-bs-surface-0 p-6 md:p-8">
+              <h3 class="text-xl font-medium mb-6">{col.title}</h3>
+              <ul class="flex flex-col gap-3">
+                {col.items.map((item) => (
+                  <li class="flex gap-3 text-bs-foreground-dark">
+                    <span class="text-ulogix-accent shrink-0">▸</span>{item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {section.type === 'demo' && (
+        <DemoPanel demoId={demoId} title={section.title} body={section.body} />
+      )}
+    </section>
+  ))}
+</div>

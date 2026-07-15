@@ -1,0 +1,99 @@
+{
+  "slug": "scada",
+  "number": "07",
+  "title": "SCADA",
+  "subtitle": "HMI ISA-101 en Ignition Perspective, OPC UA y validación con el gemelo digital.",
+  "rubric": "Diseño de interfaz HMI bajo ISA-101, supervisión y control mediante SCADA (Ignition) con comunicación OPC y validación funcional integrada con el gemelo digital.",
+  "demoId": "scada",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Ignition Perspective",
+      "body": "El SCADA se construyó en Ignition Perspective. Cumple el rol de supervisión y de servidor OPC UA: gestiona usuarios, conexiones y múltiples clientes (NX, Tecnomatix, RobotStudio) que publican y consumen tags de planta."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "scada",
+      "diagramTitle": "Jerarquía HMI ISA-101"
+    },
+    {
+      "type": "bullets",
+      "title": "Diseño HMI (ISA-101)",
+      "items": [
+        "Layout general de planta con navegación a cada línea.",
+        "Drill-down por etapas (p. ej. etapa 1–2, 3–4) al pasar sobre equipos.",
+        "Variables en tiempo real: temperaturas de lavado/formado, presión, válvulas, motores, inspección.",
+        "Setpoints editables y comandos de arranque/parada.",
+        "Posiciones articulares del Gantry y del manipulador IRB 5710 en paletizado.",
+        "Históricos en base TimeSeries (Postgres) para análisis posterior."
+      ]
+    },
+    {
+      "type": "prose",
+      "title": "Integración con el gemelo",
+      "body": "Las señales de robots y del gemelo alimentan el mismo servidor OPC. Así la HMI no es un mock: refleja la simulación funcional y prepara el mismo patrón de operación que tendría la planta real."
+    },
+    {
+      "type": "tech-logos",
+      "title": "SCADA stack",
+      "items": [
+        {
+          "file": "ignition.svg",
+          "title": "Ignition Perspective"
+        },
+        {
+          "file": "mqtt.svg",
+          "title": "MQTT",
+          "invert": true
+        },
+        {
+          "file": "abb.svg",
+          "title": "Robots ABB"
+        },
+        {
+          "file": "rockwell.svg",
+          "title": "PLC Rockwell",
+          "invert": true
+        },
+        {
+          "file": "docker.svg",
+          "title": "Docker · scada.ulogix.online"
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Interfaces de supervisión",
+      "items": [
+        {
+          "file": "control-room.jpg",
+          "title": "Sala de control",
+          "caption": "Operación HMI"
+        },
+        {
+          "file": "dashboard.jpg",
+          "title": "Pantallas de proceso",
+          "caption": "ISA-101"
+        },
+        {
+          "file": "factory.jpg",
+          "title": "Vista de planta",
+          "caption": "Layout → drill-down"
+        }
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Comms SCADA",
+      "variant": "comms",
+      "diagramTitle": "OPC UA en el centro"
+    },
+    {
+      "type": "demo",
+      "title": "Demo en vivo",
+      "body": "El SCADA corre en Docker en nuestro servidor Hetzner (Alemania)."
+    }
+  ],
+  "heroImage": "heroScreens"
+}

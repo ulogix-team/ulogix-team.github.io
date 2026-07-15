@@ -1,0 +1,91 @@
+{
+  "slug": "mes",
+  "number": "MES",
+  "title": "MES — Manufacturing Execution",
+  "subtitle": "Ejecución de manufactura, indicadores, calidad y lotes sobre el Unified Namespace.",
+  "rubric": "Capa ISA-95 nivel 3: ordena la operación de planta y conecta SCADA con ERP.",
+  "demoId": "mes",
+  "sections": [
+    {
+      "type": "prose",
+      "title": "Qué hace el MES Ulogix",
+      "body": "Construimos un dashboard MES propio enfocado en lo que la planta necesita ver: indicadores de producción, calidad, lotes, unidades producidas y contexto de ejecución. No reemplaza el SCADA: lo complementa con la capa de manufactura."
+    },
+    {
+      "type": "css-diagram",
+      "title": "Vista del sistema",
+      "variant": "mes",
+      "diagramTitle": "Capacidades MES"
+    },
+    {
+      "type": "bullets",
+      "title": "Capacidades",
+      "items": [
+        "Visualización de KPIs de línea y de planta.",
+        "Seguimiento de órdenes / ejecución vinculada al ERP.",
+        "Calidad y contexto operativo para toma de decisiones.",
+        "Motor Python que consume tópicos del UNS y calcula disponibilidad, eficiencia, calidad y OEE (p. ej. a partir de MTTR/MTBF desde Tecnomatix)."
+      ]
+    },
+    {
+      "type": "prose",
+      "title": "Flujo de información",
+      "body": "ERP planifica → MES ordena la ejecución en planta → SCADA supervisa y comanda → PLC actúa en campo → los datos suben de regreso (alarmas, históricos, consumo, cumplimiento de orden). El MES es el puente semántico entre operación y negocio."
+    },
+    {
+      "type": "tech-logos",
+      "title": "MES tech",
+      "items": [
+        {
+          "file": "python.svg",
+          "title": "Engine Python"
+        },
+        {
+          "file": "mqtt-icon.svg",
+          "title": "MQTT / UNS"
+        },
+        {
+          "file": "docker.svg",
+          "title": "Docker"
+        },
+        {
+          "file": "ignition.svg",
+          "title": "Datos desde SCADA"
+        }
+      ]
+    },
+    {
+      "type": "photo-grid",
+      "title": "Ejecución de manufactura",
+      "items": [
+        {
+          "file": "dashboard.jpg",
+          "title": "Dashboard MES",
+          "caption": "OEE · lotes · calidad"
+        },
+        {
+          "file": "servers.jpg",
+          "title": "Backend",
+          "caption": "mes.ulogix.online"
+        },
+        {
+          "file": "factory.jpg",
+          "title": "Órdenes en planta",
+          "caption": "Desde ERP → MES"
+        }
+      ]
+    },
+    {
+      "type": "css-diagram",
+      "title": "Flujo",
+      "variant": "architecture",
+      "diagramTitle": "ERP ↔ MES ↔ SCADA"
+    },
+    {
+      "type": "demo",
+      "title": "Demo en vivo",
+      "body": "MES desplegado en Docker · Hetzner."
+    }
+  ],
+  "heroImage": "heroImage"
+}

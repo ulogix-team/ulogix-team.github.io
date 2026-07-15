@@ -9,12 +9,12 @@
     <div class="text-overlay">
       <div class="text-content">
         <div class="text-block text-block-1" id="text-block-1">
-          <h2>Automatización</h2>
-          <p>Mejoraremos las métricas de producción agregando un sistema de paletizado inteligente para aumentar eficacia </p>
+          <h2>Celdas Ulogix</h2>
+          <p>Gantry compartido para líneas 1 y 2, e IRB 5710 para garrafones — paletizado automatizado con señales OPC hacia Ignition.</p>
         </div>
         <div class="text-block text-block-2" id="text-block-2">
           <h2>RobotStudio</h2>
-          <p>Programado en RAPID y accionado secuencialemnte con los PACs, se sincroniza con el sistema de control.</p>
+          <p>Simulación funcional en RAPID, smart components y sincronización con el gemelo digital y el SCADA.</p>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
     const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
     
     // --- Configuration ---
-    const MODEL_URL = 'robot.glb';
+    const MODEL_URL = '/robot.glb';
     const SCROLL_RANGE_FULL_TURN = 2000; // Más rango para efectos combinados
     
     // --- Setup Scene, Camera, Renderer ---
@@ -294,7 +294,7 @@
 
   .text-block {
     background: rgba(10, 10, 30, 0.7);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(4px);
     border-radius: 1rem;
     padding: 2rem;
     margin-bottom: 1rem;
